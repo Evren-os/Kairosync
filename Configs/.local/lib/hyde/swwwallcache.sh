@@ -2,14 +2,10 @@
 
 #// set variables
 
-# shellcheck source=$HOME/.local/bin/hyde-shell
+scrDir="$(dirname "$(realpath "$0")")"
 # shellcheck disable=SC1091
-if ! source "$(which hyde-shell)"; then
-    echo "[wallbash] code :: Error: hyde-shell not found."
-    echo "[wallbash] code :: Is HyDE installed?"
-    exit 1
-fi
-
+source "${scrDir}/globalcontrol.sh"
+export scrDir
 export scrDir
 export thmbDir
 export dcolDir
