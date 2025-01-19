@@ -27,7 +27,6 @@ B = Backup - Backup the target
               - All P,S,O flags will also backup the target file/directory
 
 
-
  Hyde core files 
 P|${HOME}/.config/hyde|config.toml|hyprland
 P|${HOME}/.config/hypr|hyde.conf animations.conf windowrules.conf keybindings.conf userprefs.conf monitors.conf|hyprland
@@ -45,8 +44,7 @@ S|${HOME}/.config|Kvantum|kvantum
 S|${HOME}/.config|qt5ct|qt5ct
 S|${HOME}/.config|qt6ct|qt6ct
 S|${HOME}/.config/hyde|wallbash|hyprland
-S|${HOME}/.config/hypr|animations|hyprland  
-
+S|${HOME}/.config/hypr|animations|hyprland
 O|${HOME}/.local/share|hyde|hyprland
 O|${HOME}/.local/lib|hyde|hyprland
 
@@ -64,10 +62,13 @@ P|${HOME}/.config|lsd|lsd
 S|${HOME}/.config|fastfetch|fastfetch
 S|${HOME}/.config/kitty|hyde.conf theme.conf|kitty
 P|${HOME}/.config/kitty|kitty.conf|kitty
+S|${HOME}/.config|alacritty|alacritty
+S|${HOME}/.config|cava|cava
+S|${HOME}/.config|starship.toml|alacritty
 
  Shell 
 P|${HOME}/.config|fish|fish
-P|${HOME}|.zshrc .hyde.zshrc .p10k.zsh|zsh zsh-theme-powerlevel10k pokego-bin
+P|${HOME}|.zshrc .hyde.zshrc .p10k.zsh|zsh oh-my-zsh-git zsh-theme-powerlevel10k pokemon-colorscripts-git
 S|${HOME}|.zshenv|zsh zsh-theme-powerlevel10k
 
  File Explorer 

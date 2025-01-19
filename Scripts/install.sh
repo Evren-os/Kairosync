@@ -249,7 +249,7 @@ EOF
         "$HOME/.local/lib/hyde/themeswitch.sh" -q || true
         echo "[install] reload :: Hyprland"
     fi
-
+    cp -r ~/HyDE/Configs/starship.toml "$HOME/.config/starship.toml"
 fi
 
 #---------------------#

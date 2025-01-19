@@ -6,7 +6,6 @@ scrDir="$(dirname "$(realpath "$0")")"
 # shellcheck disable=SC1091
 source "${scrDir}/globalcontrol.sh"
 export scrDir
-export scrDir
 export thmbDir
 export dcolDir
 # shellcheck disable=SC2154
@@ -52,7 +51,7 @@ fn_wallcache_force() {
 fn_envar_cache() {
     if command -v rofi &>/dev/null; then
         mkdir -p "$XDG_DATA_HOME/rofi/themes"
-        ln -snf "$SHARE_DIR/hyde/rofi/themes"/* "$XDG_DATA_HOME/rofi/themes/"
+        ln -snf "$XDG_DATA_HOME/hyde/rofi/themes"/* "$XDG_DATA_HOME/rofi/themes/"
     fi
 }
 
