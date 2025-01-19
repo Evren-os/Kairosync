@@ -111,7 +111,7 @@ telegram-desktop                                       # telegram client
 signal-desktop                                         # signal client
 legcord-bin                                            # lightweight discord client
 obsidian                                               # note taking app
-affine-bin                                             # note-taking & whiteboarding tool
+# affine-bin                                           # note-taking & whiteboarding tool
 spotify                                                # music streaming
 # spotube-bin                                          # music streaming client
 qmplay2                                                # media player
@@ -129,7 +129,8 @@ zsh                                                    # terminal shell
 starship                                               # shell prompt
 eza                                                    # file lister for zsh
 oh-my-zsh-git                                          # plugin manager for zsh
-# pokego-bin                                           # display pokemon sprites in terminal
+pokego-bin                                             # display pokemon sprites in terminal
+pokemon-colorscripts-git                               # pokemon in terminal
 fastfetch                                              # system information fetch tool
 
 # --------------------------------------------------- // HyDE
