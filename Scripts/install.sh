@@ -162,8 +162,8 @@ EOF
 
         case "${PROMPT_INPUT}" in
         1) export getAur="yay" ;;
-        2) export getAur="yay-bin" ;;
-        3) export getAur="paru" ;;
+        2) export getAur="paru" ;;
+        3) export getAur="yay-bin" ;;
         4) export getAur="paru-bin" ;;
         q)
             print_log -sec "AUR" -crit "Quit" "Exiting..."
@@ -243,13 +243,13 @@ EOF
     "${scrDir}/restore_fnt.sh"
     "${scrDir}/restore_cfg.sh"
     "${scrDir}/restore_thm.sh"
-
+    print_log -g "[generate] " "cache ::" "Wallpapers..."
     if [ "${flg_DryRun}" -ne 1 ]; then
         "$HOME/.local/lib/hyde/swwwallcache.sh" -t ""
         "$HOME/.local/lib/hyde/themeswitch.sh" -q || true
         echo "[install] reload :: Hyprland"
     fi
-    cp -r ~/HyDE/Configs/.config/starship.toml "$HOME/.config/starship.toml"
+
 fi
 
 #---------------------#

@@ -221,7 +221,9 @@ def generate_dmenu(binds):
         keys = [mod_display] if mod_display else []
         if key_display:
             keys.append(key_display)
-        formatted_keys = " + ".join(keys).strip(" + ")
+        formatted_keys = (
+            " + ".join(keys).removeprefix(" + ").removesuffix(" + ")
+        )  # remove leading and trailing " + " WARN: not working in python <3.9
         action = bind["description"]
         header1 = bind.get("header1", "")
         header2 = bind.get("header2", "")
@@ -339,18 +341,16 @@ def expand_meta_data(binds_data):
         keys = [mod_display] if mod_display else []
         if key_display:
             keys.append(key_display)
-        formatted_keys = " + ".join(keys).strip(" + ")
+        formatted_keys = (
+            " + ".join(keys).removeprefix(" + ").removesuffix(" + ")
+        )  # remove leading and trailing " + " WARN: not working in python <3.9
 
         if submap in submap_keys:
             submap_mod_display = submap_keys[submap]["mod_display"]
             submap_key_display = submap_keys[submap]["key_display"]
             bind["submap_mod"] = submap_mod_display
             bind["submap_key"] = submap_key_display
-            bind["displayed_keys"] = (
-                f"[{submap_mod_display} + {submap_key_display}] + {formatted_keys}".strip(
-                    " + "
-                )
-            )
+            bind["displayed_keys"] = ( f"{submap_mod_display} + {submap_key_display} + " if submap_mod_display else "") + f"{formatted_keys}"
             bind["description"] = f"[{submap}] {bind['description']}"
         else:
             bind["submap_mod"] = ""

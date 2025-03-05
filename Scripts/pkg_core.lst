@@ -15,8 +15,6 @@ bluez-utils                                            # bluetooth utility cli
 blueman                                                # bluetooth manager gui
 brightnessctl                                          # screen brightness control
 udiskie                                                # manage removable media
-rsync                                                  # file sync tool
-vulkan-radeon                                          # AMD vulkan driver
 
 # --------------------------------------------------- // Display Manager
 sddm                                                   # display manager for KDE plasma
@@ -37,7 +35,6 @@ grim                                                   # screenshot tool
 hyprpicker                                             # color picker
 slurp                                                  # region select for screenshot/screenshare
 satty                                                  # Modern Screenshot Annotation
-# flameshot-git                                        # Screenshot Editor
 cliphist                                               # clipboard manager
 hyprsunset                                             # blue light filter
 
@@ -53,21 +50,9 @@ qt5-imageformats                                       # for dolphin image thumb
 ffmpegthumbs                                           # for dolphin video thumbnails
 kde-cli-tools                                          # for dolphin file type defaults
 libnotify                                              # for notifications
-xdg-user-dirs                                          # user directories
-
-# --------------------------------------------------- // Fonts
 noto-fonts-emoji                                       # emoji font
-ttf-twemoji                                            # emoji Font
-ttf-jetbrains-mono-nerd                                # developer font
-# cozette-otb                                          # bitmap font
-# nerd-fonts-cozette-ttf                               # nerd bitmap font
-ttf-segoe-ui-variable                                  # segoe ui variable font
-ttf-iosevka-nerd                                       # iosevka nerd font
-otf-geist-mono-nerd                                    # font family for Vercel (patched nerd font)
-otf-geist                                              # font family for Vercel
-otf-geist-mono                                         # font family for Vercel (monospace)
 
-# --------------------------------------------------- // Theming & Aesthetics
+# --------------------------------------------------- // Theming
 nwg-look                                               # gtk configuration tool
 qt5ct                                                  # qt5 configuration tool
 qt6ct                                                  # qt6 configuration tool
@@ -75,64 +60,27 @@ kvantum                                                # svg based qt6 theme eng
 kvantum-qt5                                            # svg based qt5 theme engine
 qt5-wayland                                            # wayland support in qt5
 qt6-wayland                                            # wayland support in qt6
-cava                                                   # terminal audio visualizer
-neo-matrix-git                                         # matrix rain effect
-cbonsai-git                                            # bonsai generator
-pipes.sh                                               # animated pipes
-# asciiquarium                                         # ASCII art aquarium
-tenki                                                  # weather in terminal
 
 # --------------------------------------------------- // Applications
-zen-browser-bin                                        # zen browser (beta)
-zen-twilight-bin                                       # zen browser (nightly)
-brave-beta-bin                                         # brave browser (beta)
+firefox                                                # browser
 kitty                                                  # terminal
-alacritty                                              # terminal
-qbittorrent                                            # Torrent Client
-yt-dlp                                                 # Media Downloader
 dolphin                                                # kde file manager
 ark                                                    # kde file archiver
-zip                                                    # compression tool
 unzip                                                  # extracting zip files
-unrar                                                  # decompression tool
-neovim                                                 # terminal text editor
-vscodium-bin                                           # code editor
-vscodium-bin-marketplace                               # marketplace for vscodium
+vim                                                    # terminal text editor
+code                                                   # ide text editor
 nwg-displays                                           # monitor management utility
-nodejs                                                 # javaScript runtime
-npm                                                    # node.js package manager
-go                                                     # programming language
-btop                                                   # resource monitor
-fzf                                                    # fuzzy finder
-tree                                                   # directory viewer
-flatpak                                                # flatpak
-wlsunset                                               # night light support
-telegram-desktop                                       # telegram client
-signal-desktop                                         # signal client
-legcord-bin                                            # lightweight discord client
-obsidian                                               # note taking app
-# affine-bin                                           # note-taking & whiteboarding tool
-spotify                                                # music streaming
-# spotube-bin                                          # music streaming client
-qmplay2                                                # media player
-nomacs                                                 # image viewer
-aria2                                                  # cli download manager
-proxychains-ng-git                                     # proxy utility
-github-cli                                             # github command-line tool
-freedownloadmanager                                    # gui download manager
-filen-desktop-bin                                      # encrypted cloud storage client
-# upscayl-bin                                          # AI image upscaler
-phinger-cursors                                        # phinger cursor
+fzf                                                    # Command-line fuzzy finder
 
 # --------------------------------------------------- // Shell
-zsh                                                    # terminal shell
-starship                                               # shell prompt
-eza                                                    # file lister for zsh
-oh-my-zsh-git                                          # plugin manager for zsh
-pokego-bin                                             # display pokemon sprites in terminal
-pokemon-colorscripts-git                               # pokemon in terminal
+eza|zsh                                                # file lister for zsh
+# oh-my-zsh-git|zsh                                    #  plugin manager for zsh (Optional) // Moved to pkg_extra.lst
+zsh-theme-powerlevel10k-git|zsh                        # theme for zsh
+pokego-bin|zsh                                        # display pokemon sprites in terminal (written GO)
+eza|fish                                               # file lister for fish
+starship|fish                                          # customizable shell prompt
 fastfetch                                              # system information fetch tool
 
 # --------------------------------------------------- // HyDE
-# hyde-cli-git                                         # cli tool to manage hyde (Deprecated for HyDE)
+# hyde-cli-git                                           # cli tool to manage hyde \\ Deprecated for HyDE
 hypridle                                               # idle daemon

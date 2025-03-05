@@ -112,9 +112,11 @@ fn_wallbash() {
 
     # shellcheck disable=SC1091
     # shellcheck disable=SC2154
-    [ -f "$HYDE_STATE_HOME/staterc" ] && source "$HYDE_STATE_HOME/staterc"
-    if [[ -n "${skip_wallbash[*]}" ]]; then
-        for skip in "${skip_wallbash[@]}"; do
+    [ -f "$HYDE_STATE_HOME/state" ] && source "$HYDE_STATE_HOME/state"
+    # shellcheck disable=SC1091
+    [ -f "$HYDE_STATE_HOME/config" ] && source "$HYDE_STATE_HOME/config"
+    if [[ -n "${WALLBASH_SKIP_TEMPLATE[*]}" ]]; then
+        for skip in "${WALLBASH_SKIP_TEMPLATE[@]}"; do
             if [[ "${template}" =~ ${skip} ]]; then
                 print_log -sec "wallbash" -warn "skip '$skip' template " "Template: ${template}"
                 return 0
@@ -313,6 +315,9 @@ fn_wallbash() {
                 s/<wallbash_4xa9_rgba(\([^)]*\))>/'"${dcol_4xa9_rgba}"'/g' "${temp_target_file}"
     fi
 
+    # Option to make dcol templates handle basic environment variables
+    sed -i 's|<<HOME>>|'"${HOME}"'|g' "${temp_target_file}"
+
     if [ -s "${temp_target_file}" ]; then
         mv "${temp_target_file}" "${target_file}"
     fi
@@ -345,8 +350,10 @@ if [ -n "${single_template}" ]; then
 fi
 
 # Run when hyprland is running
-[ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprctl keyword misc:disable_autoreload 1 -q && trap 'print_log -sec "[wallbash]" -stat "reload"  "Hyprland" && hyprctl reload -q' EXIT
-
+if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+    hyprctl keyword misc:disable_autoreload 1 -q
+    export HYPRLAND_RELOAD=1
+fi
 # Print to terminal the colors
 [ -t 1 ] && "${scrDir}/wallbash.print.colors.sh"
 
@@ -377,3 +384,11 @@ revert_colors=0
 export revert_colors
 
 find "${wallbashDirs[@]}" -type f -path "*/always*" -name "*.dcol" 2>/dev/null | sort | awk '!seen[substr($0, match($0, /[^/]+$/))]++' | parallel fn_wallbash {}
+
+# Add post processing here
+
+toml_write "${confDir}/kdeglobals" "Colors:View" "BackgroundNormal" "#${dcol_pry1:-000000}"
+
+if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && [ "$HYPRLAND_RELOAD" -eq 1 ]; then
+    hyprctl reload -q
+fi

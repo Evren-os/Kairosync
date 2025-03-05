@@ -72,7 +72,10 @@ export reload_flag=1
 source "${scrDir}/globalcontrol.sh"
 
 #// hypr
-[ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprctl keyword misc:disable_autoreload 1 -q
+if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+    hyprctl keyword misc:disable_autoreload 1 -q
+    export HYPRLAND_RELOAD=1
+fi
 # shellcheck disable=SC2154
 sed '1d' "${HYDE_THEME_DIR}/hypr.theme" >"${confDir}/hypr/themes/theme.conf" # Useless and already handled by swwwallbash.sh but kept for robustness
 # shellcheck disable=SC2154
@@ -83,6 +86,8 @@ else
 fi
 gtkIcon="$(get_hyprConf "ICON_THEME")"
 cursorTheme="$(get_hyprConf "CURSOR_THEME")"
+font_name="$(get_hyprConf "FONT")"
+monospace_font_name="$(get_hyprConf "MONOSPACE_FONT")"
 
 # legacy and directory resolution
 if [ -d /run/current-system/sw/share/themes ]; then
@@ -93,31 +98,32 @@ if [ ! -d "${themesDir}/${gtkTheme}" ] && [ -d "$HOME/.themes/${gtkTheme}" ]; th
     cp -rns "$HOME/.themes/${gtkTheme}" "${themesDir}/${gtkTheme}"
 fi
 
-#// qtct
+#// qt5ct
 
-if ! kwriteconfig6 --file "${confDir}/qt5ct/qt5ct.conf" --group "Appearance" --key "icon_theme" "${gtkIcon}" 2>/dev/null; then
-    sed -i "/^icon_theme=/c\icon_theme=${gtkIcon}" "${confDir}/qt5ct/qt5ct.conf"
-fi
-if ! kwriteconfig6 --file "${confDir}/qt6ct/qt6ct.conf" --group "Appearance" --key "icon_theme" "${gtkIcon}" 2>/dev/null; then
-    sed -i "/^icon_theme=/c\icon_theme=${gtkIcon}" "${confDir}/qt6ct/qt6ct.conf"
-fi
+toml_write "${confDir}/qt5ct/qt5ct.conf" "Appearance" "icon_theme" "${gtkIcon}"
+toml_write "${confDir}/qt5ct/qt5ct.conf" "Fonts" "general" "\"${font_name},10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,\""
+toml_write "${confDir}/qt5ct/qt5ct.conf" "Fonts" "fixed" "\"${monospace_font_name},9,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,\""
+# toml_write "${confDir}/qt5ct/qt5ct.conf" "Appearance" "color_scheme_path" "${confDir}/qt5ct/colors/colors.conf"
+# toml_write "${confDir}/qt5ct/qt5ct.conf" "Appearance" "custom_palette" "true"
+
+# // qt6ct
+
+toml_write "${confDir}/qt6ct/qt6ct.conf" "Appearance" "icon_theme" "${gtkIcon}"
+toml_write "${confDir}/qt6ct/qt6ct.conf" "Fonts" "general" "\"${font_name},10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,\""
+toml_write "${confDir}/qt6ct/qt6ct.conf" "Fonts" "fixed" "\"${monospace_font_name},9,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,\""
+# toml_write "${confDir}/qt6ct/qt6ct.conf" "Appearance" "color_scheme_path" "${confDir}/qt6ct/colors/colors.conf"
+# toml_write "${confDir}/qt6ct/qt6ct.conf" "Appearance" "custom_palette" "true"
+
 # // kde plasma
-if ! kwriteconfig6 --file "${confDir}/kdeglobals" --group "Icons" --key "Theme" "${gtkIcon}" 2>/dev/null; then
-    sed -i "/^Theme=/c\Theme=${gtkIcon}" "${confDir}/kdeglobals"
-fi
 
-# Ensure [UiSettings] ColorScheme exists in kdeglobals // dolphin fix
-if ! kwriteconfig6 --file "${confDir}/kdeglobals" --group "UiSettings" --key "ColorScheme" "${gtkTheme}" 2>/dev/null; then
-    if ! grep -q "^\[UiSettings\]" "${confDir}/kdeglobals"; then
-        echo -e "\n[UiSettings]\nColorScheme=${gtkTheme}" >>"${confDir}/kdeglobals"
-    elif ! grep -q "^ColorScheme=" "${confDir}/kdeglobals"; then
-        sed -i "/^\[UiSettings\]/a ColorScheme=${gtkTheme}" "${confDir}/kdeglobals"
-    fi
-fi
+toml_write "${confDir}/kdeglobals" "Icons" "Theme" "${gtkIcon}"
+toml_write "${confDir}/kdeglobals" "General" "TerminalApplication" "${TERMINAL}"
+toml_write "${confDir}/kdeglobals" "UiSettings" "ColorScheme" "colors"
 
 # For KDE stuff
-kwriteconfig6 --file "${confDir}/kdeglobals" --group "KDE" --key "windgetStyke" "kvantum" 2>/dev/null
-kwriteconfig6 --file "${confDir}/kdeglobals" --group "Colors:View" --key "BackgroundNormal" "#00000000" 2>/dev/null
+
+toml_write "${confDir}/kdeglobals" "KDE" "widgetStyle" "kvantum"
+# toml_write "${confDir}/kdeglobals" "Colors:View" "BackgroundNormal" "#00000000" #! This is set on wallbash
 
 # // gtk2
 
@@ -143,16 +149,19 @@ ln -s "${themesDir}/${gtk4Theme}/gtk-4.0" "${confDir}/gtk-4.0"
 
 #// flatpak GTK
 
-pkg_installed flatpak && flatpak \
-    --user override \
-    --filesystem="${themesDir}":ro \
-    --filesystem="$HOME/.themes":ro \
-    --filesystem="$HOME/.icons":ro \
-    --filesystem="$HOME/.local/share/icons":ro \
-    --env=GTK_THEME="${gtk4Theme}" \
-    --env=ICON_THEME="${gtkIcon}"
-pkg_installed flatpak && flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+if pkg_installed flatpak; then
+    flatpak \
+        --user override \
+        --filesystem="${themesDir}":ro \
+        --filesystem="$HOME/.themes":ro \
+        --filesystem="$HOME/.icons":ro \
+        --filesystem="$HOME/.local/share/icons":ro \
+        --env=GTK_THEME="${gtk4Theme}" \
+        --env=ICON_THEME="${gtkIcon}"
 
+    flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo &
+
+fi
 # // xsettingsd
 
 sed -i -e "/^Net\/ThemeName /c\Net\/ThemeName \"${gtkTheme}\"" \
@@ -162,17 +171,27 @@ sed -i -e "/^Net\/ThemeName /c\Net\/ThemeName \"${gtkTheme}\"" \
 
 # // Legacy themes using ~/.themes also fixed GTK4 not following xdg
 
-if [ ! -d "$HOME/.themes" ]; then
+if [ ! -L "$HOME/.themes/${gtkTheme}" ] && [ -d "${themesDir}/${gtkTheme}" ]; then
+    print_log -sec "theme" -warn "linking" "${gtkTheme} to ~/.themes to fix GTK4 not following xdg"
     mkdir -p "$HOME/.themes"
-fi
-
-if [ ! -L "$HOME/.themes" ] && [ -d "${themesDir}/" ]; then
-    ln -snf "${themesDir}"/* "$HOME/.themes"
+    rm -rf "$HOME/.themes/${gtkTheme}"
+    ln -snf "${themesDir}/${gtkTheme}" "$HOME/.themes/"
 fi
 
 #// wallpaper
+export -f pkg_installed
+export scrDir
+find "$HYDE_CACHE_HOME/wallpapers" -name "*.png" -exec sh -c '
+    for file; do
+        base=$(basename "$file" .png)
+        if pkg_installed ${base}; then
+            "${scrDir}/wallpaper.sh" --link --backend "${base}"
+        fi
+    done
+' sh {} +
+
 if [ "$quiet" = true ]; then
-    "${scrDir}/swwwallpaper.sh" -s "$(readlink "${HYDE_THEME_DIR}/wall.set")" >/dev/null 2>&1
+    "${scrDir}/wallpaper.sh" -s "$(readlink "${HYDE_THEME_DIR}/wall.set")" --global >/dev/null 2>&1
 else
-    "${scrDir}/swwwallpaper.sh" -s "$(readlink "${HYDE_THEME_DIR}/wall.set")"
+    "${scrDir}/wallpaper.sh" -s "$(readlink "${HYDE_THEME_DIR}/wall.set")" --global
 fi
