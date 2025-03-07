@@ -88,7 +88,7 @@ unzip                                                  # extracting zip files
 vim                                                    # terminal text editor
 code                                                   # ide text editor
 nwg-displays                                           # monitor management utility
-fzf                                                    # Command-line fuzzy finder
+# fzf                                                  # Command-line fuzzy finder
 alacritty                                              # fast GPU-accelerated terminal
 neovim                                                 # enhanced vim text editor
 zed                                                    # fast collaborative code editor
