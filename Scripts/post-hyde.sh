@@ -43,10 +43,10 @@ setup_grub_theme() {
     if [ -d "grub2-themes" ]; then
         log "Using existing grub2-themes repository."
     else
-        git clone --depth 1 https://github.com/vinceliuice/grub2-themes.git || return 1
+        git clone --depth 1 https://github.com/semimqmo/sekiro_grub_theme.git || return 1
     fi
-    cd grub2-themes || return 1
-    sudo ./install.sh -t whitesur -i whitesur || return 1
+    cd sekiro_grub_theme || return 1
+    sudo ./install.sh || return 1
     success "GRUB theme installed"
 }
 
