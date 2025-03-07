@@ -2,8 +2,8 @@ signal-desktop
 legcord-bin
 brave-beta-bin
 obsidian
-affine-bin
-spotube-bin
+# affine-bin
+# spotube-bin
 aria2
 phinger-cursors
 neo-matrix-git
