@@ -80,13 +80,11 @@ otf-geist-mono                                         # font
 apple-fonts                                            # font
 
 # --------------------------------------------------- // Applications
-firefox                                                # browser
 kitty                                                  # terminal
 dolphin                                                # kde file manager
 ark                                                    # kde file archiver
 unzip                                                  # extracting zip files
 vim                                                    # terminal text editor
-code                                                   # ide text editor
 nwg-displays                                           # monitor management utility
 # fzf                                                  # Command-line fuzzy finder
 alacritty                                              # fast GPU-accelerated terminal
