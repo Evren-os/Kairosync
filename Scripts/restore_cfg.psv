@@ -68,6 +68,7 @@ S|${HOME}/.config/kitty|hyde.conf theme.conf|kitty
 P|${HOME}/.config/kitty|kitty.conf|kitty
 P|${HOME}/.config|alacritty|alacritty
 P|${HOME}/.config|cava|cava
+P|${HOME}/.config|qimgv|qimgv-qt6-kde-git
 
  Shell 
 P|${HOME}/.config|fish|fish
