@@ -2,7 +2,7 @@
 BackgroundNormal=#00000000
 
 [General]
-TerminalApplication=kitty
+TerminalApplication=alacritty
 
 [Icons]
 Theme=Will be overwritten on themeswitch
