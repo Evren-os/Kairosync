@@ -92,10 +92,12 @@ if confirm_step "Proceed with verifying HyDEco files and directories?"; then
     check_dir_exists "$HOME/Clone/HyDEco/Configs/.config/fastfetch"
     check_dir_exists "$HOME/Clone/HyDEco/Configs/.config/hypr"
     check_dir_exists "$HOME/Clone/HyDEco/Configs/.config/qimgv"
+    check_dir_exists "$HOME/Clone/HyDEco/Configs/.config/ghostty"
 
     check_file_exists "$HOME/Clone/HyDEco/Configs/.config/codium-flags.conf"
     check_file_exists "$HOME/Clone/HyDEco/Configs/.config/starship.toml"
     check_file_exists "$HOME/Clone/HyDEco/Configs/.config/kdeglobals"
+    check_file_exists "$HOME/Clone/HyDEco/Configs/.config/waybar/config.jsonc"
     check_file_exists "$HOME/Clone/HyDEco/Configs/.zshrc"
     check_file_exists "$HOME/HyDE/Scripts/post-hyde.sh"
 else
@@ -111,8 +113,10 @@ if confirm_step "Proceed with removing existing configuration folders and files?
            "$HOME/.config/fastfetch" \
            "$HOME/.config/hypr" \
            "$HOME/.config/qimgv" \
+           "$HOME/.config/ghostty" \
            "$HOME/.config/codium-flags.conf" \
            "$HOME/.config/starship.toml" \
+           "$HOME/.config/waybar/config.jsonc" \
            "$HOME/.config/kdeglobals"
 else
     print_status "Skipping removal of existing configuration"
@@ -136,11 +140,13 @@ if confirm_step "Proceed with copying configuration folders and files?"; then
           "$HOME/Clone/HyDEco/Configs/.config/fastfetch" \
           "$HOME/Clone/HyDEco/Configs/.config/hypr" \
           "$HOME/Clone/HyDEco/Configs/.config/qimgv" \
+          "$HOME/Clone/HyDEco/Configs/.config/ghostty" \
           "$HOME/.config/" || print_error "Failed to copy configuration directories"
 
     cp -f "$HOME/Clone/HyDEco/Configs/.config/codium-flags.conf" \
           "$HOME/Clone/HyDEco/Configs/.config/starship.toml" \
           "$HOME/Clone/HyDEco/Configs/.config/kdeglobals" \
+          "$HOME/Clone/HyDEco/Configs/.config/waybar/config.jsonc" \
           "$HOME/.config/" || print_error "Failed to copy configuration files"
 
     # Verify copying was successful
@@ -149,9 +155,11 @@ if confirm_step "Proceed with copying configuration folders and files?"; then
     check_dir_exists "$HOME/.config/fastfetch"
     check_dir_exists "$HOME/.config/hypr"
     check_dir_exists "$HOME/.config/qimgv"
+    check_dir_exists "$HOME/.config/ghostty"
     check_file_exists "$HOME/.config/codium-flags.conf"
     check_file_exists "$HOME/.config/starship.toml"
     check_file_exists "$HOME/.config/kdeglobals"
+    check_file_exists "$HOME/.config/waybar/config.jsonc"
 else
     print_status "Skipping configuration copying"
 fi
