@@ -65,7 +65,7 @@ pyright                                                # static type checker for
 rust-analyzer                                          # rust language server
 npm                                                    # nodejs package manager
 go                                                     # programming language
-bun                                                    # fast JS runtime
+bun-bin                                                # fast JS runtime
 
 # --------------------------------------------------- // Theming
 nwg-look                                               # gtk configuration tool
@@ -110,7 +110,7 @@ vscodium-bin-marketplace                               # marketplace for vscodiu
 
 # --------------------------------------------------- // Shell
 zsh                                                    # extended bash-compatible shell
-eza                                                    # file lister for zsh
+eza                                                    # modern alternative of ls
 oh-my-zsh-git                                          # plugin manager for zsh
 # zsh-theme-powerlevel10k-git                          # theme for zsh
 # pokego-bin                                           # display pokemon sprites in terminal (written GO)
