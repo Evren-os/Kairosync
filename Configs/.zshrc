@@ -18,6 +18,9 @@ export STARSHIP_CONFIG="$HOME/.config/starship.toml"
 export STARSHIP_CACHE="$HOME/.cache/starship"
 eval "$(starship init zsh)"
 
+# Zoxide
+eval "$(zoxide init zsh)"
+
 #############################################################
 # Zinit Plugin Manager Setup
 #############################################################
@@ -204,9 +207,15 @@ function yt-batch() {
 # Navigation & Basic
 alias ..='cd ..'
 alias ...='cd ../..'
-alias ls='ls --color=auto'
 alias mkdir='mkdir -p'
 alias c='clear'
+alias eza='eza --group-directories-first --icons=always --color=always --hyperlink --no-user'
+alias ezal='eza --long --header --git --icons=always --group-directories-first --color=always --time-style=long-iso --no-user'
+alias ezaa='eza --long --header --git --all --icons=always --group-directories-first --color=always --time-style=long-iso --no-user --hyperlink'
+alias ezat='eza --tree --icons=always --group-directories-first --color=always --no-user'
+alias ezat1='ezat --level=1'
+alias ezat2='ezat --level=2'
+alias ezat3='ezat --level=3'
 
 # System Management
 alias docker-start='sudo systemctl start docker'

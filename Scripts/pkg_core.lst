@@ -111,6 +111,7 @@ vscodium-bin-marketplace                               # marketplace for vscodiu
 # --------------------------------------------------- // Shell
 zsh                                                    # extended bash-compatible shell
 eza                                                    # modern alternative of ls
+zoxide                                                 # modern alternative of cd
 oh-my-zsh-git                                          # plugin manager for zsh
 # zsh-theme-powerlevel10k-git                          # theme for zsh
 # pokego-bin                                           # display pokemon sprites in terminal (written GO)
