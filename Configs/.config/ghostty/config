@@ -1,17 +1,13 @@
 term = xterm-256color
 theme = Dracula
-
 background = #0e0e16
-
 background-opacity = 0.80
-background-blur-radius = 58
-
+background-blur-radius = 20
 font-family = "JetBrainsMono Nerd Font"
-font-thicken = true
 font-size = 10
-
-window-padding-x = 5
-window-padding-y = 7
-
+window-padding-x = 10
+window-padding-y = 10
+confirm-close-surface = false
 mouse-hide-while-typing = true
 resize-overlay = never
+cursor-style = underline
