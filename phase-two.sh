@@ -1,213 +1,163 @@
 #!/usr/bin/env bash
-# phase-two.sh - Post-installation configuration for Hyprland dotfiles
+
 # Author : Evrenos
 
-# Color definitions
 GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
+YELLOW='\033[1;33m'
 RED='\033[0;31m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
-# Function to display status messages
-print_status() {
-    echo -e "${GREEN}[*]${NC} $1"
-}
+# Function for comprehensive dry run
+dry_run() {
+    echo -e "${YELLOW}Dry Run Validation:${NC}"
 
-# Function to display warnings
-print_warning() {
-    echo -e "${YELLOW}[!]${NC} $1"
-}
-
-# Function to display errors and exit
-print_error() {
-    echo -e "${RED}[ERROR]${NC} $1"
-    exit 1
-}
-
-# Function to display step messages
-print_step() {
-    echo -e "${BLUE}[STEP]${NC} $1"
-}
-
-# Function to check file existence before operations
-check_file_exists() {
-    if [[ ! -f "$1" ]]; then
-        print_error "File not found: $1"
-    fi
-}
-
-# Function to check directory existence before operations
-check_dir_exists() {
-    if [[ ! -d "$1" ]]; then
-        print_error "Directory not found: $1"
-    fi
-}
-
-# Function to prompt user for confirmation
-confirm_step() {
-    local prompt="$1"
-    local response
-
-    read -p "$prompt (y/n): " response
-    if [[ "$response" =~ ^[Yy]$ ]]; then
-        return 0
+    # Check source repository exists
+    if [[ ! -d "$HOME/Clone/HyDEco" ]]; then
+        echo -e "${RED}❌ HyDEco repository not found${NC}"
+        exit 1
     else
-        return 1
+        echo -e "${GREEN}✓ HyDEco repository found${NC}"
     fi
+
+    # Check HyDE scripts directory
+    if [[ ! -d "$HOME/HyDE/Scripts" ]]; then
+        echo -e "${RED}❌ HyDE Scripts directory not found${NC}"
+        exit 1
+    else
+        echo -e "${GREEN}✓ HyDE Scripts directory found${NC}"
+    fi
+
+    # Validate configuration files exist
+    config_folders=("alacritty" "cava" "fastfetch" "ghostty" "mpv" "qimgv")
+    config_files=("codium-flags.conf" "starship.toml" "kdeglobals")
+    hypr_files=("themes/theme.conf" "themes/wallbash.conf" "keybindings.conf" "monitors.conf" "windowrules.conf")
+
+    echo -e "\n${YELLOW}Checking Configuration Files:${NC}"
+
+    # Check config folders
+    for folder in "${config_folders[@]}"; do
+        if [[ ! -d "$HOME/Clone/HyDEco/Configs/.config/$folder" ]]; then
+            echo -e "${RED}❌ $folder configuration not found${NC}"
+        else
+            echo -e "${GREEN}✓ $folder configuration exists${NC}"
+        fi
+    done
+
+    # Check config files
+    for file in "${config_files[@]}"; do
+        if [[ ! -f "$HOME/Clone/HyDEco/Configs/.config/$file" ]]; then
+            echo -e "${RED}❌ $file not found${NC}"
+        else
+            echo -e "${GREEN}✓ $file exists${NC}"
+        fi
+    done
+
+    # Check Hyprland configuration files
+    for file in "${hypr_files[@]}"; do
+        if [[ ! -f "$HOME/Clone/HyDEco/Configs/.config/hypr/$file" ]]; then
+            echo -e "${RED}❌ Hyprland $file not found${NC}"
+        else
+            echo -e "${GREEN}✓ Hyprland $file exists${NC}"
+        fi
+    done
+
+    # Check post-hyde.sh script
+    if [[ ! -f "$HOME/Clone/HyDEco/Scripts/post-hyde.sh" ]]; then
+        echo -e "${RED}❌ post-hyde.sh not found${NC}"
+        exit 1
+    else
+        echo -e "${GREEN}✓ post-hyde.sh exists${NC}"
+    fi
+
+    # Check .zshrc
+    if [[ ! -f "$HOME/Clone/HyDEco/Configs/.zshrc" ]]; then
+        echo -e "${RED}❌ .zshrc not found${NC}"
+        exit 1
+    else
+        echo -e "${GREEN}✓ .zshrc exists${NC}"
+    fi
+
+    # Check proxychains (optional)
+    if command -v proxychains &> /dev/null; then
+        echo -e "${GREEN}✓ Proxychains is available${NC}"
+    else
+        echo -e "${YELLOW}⚠ Proxychains not installed${NC}"
+    fi
+
+    echo -e "\n${YELLOW}Potential Actions:${NC}"
+    echo "1. Remove existing config files in ~/.config"
+    echo "2. Copy new configuration files from HyDEco"
+    echo "3. Update Hyprland configuration files"
+    echo "4. Make post-hyde.sh executable"
+    echo "5. Run post-hyde.sh script"
+    echo "6. Replace .zshrc"
 }
 
-# Ask if proxychains should be used
-if confirm_step "Use proxychains for network operations?"; then
-    PROXY="proxychains"
-    print_status "Using proxychains for network operations"
-
-    # Check if proxychains is installed
-    if ! command -v proxychains &> /dev/null; then
-        print_error "Proxychains is not installed. Please install it first."
+main() {
+    # Dry run check
+    if [[ "$1" == "--dry-run" ]]; then
+        dry_run
+        exit 0
     fi
-else
-    PROXY=""
-    print_status "Not using proxychains"
-fi
 
-# Check if required directories exist
-print_step "Checking required directories"
-if [[ ! -d "$HOME/Clone/HyDEco" ]]; then
-    print_error "HyDEco directory not found. Please run phase-one.sh first."
-fi
+    # Proxychains option
+    echo -e "${YELLOW}Use proxychains? (y/n)${NC}"
+    read -r use_proxychains
 
-if [[ ! -d "$HOME/HyDE" ]]; then
-    print_error "HyDE directory not found. Please run phase-one.sh first."
-fi
+    # Check and potentially install proxychains
+    [[ "$use_proxychains" == "y" ]] && check_proxychains
 
-# Step 1: Verify needed directories and files exist in HyDEco
-print_step "Step 1: Verify needed files and directories in HyDEco"
-if confirm_step "Proceed with verifying HyDEco files and directories?"; then
-    print_status "Verifying needed directories and files in HyDEco"
-    check_dir_exists "$HOME/Clone/HyDEco/Configs"
-    check_dir_exists "$HOME/Clone/HyDEco/Configs/.config"
-    check_dir_exists "$HOME/Clone/HyDEco/Configs/.config/alacritty"
-    check_dir_exists "$HOME/Clone/HyDEco/Configs/.config/cava"
-    check_dir_exists "$HOME/Clone/HyDEco/Configs/.config/fastfetch"
-    check_dir_exists "$HOME/Clone/HyDEco/Configs/.config/hypr"
-    check_dir_exists "$HOME/Clone/HyDEco/Configs/.config/qimgv"
-    check_dir_exists "$HOME/Clone/HyDEco/Configs/.config/ghostty"
+    # Config folders to copy
+    config_folders=("alacritty" "cava" "fastfetch" "ghostty" "mpv" "qimgv")
+    config_files=("codium-flags.conf" "starship.toml" "kdeglobals")
 
-    check_file_exists "$HOME/Clone/HyDEco/Configs/.config/codium-flags.conf"
-    check_file_exists "$HOME/Clone/HyDEco/Configs/.config/starship.toml"
-    check_file_exists "$HOME/Clone/HyDEco/Configs/.config/kdeglobals"
-    check_file_exists "$HOME/Clone/HyDEco/Configs/.config/waybar/config.jsonc"
-    check_file_exists "$HOME/Clone/HyDEco/Configs/.zshrc"
-    check_file_exists "$HOME/HyDE/Scripts/post-hyde.sh"
-else
-    print_status "Skipping file and directory verification"
-fi
+    # Remove specific config folders and files
+    for folder in "${config_folders[@]}"; do
+        rm -rf "$HOME/.config/$folder"
+    done
+    for file in "${config_files[@]}"; do
+        rm -f "$HOME/.config/$file"
+    done
 
-# Step 2: Remove specific folders and files from ~/.config if they exist
-print_step "Step 2: Remove existing configuration folders and files"
-if confirm_step "Proceed with removing existing configuration folders and files?"; then
-    print_status "Removing existing configuration folders and files"
-    rm -rf "$HOME/.config/alacritty" \
-           "$HOME/.config/cava" \
-           "$HOME/.config/fastfetch" \
-           "$HOME/.config/hypr" \
-           "$HOME/.config/qimgv" \
-           "$HOME/.config/ghostty" \
-           "$HOME/.config/codium-flags.conf" \
-           "$HOME/.config/starship.toml" \
-           "$HOME/.config/waybar/config.jsonc" \
-           "$HOME/.config/kdeglobals"
-else
-    print_status "Skipping removal of existing configuration"
-fi
+    # Copy config folders and files
+    for folder in "${config_folders[@]}"; do
+        cp -r "$HOME/Clone/HyDEco/Configs/.config/$folder" "$HOME/.config/"
+    done
+    for file in "${config_files[@]}"; do
+        cp "$HOME/Clone/HyDEco/Configs/.config/$file" "$HOME/.config/"
+    done
 
-# Create .config directory if it doesn't exist
-print_step "Step 3: Create .config directory if needed"
-if confirm_step "Proceed with creating .config directory if needed?"; then
-    print_status "Creating .config directory if it doesn't exist"
-    mkdir -p "$HOME/.config"
-else
-    print_status "Skipping .config directory creation"
-fi
+    # Hyprland configuration
+    rm -f ~/.config/hypr/themes/theme.conf ~/.config/hypr/themes/wallbash.conf \
+          ~/.config/hypr/keybindings.conf ~/.config/hypr/monitors.conf \
+          ~/.config/hypr/windowrules.conf
 
-# Step 4: Copy folders and files from ~/Clone/HyDEco/Configs/.config to ~/.config
-print_step "Step 4: Copy configuration folders and files from HyDEco"
-if confirm_step "Proceed with copying configuration folders and files?"; then
-    print_status "Copying configuration folders and files from HyDEco"
-    cp -r "$HOME/Clone/HyDEco/Configs/.config/alacritty" \
-          "$HOME/Clone/HyDEco/Configs/.config/cava" \
-          "$HOME/Clone/HyDEco/Configs/.config/fastfetch" \
-          "$HOME/Clone/HyDEco/Configs/.config/hypr" \
-          "$HOME/Clone/HyDEco/Configs/.config/qimgv" \
-          "$HOME/Clone/HyDEco/Configs/.config/ghostty" \
-          "$HOME/.config/" || print_error "Failed to copy configuration directories"
+    cp "$HOME/Clone/HyDEco/Configs/.config/hypr/themes/theme.conf" ~/.config/hypr/themes/
+    cp "$HOME/Clone/HyDEco/Configs/.config/hypr/themes/wallbash.conf" ~/.config/hypr/themes/
+    cp "$HOME/Clone/HyDEco/Configs/.config/hypr/keybindings.conf" ~/.config/hypr/
+    cp "$HOME/Clone/HyDEco/Configs/.config/hypr/monitors.conf" ~/.config/hypr/
+    cp "$HOME/Clone/HyDEco/Configs/.config/hypr/windowrules.conf" ~/.config/hypr/
 
-    cp -f "$HOME/Clone/HyDEco/Configs/.config/codium-flags.conf" \
-          "$HOME/Clone/HyDEco/Configs/.config/starship.toml" \
-          "$HOME/Clone/HyDEco/Configs/.config/kdeglobals" \
-          "$HOME/Clone/HyDEco/Configs/.config/waybar/config.jsonc" \
-          "$HOME/.config/" || print_error "Failed to copy configuration files"
+    # Make post-hyde.sh executable
+    chmod +x "$HOME/HyDE/Scripts/post-hyde.sh"
 
-    # Verify copying was successful
-    check_dir_exists "$HOME/.config/alacritty"
-    check_dir_exists "$HOME/.config/cava"
-    check_dir_exists "$HOME/.config/fastfetch"
-    check_dir_exists "$HOME/.config/hypr"
-    check_dir_exists "$HOME/.config/qimgv"
-    check_dir_exists "$HOME/.config/ghostty"
-    check_file_exists "$HOME/.config/codium-flags.conf"
-    check_file_exists "$HOME/.config/starship.toml"
-    check_file_exists "$HOME/.config/kdeglobals"
-    check_file_exists "$HOME/.config/waybar/config.jsonc"
-else
-    print_status "Skipping configuration copying"
-fi
-
-# Step 5: Make post-hyde.sh executable
-print_step "Step 5: Make post-hyde.sh executable"
-if confirm_step "Proceed with making post-hyde.sh executable?"; then
-    print_status "Making post-hyde.sh executable"
-    chmod +x "$HOME/HyDE/Scripts/post-hyde.sh" || print_error "Failed to make post-hyde.sh executable"
-else
-    print_status "Skipping making post-hyde.sh executable"
-fi
-
-# Step 6: Run post-hyde.sh
-print_step "Step 6: Run post-hyde.sh"
-if confirm_step "Proceed with running post-hyde.sh?"; then
-    print_status "Running post-hyde.sh"
-    cd "$HOME/HyDE/Scripts" || print_error "Failed to change directory to $HOME/HyDE/Scripts"
-    if [[ -n "$PROXY" ]]; then
-        $PROXY ./post-hyde.sh || print_error "Failed to run post-hyde.sh with proxychains"
+    # Run post-hyde script
+    cd "$HOME/HyDE/Scripts" || exit
+    echo -e "${GREEN}Running post-hyde script...${NC}"
+    if [[ "$use_proxychains" == "y" ]]; then
+        proxychains ./post-hyde.sh
     else
-        ./post-hyde.sh || print_error "Failed to run post-hyde.sh"
+        ./post-hyde.sh
     fi
-else
-    print_status "Skipping post-hyde.sh execution"
-fi
 
-# Step 7: Remove .hyde.zshrc, .zshenv, and .zshrc from $HOME if they exist
-print_step "Step 7: Remove existing zsh configuration files"
-if confirm_step "Proceed with removing existing zsh configuration files?"; then
-    print_status "Removing existing zsh configuration files"
-    rm -f "$HOME/.hyde.zshrc" "$HOME/.zshenv" "$HOME/.zshrc"
-else
-    print_status "Skipping removal of zsh configuration files"
-fi
+    # Remove old shell config files
+    rm -f ~/.hyde.zshrc ~/.zshenv ~/.zshrc
 
-# Step 8: Copy .zshrc from ~/Clone/HyDEco/Configs to $HOME
-print_step "Step 8: Copy .zshrc from HyDEco"
-if confirm_step "Proceed with copying .zshrc from HyDEco?"; then
-    print_status "Copying .zshrc from HyDEco"
-    cp -f "$HOME/Clone/HyDEco/Configs/.zshrc" "$HOME/" || print_error "Failed to copy .zshrc"
+    # Copy new .zshrc
+    cp "$HOME/Clone/HyDEco/Configs/.zshrc" ~/
 
-    # Verify copying was successful
-    check_file_exists "$HOME/.zshrc"
-else
-    print_status "Skipping .zshrc copying"
-fi
+    # Final message
+    echo -e "${GREEN}Configuration complete. Please log out for all changes to take effect.${NC}"
+}
 
-# Final message
-print_status "Configuration complete. Please log out for changes to take effect."
-print_status "Enjoy your new Hyprland environment!"
+main "$@"
