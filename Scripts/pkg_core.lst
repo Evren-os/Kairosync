@@ -95,10 +95,12 @@ ghostty                                                # fast, native, GPU-power
 neovim                                                 # enhanced vim text editor
 zed                                                    # fast collaborative code editor
 zen-browser-bin                                        # firefox based browser
+brave-bin                                              # privacy focused chromium browser
 qbittorrent                                            # bitTorrent client
 yt-dlp                                                 # yt video downloader
 spotify                                                # music streaming service
 telegram-desktop                                       # messaging application
+signal-desktop                                         # messaging application
 qmplay2                                                # multimedia player
 qimgv-qt6-kde-git                                      # image viewer
 github-cli                                             # github command line tool
