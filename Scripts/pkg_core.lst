@@ -49,6 +49,7 @@ wlsunset                                               # blue light filter for W
 # --------------------------------------------------- // Dependencies
 polkit-gnome                                           # authentication agent
 xdg-desktop-portal-hyprland                            # xdg desktop portal for hyprland
+xdg-desktop-portal-gtk                                 # file picker and dbus  integration
 pacman-contrib                                         # for system update check
 parallel                                               # for parallel processing
 jq                                                     # for json processing
