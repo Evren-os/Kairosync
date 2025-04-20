@@ -148,13 +148,15 @@ function check_updates() {
 # YouTube Download Functions
 #############################################################
 YT_OPTS=(
-    --format-sort "res,fps,vcodec:av01,vcodec:vp9.2,vcodec:vp9,acodec:opus"
+    --format-sort "res,fps,vcodec:av01,vcodec:vp9.2,vcodec:vp9,vcodec:hev1,acodec:opus"
     --prefer-free-formats
     --format-sort-force
     --merge-output-format "mkv"
     --concurrent-fragments 3
     --no-mtime
     --output "%(title)s [%(id)s][%(height)sp][%(fps)sfps][%(vcodec)s][%(acodec)s].%(ext)s"
+    --external-downloader aria2c
+    --external-downloader-args "-x 16 -s 16 -k 1M"
 )
 
 function ytmax() {
@@ -168,10 +170,10 @@ function ytmax() {
 
     local format_string
     case $quality in
-        4k)    format_string="bv*[height<=2160][vcodec^=av01]+ba[acodec=opus]/bv*[height<=2160][vcodec^=vp9]+ba/bv*[height<=2160]+ba" ;;
-        2k)    format_string="bv*[height<=1440][vcodec^=av01]+ba[acodec=opus]/bv*[height<=1440][vcodec^=vp9]+ba/bv*[height<=1440]+ba" ;;
-        1080)  format_string="bv*[height<=1080][vcodec^=av01]+ba[acodec=opus]/bv*[height<=1080][vcodec^=vp9]+ba/bv*[height<=1080]+ba" ;;
-        *)     format_string="bv*[vcodec^=av01]+ba[acodec=opus]/bv*[vcodec^=vp9]+ba/bv*+ba/b" ;;
+        4k)    format_string="bv*[height<=2160][vcodec^=av01]+ba[acodec=opus]/bv*[height<=2160][vcodec^=vp9]+ba/bv*[height<=2160][vcodec^=hev1]+ba/bv*[height<=2160]+ba" ;;
+        2k)    format_string="bv*[height<=1440][vcodec^=av01]+ba[acodec=opus]/bv*[height<=1440][vcodec^=vp9]+ba/bv*[height<=1440][vcodec^=hev1]+ba/bv*[height<=1440]+ba" ;;
+        1080)  format_string="bv*[height<=1080][vcodec^=av01]+ba[acodec=opus]/bv*[height<=1080][vcodec^=vp9]+ba/bv*[height<=1080][vcodec^=hev1]+ba/bv*[height<=1080]+ba" ;;
+        *)     format_string="bv*[vcodec^=av01]+ba[acodec=opus]/bv*[vcodec^=vp9]+ba/bv*[vcodec^=hev1]+ba/bv*+ba/b" ;;
     esac
 
     yt-dlp ${YT_OPTS[@]} --format "$format_string" "$url"
