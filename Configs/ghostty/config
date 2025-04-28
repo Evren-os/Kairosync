@@ -1,6 +1,5 @@
 term = xterm-256color
-theme = Dracula
-background = #0e0e16
+theme = GitLab-Dark-Grey
 background-opacity = 0.70
 background-blur-radius = 20
 font-family = "JetBrainsMono Nerd Font"

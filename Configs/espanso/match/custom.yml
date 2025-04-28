@@ -1,0 +1,55 @@
+matches:
+  - trigger: ":email"
+    replace: "evrnos@proton.me"
+
+  - trigger: ":spec"
+    replace: "I use CachyOS with KDE Plasma 6.3.4 (Wayland). My PC specs are AMD Ryzen 7 5700G (integrated graphics), 16 GB DDR4 3200 MHz (2×8 GB), Samsung 980 Evo 500 GB NVMe SSD (primary), Toshiba 1 TB HDD (secondary), and a non-HDR LG 22MK600M 22″ 1920×1080 monitor"
+
+  - trigger: ":slm"
+    replace: "Assalamu Alaikum wa Rahmatullahi wa Barakatuh"
+
+  - trigger: ":slmar"
+    replace: "ٱلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ ٱللَّهِ ۖ وَبَرَكَاتُهُ"
+
+  - trigger: ":wslm"
+    replace: "Wa Alaikum Assalam wa Rahmatullahi wa Barakatuh"
+
+  - trigger: ":wslmar"
+    replace: "وَعَلَيْكُمُ ٱلسَّلَامُ وَرَحْمَةُ ٱللَّهِ وَبَرَكَاتُهُ"
+
+  - trigger: ":good"
+    replace: "Hadha min fadl Rabbi"
+
+  - trigger: ":congrats"
+    replace: "Mabrook, barakAllahu feek"
+
+  - trigger: ":thanks"
+    replace: "JazakAllahu khayran"
+
+  - trigger: ":welcome"
+    replace: "Afwan, wa iyyakum"
+
+  - trigger: ":ins"
+    replace: "In sha Allah"
+
+  - trigger: ":prompt"
+    replace: "Task : Rewrite the prompt enclosed in the curly braces below.
+
+
+    Key Goals :
+
+    * Make it sound natural and human (not robotic).
+
+    * Optimize for maximum clarity and easy AI understanding.
+
+    * Keep all original information and intent intact.
+
+
+    Required Output Formats :
+
+    1.  Present the final rewritten prompt inside a code block as plain, formatted text
+
+    {}"
+
+  - trigger: ":date"
+    replace: "{{date}}"

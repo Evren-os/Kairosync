@@ -1,3 +1,8 @@
-# Hyprland Configuration
+# My CachyOS Setup
 
-This repository contains my personal, partial Hyprland configuration based on the [HyDE](https://github.com/HyDE-Project/HyDE) project. It is tailored for my own use and may require adjustments for your setup. For a complete and tested configuration, please refer to the original HyDE repository.
+This repository contains my app and tool configurations for **CachyOS** running **KDE Plasma**.
+
+### 🖌️ Look & Feel
+
+- **Icon Theme**: [WhiteSur Icon Theme](https://github.com/vinceliuice/WhiteSur-icon-theme)
+- **Global Theme**: [Monochrome KDE](https://github.com/pwyde/monochrome-kde)

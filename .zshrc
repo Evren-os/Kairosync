@@ -163,6 +163,23 @@ function ytmax() {
     local quality=${1:-"max"}
     local url=$2
 
+    # Prompt for preferred codec: 1=av1, 2=vp9, or type av1/vp9
+    local codec_pref
+    echo "Choose codec preference:"
+    echo "  1) av1"
+    echo "  2) vp9"
+    echo -n "Enter 1 or 2 [default 1]: "
+    read -r codec_choice
+    case "$codec_choice" in
+        2) codec_pref="vp9" ;;
+        1|"" ) codec_pref="av1" ;;
+        av1|vp9 ) codec_pref="$codec_choice" ;;
+        *)
+            echo "Invalid choice: $codec_choice. Falling back to av1."
+            codec_pref="av1"
+            ;;
+    esac
+
     if [[ -z "$url" && "$quality" =~ ^https?:// ]]; then
         url=$quality
         quality="max"
@@ -170,13 +187,21 @@ function ytmax() {
 
     local format_string
     case $quality in
-        4k)    format_string="bv*[height<=2160][vcodec^=av01]+ba[acodec=opus]/bv*[height<=2160][vcodec^=vp9]+ba/bv*[height<=2160][vcodec^=hev1]+ba/bv*[height<=2160]+ba" ;;
-        2k)    format_string="bv*[height<=1440][vcodec^=av01]+ba[acodec=opus]/bv*[height<=1440][vcodec^=vp9]+ba/bv*[height<=1440][vcodec^=hev1]+ba/bv*[height<=1440]+ba" ;;
-        1080)  format_string="bv*[height<=1080][vcodec^=av01]+ba[acodec=opus]/bv*[height<=1080][vcodec^=vp9]+ba/bv*[height<=1080][vcodec^=hev1]+ba/bv*[height<=1080]+ba" ;;
-        *)     format_string="bv*[vcodec^=av01]+ba[acodec=opus]/bv*[vcodec^=vp9]+ba/bv*[vcodec^=hev1]+ba/bv*+ba/b" ;;
+        4k)
+            format_string="bv*[height<=2160][vcodec^=${codec_pref}]+ba[acodec=opus]/bv*[height<=2160][vcodec^=${codec_pref}]"
+            ;;
+        2k)
+            format_string="bv*[height<=1440][vcodec^=${codec_pref}]+ba[acodec=opus]/bv*[height<=1440][vcodec^=${codec_pref}]"
+            ;;
+        1080)
+            format_string="bv*[height<=1080][vcodec^=${codec_pref}]+ba[acodec=opus]/bv*[height<=1080][vcodec^=${codec_pref}]"
+            ;;
+        *)
+            format_string="bv*[vcodec^=${codec_pref}]+ba[acodec=opus]/bv*[vcodec^=${codec_pref}]"
+            ;;
     esac
 
-    yt-dlp ${YT_OPTS[@]} --format "$format_string" "$url"
+    yt-dlp "${YT_OPTS[@]}" --format "$format_string" "$url"
 }
 
 function yt-batch() {
@@ -199,7 +224,8 @@ function yt-batch() {
 
     if (( ${#failed_urls[@]} > 0 )); then
         print -P "\n%F{red}Failed URLs:%f"
-        printf '%s\n' "${failed_urls[@]}"
+        printf '%s
+' "${failed_urls[@]}"
     fi
 }
 
@@ -235,4 +261,4 @@ alias ytb='yt-batch'
 #############################################################
 # Theme and Appearance
 #############################################################
-rustor
+fastfetch
