@@ -145,10 +145,11 @@ function check_updates() {
 }
 
 #############################################################
-# YouTube Download Functions
+# YouTube Download and Streaming Functions
 #############################################################
+
+# Common options for yt-dlp downloads
 YT_OPTS=(
-    --format-sort "res,fps,vcodec:av01,vcodec:vp9.2,vcodec:vp9,vcodec:hev1,acodec:opus"
     --prefer-free-formats
     --format-sort-force
     --merge-output-format "mkv"
@@ -159,73 +160,107 @@ YT_OPTS=(
     --external-downloader-args "-x 16 -s 16 -k 1M"
 )
 
+# Function to download videos with yt-dlp, capped at 4K, preferring AV1
 function ytmax() {
-    local quality=${1:-"max"}
-    local url=$2
-
-    # Prompt for preferred codec: 1=av1, 2=vp9, or type av1/vp9
-    local codec_pref
-    echo "Choose codec preference:"
-    echo "  1) av1"
-    echo "  2) vp9"
-    echo -n "Enter 1 or 2 [default 1]: "
-    read -r codec_choice
-    case "$codec_choice" in
-        2) codec_pref="vp9" ;;
-        1|"" ) codec_pref="av1" ;;
-        av1|vp9 ) codec_pref="$codec_choice" ;;
-        *)
-            echo "Invalid choice: $codec_choice. Falling back to av1."
-            codec_pref="av1"
-            ;;
-    esac
-
-    if [[ -z "$url" && "$quality" =~ ^https?:// ]]; then
-        url=$quality
-        quality="max"
+    local max_res=2160
+    local codec_pref="av1"
+    local url=""
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            --max-res)
+                max_res=$2
+                shift 2
+                ;;
+            --codec)
+                codec_pref=$2
+                shift 2
+                ;;
+            *)
+                url=$1
+                shift
+                ;;
+        esac
+    done
+    if [[ -z "$url" ]]; then
+        echo "Usage: ytmax [options] URL"
+        echo "Options: --max-res RES (default 2160), --codec CODEC (default av1)"
+        return 1
     fi
-
-    local format_string
-    case $quality in
-        4k)
-            format_string="bv*[height<=2160][vcodec^=${codec_pref}]+ba[acodec=opus]/bv*[height<=2160][vcodec^=${codec_pref}]"
-            ;;
-        2k)
-            format_string="bv*[height<=1440][vcodec^=${codec_pref}]+ba[acodec=opus]/bv*[height<=1440][vcodec^=${codec_pref}]"
-            ;;
-        1080)
-            format_string="bv*[height<=1080][vcodec^=${codec_pref}]+ba[acodec=opus]/bv*[height<=1080][vcodec^=${codec_pref}]"
-            ;;
-        *)
-            format_string="bv*[vcodec^=${codec_pref}]+ba[acodec=opus]/bv*[vcodec^=${codec_pref}]"
-            ;;
-    esac
-
-    yt-dlp "${YT_OPTS[@]}" --format "$format_string" "$url"
+    local format_string="bv*[height<=${max_res}]+ba/bv*[height<=${max_res}]"
+    local sort_string
+    if [[ "$codec_pref" == "av1" ]]; then
+        sort_string="res,fps,vcodec:av01,vcodec:vp9.2,vcodec:vp9,vcodec:hev1,acodec:opus"
+    elif [[ "$codec_pref" == "vp9" ]]; then
+        sort_string="res,fps,vcodec:vp9,vcodec:vp9.2,vcodec:av01,vcodec:hev1,acodec:opus"
+    else
+        echo "Invalid codec preference: $codec_pref. Use av1 or vp9."
+        return 1
+    fi
+    yt-dlp "${YT_OPTS[@]}" --format "$format_string" --format-sort "$sort_string" "$url"
 }
 
+# Function to stream videos with mpv, capped at 4K, preferring AV1
+function ytstream() {
+    local max_res=2160
+    local codec_pref="av1"
+    local url=""
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            --max-res)
+                max_res=$2
+                shift 2
+                ;;
+            --codec)
+                codec_pref=$2
+                shift 2
+                ;;
+            *)
+                url=$1
+                shift
+                ;;
+        esac
+    done
+    if [[ -z "$url" ]]; then
+        echo "Usage: ytstream [options] URL"
+        echo "Options: --max-res RES (default 2160), --codec CODEC (default av1)"
+        return 1
+    fi
+    local format_string="bv*[height<=${max_res}]+ba/bv*[height<=${max_res}]"
+    local sort_string
+    if [[ "$codec_pref" == "av1" ]]; then
+        sort_string="res,fps,vcodec:av01,vcodec:vp9.2,vcodec:vp9,vcodec:hev1,acodec:opus"
+    elif [[ "$codec_pref" == "vp9" ]]; then
+        sort_string="res,fps,vcodec:vp9,vcodec:vp9.2,vcodec:av01,vcodec:hev1,acodec:opus"
+    else
+        echo "Invalid codec preference: $codec_pref. Use av1 or vp9."
+        return 1
+    fi
+    local stream_url=$(yt-dlp --prefer-free-formats --format "$format_string" --format-sort "$sort_string" --get-url "$url")
+    if [[ -z "$stream_url" ]]; then
+        echo "Failed to get stream URL"
+        return 1
+    fi
+    mpv "$stream_url"
+}
+
+# Function to download multiple videos (unchanged)
 function yt-batch() {
     print -P "%F{blue}Enter video URLs (separated by commas). Press [ENTER] when done:%f"
     read -r urls
-
     local failed_urls=()
     local IFS=','
-
     for url in ${=urls}; do
         url=${url## }  # Remove leading spaces
         url=${url%% }  # Remove trailing spaces
-
         print -P "\n%F{yellow}Downloading: $url%f"
         if ! ytmax "$url"; then
             failed_urls+=("$url")
             print -P "%F{red}Failed to download: $url%f"
         fi
     done
-
     if (( ${#failed_urls[@]} > 0 )); then
         print -P "\n%F{red}Failed URLs:%f"
-        printf '%s
-' "${failed_urls[@]}"
+        printf '%s\n' "${failed_urls[@]}"
     fi
 }
 
@@ -255,6 +290,7 @@ alias code='codium'
 
 # Media Download
 alias yt='ytmax'
+alias yts='ytstream'
 alias ytf='yt-dlp -F'
 alias ytb='yt-batch'
 
