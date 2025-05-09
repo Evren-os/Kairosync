@@ -5,7 +5,7 @@ matches:
   - trigger: ":spec"
     replace: "My PC Specs :
 
-    Daily driving CachyOS with KDE Plasma 6.3.4 on Wayland
+    Daily driving CachyOS with KDE Plasma 6.3.5 on Wayland
 
     Under the hood: Ryzen 7 5700G (using the Vega iGPU)
 
