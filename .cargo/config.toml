@@ -1,0 +1,7 @@
+[build]
+rustflags = [
+    "-C", "target-cpu=native",       # Auto-detects all CPU features, including Zen 3 specifics
+    "-C", "force-frame-pointers=no", # Saves registers, aligns with performance focus
+    "-C", "debuginfo=0",             # Minimizes binary size, complements strip
+    "-C", "prefer-dynamic=no",       # Ensures static linking for portability
+]
