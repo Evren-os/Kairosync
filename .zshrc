@@ -265,6 +265,54 @@ function yt-batch() {
 }
 
 #############################################################
+# aria2 Download Functions
+#############################################################
+
+dlfast() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: dlfast <URL> [OUTPUT_PATH]"
+    return 1
+  fi
+
+  local url="$1"
+  local output_target="$2"
+  local aria2_opts=()
+
+  if [[ -n "$output_target" ]]; then
+    if [[ "${output_target: -1}" == "/" ]]; then
+      mkdir -p "$output_target"
+      aria2_opts+=( "--dir=$output_target" )
+    else
+      mkdir -p "$(dirname "$output_target")"
+      aria2_opts+=( "--out=$output_target" )
+    fi
+  fi
+
+  aria2c \
+    --continue=true \
+    --max-connection-per-server=16 \
+    --split=16 \
+    --min-split-size=1M \
+    --file-allocation=falloc \
+    --max-tries=0 \
+    --retry-wait=5 \
+    --timeout=60 \
+    --max-file-not-found=5 \
+    --summary-interval=1 \
+    --console-log-level=warn \
+    --auto-file-renaming=false \
+    --conditional-get=true \
+    --check-integrity=true \
+    --disk-cache=64M \
+    --piece-length=1M \
+    --allow-overwrite=true \
+    --async-dns=true \
+    --http-accept-gzip=true \
+    "${aria2_opts[@]}" \
+    "$url"
+}
+
+#############################################################
 # Aliases
 #############################################################
 # Navigation & Basic
@@ -297,4 +345,5 @@ alias ytb='yt-batch'
 #############################################################
 # Theme and Appearance
 #############################################################
-fastfetch
+# fastfetch
+rustor
