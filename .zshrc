@@ -320,13 +320,11 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias mkdir='mkdir -p'
 alias c='clear'
-alias eza='eza --group-directories-first --icons=always --color=always --hyperlink --no-user'
-alias ezal='eza --long --header --git --icons=always --group-directories-first --color=always --time-style=long-iso --no-user'
-alias ezaa='eza --long --header --git --all --icons=always --group-directories-first --color=always --time-style=long-iso --no-user --hyperlink'
-alias ezat='eza --tree --icons=always --group-directories-first --color=always --no-user'
-alias ezat1='ezat --level=1'
-alias ezat2='ezat --level=2'
-alias ezat3='ezat --level=3'
+alias ls='eza -al --color=always --group-directories-first --icons' # preferred listing
+alias la='eza -a --color=always --group-directories-first --icons'  # all files and dirs
+alias ll='eza -l --color=always --group-directories-first --icons'  # long format
+alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
+alias l.="eza -a | grep -e '^\.'"                                   # show only dotfiles
 
 # System Management
 alias docker-start='sudo systemctl start docker'
@@ -342,8 +340,12 @@ alias yts='ytstream'
 alias ytf='yt-dlp -F'
 alias ytb='yt-batch'
 
+#Misc
+alias mirror="sudo cachyos-rate-mirrors" # Get fastest mirrors
+alias cleanup='sudo pacman -Rns (pacman -Qtdq)' # Cleanup orphaned packages
+alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl" # Recent installed packages
+
 #############################################################
 # Theme and Appearance
 #############################################################
-# fastfetch
-rustor
+fastfetch
