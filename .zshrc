@@ -2,6 +2,8 @@
 # Core ZSH Configuration
 #############################################################
 export ZSH="/usr/share/oh-my-zsh"
+ZSH_THEME=""
+ZSH_DISABLE_COMPFIX=true
 source $ZSH/oh-my-zsh.sh
 
 # Path Configuration
@@ -78,8 +80,10 @@ alias ytb='yt-batch'
 alias mirror="sudo cachyos-rate-mirrors" # Get fastest mirrors
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)' # Cleanup orphaned packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl" # Recent installed packages
+alias ffetch="fastfetch"
+alias cfetch="countryfetch"
 
 #############################################################
-# Theme and Appearance
+# Aesthetics
 #############################################################
 fastfetch
