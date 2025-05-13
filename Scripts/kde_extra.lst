@@ -1,6 +1,6 @@
 *> Packages
 
-zip unzip unrar rsync aria2 flatpak fastfetch tree nodejs npm pnpm go bun-bin clang rust-analyzer pyright eslint github-cli neovim zed vscodium-bin vscodium-bin-marketplace zsh fzf eza zoxide starship proxychains-ng jq ttf-twemoji ttf-iosevka-nerd ttf-jetbrains-mono-nerd otf-geist-mono-nerd otf-geist-mono otf-geist apple-fonts imagemagick vulkan-radeon ghostty qmplay2 mpv cava btop tenki yt-dlp spotify qbittorrent telegram-desktop signal-desktop freedownloadmanager upscayl-bin filen-desktop-bin legcord-bin neo-matrix-git pipes.sh kwin-effects-forceblur zen-browser-bin brave-bin countryfetch notion-app-electron
+zip unzip unrar rsync aria2 flatpak fastfetch tree nodejs npm pnpm go bun-bin clang rust-analyzer pyright eslint github-cli neovim zed vscodium-bin vscodium-bin-marketplace zsh fzf eza zoxide starship proxychains-ng jq ttf-twemoji ttf-iosevka-nerd ttf-jetbrains-mono-nerd otf-geist-mono-nerd otf-geist-mono otf-geist apple-fonts imagemagick vulkan-radeon ghostty qmplay2 mpv cava btop tenki yt-dlp spotify qbittorrent telegram-desktop signal-desktop freedownloadmanager upscayl-bin filen-desktop-bin legcord-bin neo-matrix-git pipes.sh kwin-effects-forceblur zen-browser-bin brave-bin countryfetch notion-app-electron oh-my-zsh-git ncdu
 
 *> Spicetify
 sudo chmod a+wr /opt/spotify && sudo chmod a+wr /opt/spotify/Apps -R
