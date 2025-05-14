@@ -10,13 +10,11 @@ fi
 
 # Check Updates
 function check_updates() {
-    # Ensure checkupdates exists
     if ! command -v checkupdates >/dev/null 2>&1; then
         print -P "%F{red}checkupdates is MIA. Install 'pacman-contrib' or rot.%f"
         return 1
     fi
 
-    # Use the provided AUR helper if set; otherwise default to 'paru'
     if [ -z "${aur_helper}" ]; then
         aur_helper="paru"
     fi
@@ -46,7 +44,6 @@ function check_updates() {
 
     # Non-official updates: from AUR
     local non_official_updates=""
-    # AUR helper output – apply the sed/grep pipeline from update-check.sh
     if [ -n "${aur_helper}" ]; then
         local aur_output
         aur_output=$("${aur_helper}" -Qua 2>/dev/null | \

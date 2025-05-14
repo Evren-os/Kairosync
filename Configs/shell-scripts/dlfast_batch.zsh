@@ -1,5 +1,5 @@
 #############################################################
-# Batch wrapper around aria2 Download Function (dlfast)
+# Batch wrapper around dlfast
 #############################################################
 dlfastb() {
     # 1) Ensure your dlfast function is loaded

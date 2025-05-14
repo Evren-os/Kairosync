@@ -14,15 +14,15 @@ YT_OPTS=(
     --external-downloader-args "-x 16 -s 16 -k 1M"
 )
 
-# Function to download multiple videos (unchanged)
+# Function to download multiple videos
 function yt-batch() {
     print -P "%F{blue}Enter video URLs (separated by commas). Press [ENTER] when done:%f"
     read -r urls
     local failed_urls=()
     local IFS=','
     for url in ${=urls}; do
-        url=${url## }  # Remove leading spaces
-        url=${url%% }  # Remove trailing spaces
+        url=${url## }
+        url=${url%% }
         print -P "\n%F{yellow}Downloading: $url%f"
         if ! ytmax "$url"; then
             failed_urls+=("$url")
