@@ -2,7 +2,6 @@
 # YouTube Download Functions
 #############################################################
 
-# Common options for yt-dlp downloads
 YT_OPTS=(
     --prefer-free-formats
     --format-sort-force
