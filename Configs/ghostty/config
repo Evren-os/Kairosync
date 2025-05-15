@@ -10,3 +10,4 @@ confirm-close-surface = false
 mouse-hide-while-typing = true
 resize-overlay = never
 cursor-style = underline
+custom-shader = ~/.config/ghostty/shaders/mnoise.glsl
