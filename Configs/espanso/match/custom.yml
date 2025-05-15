@@ -3,22 +3,23 @@ matches:
     replace: "evrnos@proton.me"
 
   - trigger: ":spec"
-    replace: "My PC Specs :
+    replace: |
+      My PC Specifications:
 
-    Daily driving CachyOS with KDE Plasma 6.3.5 on Wayland
+      💻 OS: CachyOS with KDE Plasma 6.3.5 (Wayland)
 
-    Under the hood: Ryzen 7 5700G (using the Vega iGPU)
+      ⚙️ Core Components:
+        CPU: AMD Ryzen 7 5700G (with Radeon Vega iGPU)
+        Motherboard: Gigabyte B550M Aorus Elite
+        RAM: 16GB DDR4 @ 3200MHz (Dual Channel)
 
-    16GB DDR4 @ 3200MHz in dual-channel
+      💾 Storage:
+        Boot Drive: Samsung 980 Evo 500GB NVMe SSD
+        Secondary Drive: 1TB Toshiba HDD
 
-    📁 Boot drive: 500GB 980 Evo NVMe
-
-    🗄️ Secondary Drive: 1TB Toshiba HDD
-
-    Peripherals: Fantech Spectre II HG24 7.1 Virtual Surround Sound Gaming Headset + LG 22MK600M 1080p screen (non-HDR)
-
-
-    "
+      🎧 Peripherals:
+        Monitor: LG 22MK600M (22 Inch, 1080p, non-HDR)
+        Headphone: Fantech HG24 Spectre II 7.1 Gaming Headphone
 
   - trigger: ":slm"
     replace: "Assalamu Alaikum wa Rahmatullahi wa Barakatuh"
@@ -48,25 +49,30 @@ matches:
     replace: "In sha Allah"
 
   - trigger: ":prompt"
-    replace: "Task : Rewrite the prompt enclosed in the curly braces below.
+    replace: |
+      Task : Rewrite the prompt enclosed in the curly braces below.
 
+      Key Goals :
+      * Make it sound natural and human (not robotic).
+      * Optimize for maximum clarity and easy AI understanding.
+      * Keep all original information and intent intact.
 
-    Key Goals :
+      Required Output Formats :
+      1.  Present the final rewritten prompt inside a code block as plain, formatted text
 
-    * Make it sound natural and human (not robotic).
+      My written prompt is below :
+      {}
 
-    * Optimize for maximum clarity and easy AI understanding.
+  - trigger: ":src"
+    replace: |
+      When you're searching for information or trying to find answers, could you please focus on getting details from these types of places? It's really important that the information is authentic, accurate, and directly relevant:
 
-    * Keep all original information and intent intact.
+      *  Reddit : Look for helpful subreddits, specific posts, and insightful comment threads.
+      *  Official Channels : Prioritize official resources like company websites, product documentation, and official community forums.
+      *  Trusted Independent Sources : Seek out well-regarded websites, established blogs, and articles from known, trustworthy publishers.
+      *  Expert & Developer Insights : Pay attention to reviews, analyses, or discussions from genuine developers or recognized experts in the field.
 
-
-    Required Output Formats :
-
-    1.  Present the final rewritten prompt inside a code block as plain, formatted text
-
-    My written prompt is below :
-
-    {}"
+      On the other hand, please make a strong effort to completely **avoid** using information from random, unverified, or generally untrustworthy sources.
 
   - trigger: ":date"
     replace: "{{date}}"
