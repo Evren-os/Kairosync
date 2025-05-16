@@ -1,186 +1,140 @@
-# -*- mode: fish -*-
-### 🐠 Fish Configuration ###
+#############################################################
+# Core Fish Configuration
+#############################################################
 
-#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-#  Environment
-#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Set default editor if not set (optional, good practice)
+if not set -q EDITOR
+    set -gx EDITOR codium # Or your preferred editor like nvim, nano, etc.
+end
 
-## 🔄 PATH Configuration
-fish_add_path -g \
-    $HOME/.local/bin \
-    $HOME/.cargo/bin \
-    $HOME/.bun/bin \
-    $HOME/.spicetify \
-    /usr/local/sbin
+# Environment Variables
+set -gx BUN_INSTALL "$HOME/.bun"
+set -gx STARSHIP_CONFIG "$HOME/.config/starship.toml"
+set -gx STARSHIP_CACHE "$HOME/.cache/starship"
+# Add any other global, exported variables here.
 
-## ⚙️ Core Environment
-set -gx EDITOR codium
-set -gx BAT_THEME Catppuccin-mocha
-set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
+# PATH Configuration
+# fish_add_path prepends to fish_user_paths if not already present.
+# fish_user_paths is a list variable that Fish uses to construct PATH.
+fish_add_path "$HOME/.local/bin"
+fish_add_path "$HOME/.cargo/bin"
+fish_add_path "$HOME/.spicetify" # Assuming /home/evrenos is your $HOME
+fish_add_path "$BUN_INSTALL/bin"
 
-## 🌐 Language Managers
-set -gx BUN_INSTALL $HOME/.bun
-test -s $BUN_INSTALL/_bun && source $BUN_INSTALL/_bun
+# Bun Completions
+# The recommended way to enable Bun completions is to generate the completion script:
+# mkdir -p ~/.config/fish/completions
+# bun completions fish > ~/.config/fish/completions/bun.fish
+# This file will be autoloaded by Fish.
+# If you prefer to source it directly (less common for completions):
+# if command -sq bun
+#     bun completions fish | source
+# end
 
-#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-#  Prompt & Tools
-#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-## 🚀 Starship
-if command -q starship
-    set -gx STARSHIP_CONFIG $HOME/.config/starship.toml
-    set -gx STARSHIP_CACHE $HOME/.cache/starship
+# Starship Prompt
+# Ensure Starship is installed (e.g., sudo pacman -S starship)
+if command -sq starship
     starship init fish | source
+else
+    echo (set_color red)"Starship not found. Install it for the configured prompt."(set_color normal) >&2
 end
 
-## 🐚 Zoxide
-if command -q zoxide
+# Zoxide
+# Ensure Zoxide is installed (e.g., sudo pacman -S zoxide)
+if command -sq zoxide
     zoxide init fish | source
+else
+    echo (set_color red)"Zoxide not found. Install it for 'z' command functionality."(set_color normal) >&2
 end
 
-#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-#  Functions
-#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#############################################################
+# Fish Plugin Manager (Fisher) & Plugins
+#############################################################
+# Plugins are installed via the `fisher install owner/repo` command in your terminal.
+# This section is for documenting the plugins you might want.
+#
+# Key Zsh plugin replacements:
+# - zsh-autosuggestions: Built-in to Fish.
+# - zsh-syntax-highlighting: Built-in to Fish.
+# - OMZ::plugins/sudo/sudo.plugin.zsh: Fish has built-in `Alt+S` (or `Esc` then `S`) to prepend sudo.
+# - mafredri/zsh-async: Fish has robust job control (`&`, `bg`, `fg`, `disown`). Specific async needs might require different approaches.
+# - chrissicool/zsh-256color: Fish typically handles 256 colors well if the terminal supports it.
+#
+# Recommended Fisher plugins based on your Zsh setup:
+# 1. FZF Integration (replaces Aloxaf/fzf-tab):
+#    Run: fisher install patrickf1/fzf.fish
+#    (This provides fzf-powered Ctrl+R history search, and more)
+#
+# 2. Git Aliases (replaces OMZ::plugins/git/git.plugin.zsh, optional):
+#    Fish has excellent built-in Git support (completions, prompt via `fish_git_prompt` or Starship).
+#    If you want common Git aliases like `ga`, `gc`, `gp` from Oh My Zsh:
+#    Run: fisher install oh-my-fish/plugin-git
 
-## 📦 Package Management
-function check_updates
-    set -l aur_helper (set -q aur_helper && echo $aur_helper || echo paru)
+#############################################################
+# Aliases
+#############################################################
+# Navigation & Basic
+alias .. 'cd ..'
+alias ... 'cd ../..'
+alias mkdir 'mkdir -p'
+alias c 'clear'
+alias ls 'eza -al --color=always --group-directories-first --icons' # preferred listing
+alias la 'eza -a --color=always --group-directories-first --icons'  # all files and dirs
+alias ll 'eza -l --color=always --group-directories-first --icons'  # long format
+alias lt 'eza -aT --color=always --group-directories-first --icons' # tree listing
+alias l. 'eza -a | grep -e "^\."'                                   # show only dotfiles
 
-    # Check required commands
-    if not command -q checkupdates
-        echo (set_color red)"✗ Missing checkupdates: Install pacman-contrib"(set_color normal)
-        return 1
-    end
+# System Management
+alias docker-start 'sudo systemctl start docker'
+alias docker-stop 'sudo systemctl stop docker'
+alias upchk 'check_updates' # Custom function, will be in ~/.config/fish/functions/
 
-    if not command -q $aur_helper
-        echo (set_color red)"✗ AUR helper '$aur_helper' not found"(set_color normal)
-        return 1
-    end
+# Applications
+alias code 'codium'
 
-    # Database freshness check
-    set -l db_need_sync false
-    set -l db_files /var/lib/pacman/sync/*.db
+# Media Download
+alias yt 'ytmax'     # Custom function
+alias yts 'ytstream'  # Custom function
+alias ytf 'yt-dlp -F' # Simple alias for listing formats
+alias ytb 'yt-batch'  # Custom function
 
-    for db in $db_files
-        if test (date +%s -r $db) -lt (date +%s --date "1 day ago")
-            set db_need_sync true
-            break
-        end
-    end
+# Misc
+alias mirror "sudo cachyos-rate-mirrors"
+alias cleanup 'sudo pacman -Rns (pacman -Qtdq)' # Command substitution works similarly
+alias rip "expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
+alias ffetch "fastfetch"
+alias cfetch "countryfetch"
 
-    if $db_need_sync
-        echo (set_color blue)"⟳ Syncing package databases..."(set_color normal)
-        if not sudo pacman -Sy --quiet --noconfirm 2>/dev/null
-            echo (set_color red)"✗ Database sync failed!"(set_color normal)
-            return 1
-        end
-    end
-
-    # Get updates
-    set -l official_updates (checkupdates 2>/dev/null | string collect)
-    set -l aur_updates ($aur_helper -Qua 2>/dev/null | grep -v '\[ignored\]$' | string collect)
-
-    # Display results
-    if test -z "$official_updates" -a -z "$aur_updates"
-        echo (set_color cyan)"✓ System is up to date"(set_color normal)
-        return
-    end
-
-    echo # Empty line for spacing
-    echo (set_color cyan)"󰏖 Package Updates"
-    echo (string repeat -n 50 ─)
-
-    if test -n "$official_updates"
-        set -l count (echo $official_updates | wc -l | string trim)
-        echo (set_color green)"Official ($count):"(set_color normal)
-        echo $official_updates
-    end
-
-    if test -n "$aur_updates"
-        set -l count (echo $aur_updates | wc -l | string trim)
-        echo (set_color yellow)"\nAUR ($count):"(set_color normal)
-        echo $aur_updates
-    end
-
-    echo (set_color normal)
-end
-
-## 📼 YouTube Downloader
-set -gx YTDL_FORMATS \
-    --format-sort "res,fps,vcodec:av01,vcodec:vp9.2,vcodec:vp9,acodec:opus" \
-    --merge-output-format mkv \
+#############################################################
+# Shared Variables for Custom Functions
+#############################################################
+# YT_OPTS for ytmax, yt-batch, ytstream functions.
+# `set -Ug` makes it a Universal Global variable, persisting across sessions.
+set -Ug YT_OPTS \
+    --prefer-free-formats \
+    --format-sort-force \
+    --merge-output-format "mkv" \
     --concurrent-fragments 3 \
     --no-mtime \
-    --output "%(title)s [%(id)s][%(height)sp][%(fps)sfps][%(vcodec)s][%(acodec)s].%(ext)s"
+    --output "%(title)s [%(id)s][%(height)sp][%(fps)sfps][%(vcodec)s][%(acodec)s].%(ext)s" \
+    --external-downloader aria2c \
+    --external-downloader-args "-x 16 -s 16 -k 1M"
 
-function yt
-    switch (string lower $argv[1])
-        case 4k 2160p
-            set format "bv*[height<=2160][vcodec^=av01]+ba[acodec=opus]/bv*[height<=2160][vcodec^=vp9]+ba/bv*[height<=2160]+ba"
-        case 2k 1440p
-            set format "bv*[height<=1440][vcodec^=av01]+ba[acodec=opus]/bv*[height<=1440][vcodec^=vp9]+ba/bv*[height<=1440]+ba"
-        case 1080p hd
-            set format "bv*[height<=1080][vcodec^=av01]+ba[acodec=opus]/bv*[height<=1080][vcodec^=vp9]+ba/bv*[height<=1080]+ba"
-        case max ''
-            set format "bv*+ba/b"
-        case '*'
-            echo "Invalid quality: $argv[1]" >&2
-            return 1
-    end
-
-    yt-dlp $YTDL_FORMATS --format "$format" $argv[2..-1]
+#############################################################
+# Aesthetics & Startup Commands
+#############################################################
+# Run fastfetch when an interactive shell starts.
+if status is-interactive && command -sq fastfetch
+    fastfetch
 end
 
-#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-#  Aliases & Abbreviations
-#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-## 📂 Navigation
-abbr -a .. 'cd ..'
-abbr -a ... 'cd ../..'
-abbr -a c 'clear'
-abbr -a code codium
-
-## 🖥️ System
-abbr -a e 'exit'
-abbr -a vz '$EDITOR ~/.config/hypr/hyprland.conf'
-abbr -a vf '$EDITOR ~/.config/fish/config.fish'
-
-## 📦 Package Management
-abbr -a upchk 'check_updates'
-abbr -a upgrade 'paru -Syu'
-
-## 🐋 Docker
-abbr -a dstart 'sudo systemctl start docker'
-abbr -a dstop 'sudo systemctl stop docker --no-block'
-
-## 📝 Modern Replacements
-if command -q eza
-    abbr -a eza 'eza --group-directories-first --icons --hyperlink'
-    abbr -a ezal 'eza -lh --git --header --color-scale --time-style=iso'
-    abbr -a ezaa 'eza --long --header --git --all --icons=always --group-directories-first --color=always --time-style=long-iso --no-user --hyperlink'
-    abbr -a ezat 'eza --tree --level=2'
-end
-
-#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-#  Interactive Tweaks
-#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-if status is-interactive
-    ## 🎨 Theming
-    set fish_color_command brgreen
-    set fish_pager_color_description yellow
-    set fish_cursor_default block
-
-    ## 🚀 Startup
-    rustor
-
-    ## ⌨️ Key Bindings
-    bind \cr 'history search-backward'
-    bind \e\[A 'history search-backward'
-    bind \e\[B 'history search-forward'
-
-    ## 🧩 Completions
-    set -g fish_autosuggestion_enabled 1
-    set -g fish_autosuggestion_color 555
-end
+#############################################################
+# Custom Function Notes
+#############################################################
+# Your custom Zsh functions from ~/.config/shell-scripts/*.zsh
+# should be converted to Fish functions and placed as individual files in:
+#   ~/.config/fish/functions/
+# For example, a Zsh script `my_func.zsh` containing `function my_func { ... }`
+# becomes `~/.config/fish/functions/my_func.fish` containing the Fish version:
+#   `function my_func; ... ;end`
+# Fish automatically loads these functions when they are first called (autoloading).
