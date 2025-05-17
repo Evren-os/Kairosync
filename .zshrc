@@ -24,13 +24,6 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 #############################################################
-# Custom Functions
-#############################################################
-for script in ~/.config/shell-scripts/*.zsh(N); do
-    source "$script"
-done
-
-#############################################################
 # Zinit Plugin Manager Setup
 #############################################################
 
@@ -74,7 +67,7 @@ alias code='codium'
 alias yt='ytmax'
 alias yts='ytstream'
 alias ytf='yt-dlp -F'
-alias ytb='yt-batch'
+alias ytb='yt_batch'
 
 #Misc
 alias mirror="sudo cachyos-rate-mirrors" # Get fastest mirrors
@@ -82,6 +75,7 @@ alias cleanup='sudo pacman -Rns (pacman -Qtdq)' # Cleanup orphaned packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl" # Recent installed packages
 alias ffetch="fastfetch"
 alias cfetch="countryfetch"
+alias dlfastb="dlfast_batch"
 
 #############################################################
 # Aesthetics

@@ -8,29 +8,24 @@ matches:
 
       💻 OS: CachyOS with KDE Plasma 6.3.5 (Wayland)
 
-      ⚙️ Core Components:
-        CPU: AMD Ryzen 7 5700G (with Radeon Vega iGPU)
-        Motherboard: Gigabyte B550M Aorus Elite
-        RAM: 16GB DDR4 @ 3200MHz (Dual Channel)
-
-      💾 Storage:
-        Boot Drive: Samsung 980 Evo 500GB NVMe SSD
-        Secondary Drive: 1TB Toshiba HDD
-
-      🎧 Peripherals:
-        Monitor: LG 22MK600M (22 Inch, 1080p, non-HDR)
-        Headphone: Fantech HG24 Spectre II 7.1 Gaming Headphone
+      CPU: AMD Ryzen 7 5700G (with Radeon Vega iGPU)
+      Motherboard: Gigabyte B550M Aorus Elite
+      RAM: 16GB DDR4 @ 3200MHz (Dual Channel)
+      Boot Drive: Samsung 980 Evo 500GB NVMe SSD
+      Secondary Drive: 1TB Toshiba HDD
+      Monitor: LG 22MK600M (22 Inch, 1080p, non-HDR)
+      Headphone: Fantech HG24 Spectre II 7.1 Gaming Headphone
 
   - trigger: ":slm"
     replace: "Assalamu Alaikum wa Rahmatullahi wa Barakatuh"
 
-  - trigger: ":slmar"
+  - trigger: ":arslm"
     replace: "ٱلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ ٱللَّهِ ۖ وَبَرَكَاتُهُ"
 
   - trigger: ":wslm"
     replace: "Wa Alaikum Assalam wa Rahmatullahi wa Barakatuh"
 
-  - trigger: ":wslmar"
+  - trigger: ":arwslm"
     replace: "وَعَلَيْكُمُ ٱلسَّلَامُ وَرَحْمَةُ ٱللَّهِ وَبَرَكَاتُهُ"
 
   - trigger: ":good"
