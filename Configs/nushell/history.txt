@@ -1,0 +1,132 @@
+mkdir ($nu.data-dir | path join "vendor/autoload")<\n>starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+let autoload_dir = ($nu.data-dir | path join "vendor/autoload")<\n>mkdir $autoload_dir<\n>starship init nu | save -f ($autoload_dir | path join "starship.nu")
+zoxide init nushell --hook prompt | save -f ~/.zoxide.nu
+paru -S expac
+kate ~/.config/nushell/config.nu
+z ~/Clone/Nebula-Zen/
+cd ~/Clone/Nebula-Zen/
+git pull
+cd ~/Clone/Vermilion/
+git pull
+c
+dlfastb
+z ~/Clone/Nebula-Zen/
+kate ~/.config/nushell/config.nu
+source ~/.config/nushell/config.nu
+kate ~/Downloads/QubitHive/40-Days-of-JS/
+c
+source ~/.config/nushell/config.nu
+c
+ls
+clear
+eza
+clear
+dlfastb
+dlfast
+yt
+ytb
+clear
+ls
+clear
+c
+code
+kate ~/.config/nushell/config.nu
+cp ~/.config/nushell/ ~/Documents/nushell-fine/
+cp ~/.config/nushell/ ~/Documents/
+cp -r ~/.config/nushell/ ~/Documents/
+eza --long --json | from json | table name,permissions,user,group,size,modified
+eza --long --json | from json | table {name,permissions,user,group,size,modified}
+eza --long --json | from json | table 
+source ~/.config/nushell/config.nu
+c
+ls
+la
+ll
+lt
+c
+ls
+la
+ll
+l.
+ls
+paru -Ss nu
+paru -Ss nushell
+source ~/.config/nushell/config.nu
+c
+ls
+la
+ll
+code ~/.config/nushell/config.nu
+source ~/.config/nushell/config.nu
+c
+ls
+source ~/.config/nushell/config.nu
+c
+ls
+brave
+which brave
+which brave-bin
+which brave-beta
+paru -Syyu --noconfirm
+cfetch "sa"
+reboot
+ls
+ghostty +list_themes
+ghostty --help
+ghostty +list-colors
+c
+kate ~/.config/ghostty/config
+ls
+asd
+ast
+ast --help
+c
+ghostty +list-colors
+kate ~/.config/ghostty/config
+ls
+c
+ls
+ls | sort-by size
+ls | sort-by size | reverse
+ls -l ~/Downloads/
+ls -l ~/Downloads/ | sort-by mode
+ls -l ~/Downloads/ | sort-by size | reverse
+ls -l ~/Downloads/ | sort-by size
+clear
+ps
+ps 
+c
+ps | where name =~ ghostty | select pid name cpu
+z ~/Downloads/Schizobrowsernia/
+c
+ls
+z Cache_Resonance/
+ls
+open insta_saved_posts.json
+c
+open insta_saved_posts.json
+c
+open insta_saved_posts.json
+c
+z
+c
+open ~/.cargo/config.toml
+c
+http get https://api.example.com/data | get items | where price > 100
+c
+ls
+z Visorium
+c
+ls
+systemd-analyze
+reboot
+kate `~/Downloads/GlyphDomain/Content Queue/`
+z ~/Clone/Nebula-Zen/
+git pull
+gto
+c
+kate ~/Clone/post_install.sh
+kate ~/Downloads/script.txt
+code ~/Clone/post_install.sh
+code ~/Downloads/script.txt
+cp ~/.config/nushell/ ~/Clone/Kairosync/Configs/

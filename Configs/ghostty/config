@@ -1,5 +1,5 @@
 term = xterm-256color
-theme = GitLab-Dark-Grey
+theme = tokyonight_night
 background-opacity = 0.70
 background-blur-radius = 20
 font-family = "JetBrainsMono Nerd Font"
