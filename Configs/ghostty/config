@@ -1,9 +1,9 @@
 term = xterm-256color
-theme = tokyonight_night
+theme = Solarized Dark - Patched
 background-opacity = 0.70
 background-blur-radius = 20
 font-family = "JetBrainsMono Nerd Font"
-font-size = 10
+font-size = 10.5
 window-padding-y = 0
 window-padding-balance = false
 confirm-close-surface = false

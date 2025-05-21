@@ -56,6 +56,7 @@ alias dlfastb="dlfast_batch"
 ### Startup Commands
 if status --is-interactive
     fastfetch
+    tv init fish | source
 end
 
 ### Plugin Manager & Plugins (Commented)
