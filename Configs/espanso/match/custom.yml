@@ -55,7 +55,7 @@ matches:
       Required Output Formats :
       1.  Present the final rewritten prompt inside a code block as plain, formatted text
 
-      My written prompt is below :
+      Here is the original prompt to rewrite :
       {}
 
   - trigger: ":src"

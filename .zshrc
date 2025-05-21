@@ -28,9 +28,7 @@ eval "$(zoxide init zsh)"
 #############################################################
 
 # Initialize Zinit
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-[ ! -d "$ZINIT_HOME" ] && mkdir -p "$(dirname $ZINIT_HOME)" && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-source "${ZINIT_HOME}/zinit.zsh"
+source /usr/share/zinit/zinit.zsh
 
 # Load Essential Plugins
 zinit light mafredri/zsh-async
@@ -49,11 +47,12 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias mkdir='mkdir -p'
 alias c='clear'
-alias ls='eza -al --color=always --group-directories-first --icons' # preferred listing
-alias la='eza -a --color=always --group-directories-first --icons'  # all files and dirs
-alias ll='eza -l --color=always --group-directories-first --icons'  # long format
-alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
-alias l.="eza -a | grep -e '^\.'"                                   # show only dotfiles
+alias ls='eza -1 --color=always --group-directories-first --icons --git'
+alias la='eza -a -1 --color=always --group-directories-first --icons --git'
+alias ll='eza -l -h --color=always --group-directories-first --icons --git'
+alias lla='eza -al -h --color=always --group-directories-first --icons --git'
+alias lt='eza -aT --color=always --group-directories-first --icons --git'
+alias l.="eza -a --color=always --group-directories-first --icons --git | grep -e '^\.'"
 
 # System Management
 alias docker-start='sudo systemctl start docker'
@@ -66,7 +65,6 @@ alias code='codium'
 # Media Download
 alias yt='ytmax'
 alias yts='ytstream'
-alias ytf='yt-dlp -F'
 alias ytb='yt_batch'
 
 #Misc
