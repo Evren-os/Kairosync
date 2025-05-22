@@ -1,7 +1,17 @@
 [build]
+rustflags = ["-C", "target-cpu=znver3"]
+
+[target.x86_64-unknown-linux-gnu]
+linker = "mold"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = "symbols"
+debug = 0
+debug-assertions = false
 rustflags = [
-    "-C", "target-cpu=native",
-    "-C", "force-frame-pointers=no",
-    "-C", "debuginfo=0",
-    "-C", "prefer-dynamic=no",
+    "-C", "force-frame-pointers=no"
 ]
