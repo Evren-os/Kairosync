@@ -1,67 +1,92 @@
-### Path and Environment Variables
-fish_add_path $HOME/.local/bin $HOME/.cargo/bin
-fish_add_path $HOME/.spicetify
+# Colors
+set -g fish_color_autosuggestion 586e75
+set -g fish_color_cancel --reverse
+set -g fish_color_command 268bd2
+set -g fish_color_comment 586e75
+set -g fish_color_cwd 859900
+set -g fish_color_cwd_root dc322f
+set -g fish_color_end d33682
+set -g fish_color_error dc322f
+set -g fish_color_escape 2aa198
+set -g fish_color_history_current --bold
+set -g fish_color_host 839496
+set -g fish_color_host_remote b58900
+set -g fish_color_keyword d33682
+set -g fish_color_match --background=073642
+set -g fish_color_normal 839496
+set -g fish_color_operator cb4b16
+set -g fish_color_option 2aa198
+set -g fish_color_param 2aa198
+set -g fish_color_quote 859900
+set -g fish_color_redirection cb4b16
+set -g fish_color_search_match b58900 --background=073642
+set -g fish_color_selection fdf6e3 --bold --background=073642
+set -g fish_color_status dc322f
+set -g fish_color_user 859900
+set -g fish_color_valid_path --underline
 
-# Bun Configuration
-set -gx BUN_INSTALL "$HOME/.bun"
-fish_add_path "$BUN_INSTALL/bin"
-if test -s "$BUN_INSTALL/_bun"
-    source "$BUN_INSTALL/_bun"
+### Environment Variables
+if status --is-interactive
+    # Path Management
+    fish_add_path -g $HOME/.local/bin $HOME/.cargo/bin $HOME/.spicetify
+    set -gx BUN_INSTALL $HOME/.bun
+    fish_add_path -g "$BUN_INSTALL/bin"
+
+    # Starship Configuration
+    set -gx STARSHIP_CONFIG $HOME/.config/starship.toml
+    set -gx STARSHIP_CACHE $HOME/.cache/starship
+
+    # Bun Completion
+    if test -s "$BUN_INSTALL/_bun"
+        source "$BUN_INSTALL/_bun"
+    end
 end
 
-# Starship Configuration
-set -gx STARSHIP_CONFIG "$HOME/.config/starship.toml"
-set -gx STARSHIP_CACHE "$HOME/.cache/starship"
-
-### Tool Initializations
+### Interactive Shell Configuration
 if status --is-interactive
     starship init fish | source
     zoxide init fish | source
-end
-
-### Aliases
-# Navigation & Basic
-alias ..='cd ..'
-alias ...='cd ../..'
-alias mkdir='mkdir -p'
-alias c='clear'
-alias ls='eza -1 --color=always --group-directories-first --icons --git'
-alias la='eza -a -1 --color=always --group-directories-first --icons --git'
-alias ll='eza -l -h --color=always --group-directories-first --icons --git'
-alias lla='eza -al -h --color=always --group-directories-first --icons --git'
-alias lt='eza -aT --color=always --group-directories-first --icons --git'
-alias l.="eza -a --color=always --group-directories-first --icons --git | grep -e '^\\.'"
-
-# System Management
-alias docker-start='sudo systemctl start docker'
-alias docker-stop='sudo systemctl stop docker'
-alias upchk='check_updates'
-
-# Applications
-alias code='codium'
-
-# Media Download
-alias yt='ytmax'
-alias yts='ytstream'
-alias ytb='yt_batch'
-
-# Misc
-alias mirror="sudo cachyos-rate-mirrors"  # Get fastest mirrors
-alias cleanup='sudo pacman -Rns (pacman -Qtdq)'  # Cleanup orphaned packages
-alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"  # Recent installed packages
-alias ffetch="fastfetch"
-alias cfetch="countryfetch"
-alias dlfastb="dlfast_batch"
-
-### Startup Commands
-if status --is-interactive
-    fastfetch
     tv init fish | source
+
+    # Startup Command
+    fastfetch
 end
 
-### Plugin Manager & Plugins (Commented)
-# To install Fisher and plugins, uncomment and run the following:
-# curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-# fisher install PatrickF1/fzf.fish
-# fisher install franciscolourenco/done
-# fisher install jorgebucaran/autopair.fish
+### Abbreviations
+abbr -a -- .. 'cd ..'
+abbr -a -- ... 'cd ../..'
+abbr -a -- c clear
+abbr -a -- mkdir 'mkdir -p'
+abbr -a -- upchk check_updates
+abbr -a -- mirror 'sudo cachyos-rate-mirrors'
+abbr -a -- cleanup 'sudo pacman -Rns (pacman -Qtdq)'
+abbr -a -- code codium
+abbr -a -- ffetch fastfetch
+abbr -a -- cfetch countryfetch
+
+### Function-style Abbreviations with Options
+function _eza_wrapper
+    eza --color=always --group-directories-first --icons --git $argv
+end
+
+abbr -a -- ls '_eza_wrapper -1'
+abbr -a -- la '_eza_wrapper -a -1'
+abbr -a -- ll '_eza_wrapper -l -h'
+abbr -a -- lla '_eza_wrapper -al -h'
+abbr -a -- lt '_eza_wrapper -aT'
+abbr -a -- l. '_eza_wrapper -a | grep -e "^\\."'
+
+### System Management
+abbr -a -- docker-start 'sudo systemctl start docker'
+abbr -a -- docker-stop 'sudo systemctl stop docker'
+
+### Media Download
+abbr -a -- yt ytmax
+abbr -a -- yts ytstream
+abbr -a -- ytb yt_batch
+abbr -a -- dlfastb dlfast_batch
+
+### Recent Packages
+function rip
+    expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl
+end
