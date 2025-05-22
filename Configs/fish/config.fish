@@ -65,16 +65,16 @@ abbr -a -- ffetch fastfetch
 abbr -a -- cfetch countryfetch
 
 ### Function-style Abbreviations with Options
-function _eza_wrapper
+function _eza_mod
     eza --color=always --group-directories-first --icons --git $argv
 end
 
-abbr -a -- ls '_eza_wrapper -1'
-abbr -a -- la '_eza_wrapper -a -1'
-abbr -a -- ll '_eza_wrapper -l -h'
-abbr -a -- lla '_eza_wrapper -al -h'
-abbr -a -- lt '_eza_wrapper -aT'
-abbr -a -- l. '_eza_wrapper -a | grep -e "^\\."'
+abbr -a -- ls '_eza_mod -1'
+abbr -a -- la '_eza_mod -a -1'
+abbr -a -- ll '_eza_mod -l -h'
+abbr -a -- lla '_eza_mod -al -h'
+abbr -a -- lt '_eza_mod -aT'
+abbr -a -- l. '_eza_mod -a | grep -e "^\\."'
 
 ### System Management
 abbr -a -- docker-start 'sudo systemctl start docker'
