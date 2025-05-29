@@ -6,7 +6,7 @@ matches:
     replace: |
       My PC Specifications:
 
-      💻 OS: CachyOS with KDE Plasma 6.3.5 (Wayland)
+      OS: CachyOS with KDE Plasma 6.3.5 (Wayland)
 
       CPU: AMD Ryzen 7 5700G (with Radeon Vega iGPU)
       Motherboard: Gigabyte B550M Aorus Elite
@@ -62,12 +62,9 @@ matches:
     replace: |
       When you're searching for information or trying to find answers, could you please focus on getting details from these types of places? It's really important that the information is authentic, accurate, and directly relevant:
 
-      *  Reddit : Look for helpful subreddits, specific posts, and insightful comment threads.
-      *  Official Channels : Prioritize official resources like company websites, product documentation, and official community forums.
+      *  Reddit : Look for helpful subreddits, specific posts, and insightful comment threads. Analyze what redditors saying, suggesting and discussing.
+      *  Official Channels : Prioritize official resources, and official community forums.
       *  Trusted Independent Sources : Seek out well-regarded websites, established blogs, and articles from known, trustworthy publishers.
-      *  Expert & Developer Insights : Pay attention to reviews, analyses, or discussions from genuine developers or recognized experts in the field.
+      *  Expert & Developer Insights : Pay attention to reviews, analyses, or discussions from genuine developers, users or recognized experts in the field.
 
       On the other hand, please make a strong effort to completely **avoid** using information from random, unverified, or generally untrustworthy sources.
-
-  - trigger: ":date"
-    replace: "{{date}}"
