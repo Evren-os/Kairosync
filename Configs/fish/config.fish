@@ -61,6 +61,7 @@ abbr -a -- upchk check_updates
 abbr -a -- mirror 'sudo cachyos-rate-mirrors'
 abbr -a -- cleanup 'sudo pacman -Rns (pacman -Qtdq)'
 abbr -a -- code codium
+abbr -a -- zed zeditor
 abbr -a -- ffetch fastfetch
 abbr -a -- cfetch countryfetch
 

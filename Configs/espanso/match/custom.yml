@@ -11,8 +11,8 @@ matches:
       CPU: AMD Ryzen 7 5700G (with Radeon Vega iGPU)
       Motherboard: Gigabyte B550M Aorus Elite
       RAM: 16GB DDR4 @ 3200MHz (Dual Channel)
-      Boot Drive: Samsung 980 Evo 500GB NVMe SSD
-      Secondary Drive: 1TB Toshiba HDD
+      Boot Drive: Samsung 980 Evo 500GB NVMe SSD (BTRFS)
+      Secondary Drive: 1TB Toshiba HDD (XFS)
       Monitor: LG 22MK600M (22 Inch, 1080p, non-HDR)
       Headphone: Fantech HG24 Spectre II 7.1 Gaming Headphone
 
