@@ -1,20 +1,39 @@
+global_vars:
+  - name: pc_specs
+    type: echo
+    params:
+      echo: |
+        My PC Specifications:
+
+        OS: CachyOS with KDE Plasma 6.3.5 (Wayland)
+        CPU: AMD Ryzen 7 5700G (with Radeon Vega iGPU)
+        Motherboard: Gigabyte B550M Aorus Elite
+        RAM: 16GB DDR4 @ 3200MHz (Dual Channel)
+        Boot Drive: Samsung 980 Evo 500GB NVMe SSD (EXT4)
+        Secondary Drive: 1TB Toshiba HDD (XFS)
+        Monitor: LG 22MK600M (22 Inch, 1080p, non-HDR)
+        Headphone: Fantech HG24 Spectre II 7.1 Gaming Headphone
+
 matches:
   - trigger: ":email"
     replace: "evrnos@proton.me"
 
   - trigger: ":spec"
+    replace: "{{pc_specs}}"
+
+  - trigger: ":mpv"
     replace: |
-      My PC Specifications:
+      {{pc_specs}}
 
-      OS: CachyOS with KDE Plasma 6.3.5 (Wayland)
-
-      CPU: AMD Ryzen 7 5700G (with Radeon Vega iGPU)
-      Motherboard: Gigabyte B550M Aorus Elite
-      RAM: 16GB DDR4 @ 3200MHz (Dual Channel)
-      Boot Drive: Samsung 980 Evo 500GB NVMe SSD (BTRFS)
-      Secondary Drive: 1TB Toshiba HDD (XFS)
-      Monitor: LG 22MK600M (22 Inch, 1080p, non-HDR)
-      Headphone: Fantech HG24 Spectre II 7.1 Gaming Headphone
+      My mpv.conf :
+      ```ini
+      {{mpv_config}}
+      ```
+    vars:
+      - name: mpv_config
+        type: shell
+        params:
+          cmd: "cat ~/.config/mpv/mpv.conf"
 
   - trigger: ":slm"
     replace: "Assalamu Alaikum wa Rahmatullahi wa Barakatuh"
@@ -42,6 +61,9 @@ matches:
 
   - trigger: ":ins"
     replace: "In sha Allah"
+    
+  - trigger: ":vq"
+    replace: "Given my PC spec, mpv configuration, and mediainfo(s), what's the best video choice for the highest possible quality and detail, ensuring a clean and immersive viewing experience on my system?"
 
   - trigger: ":prompt"
     replace: |
