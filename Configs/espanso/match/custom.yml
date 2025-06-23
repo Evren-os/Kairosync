@@ -5,7 +5,7 @@ global_vars:
       echo: |
         My PC Specifications:
 
-        OS: CachyOS with KDE Plasma 6.3.5 (Wayland)
+        OS: CachyOS with KDE Plasma 6.4 (Wayland)
         CPU: AMD Ryzen 7 5700G (with Radeon Vega iGPU)
         Motherboard: Gigabyte B550M Aorus Elite
         RAM: 16GB DDR4 @ 3200MHz (Dual Channel)
