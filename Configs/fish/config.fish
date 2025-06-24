@@ -60,7 +60,7 @@ abbr -a -- mkdir 'mkdir -p'
 abbr -a -- upchk check_updates
 abbr -a -- mirror 'sudo cachyos-rate-mirrors'
 abbr -a -- cleanup 'sudo pacman -Rns (pacman -Qtdq)'
-abbr -a -- code codium
+abbr -a -- codi codium
 abbr -a -- zed zeditor
 abbr -a -- ffetch fastfetch
 abbr -a -- cfetch countryfetch
@@ -80,6 +80,7 @@ abbr -a -- l. '_eza_mod -a | grep -e "^\\."'
 ### System Management
 abbr -a -- docker-start 'sudo systemctl start docker'
 abbr -a -- docker-stop 'sudo systemctl stop docker'
+abbr -a -- rbios 'sudo systemctl reboot --firmware-setup'
 
 ### Media Download
 abbr -a -- yt ytmax
