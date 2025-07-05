@@ -3,16 +3,20 @@ global_vars:
     type: echo
     params:
       echo: |
-        My PC Specifications:
-
-        OS: CachyOS with KDE Plasma 6.4 (Wayland)
-        CPU: AMD Ryzen 7 5700G (with Radeon Vega iGPU)
-        Motherboard: Gigabyte B550M Aorus Elite
-        RAM: 16GB DDR4 @ 3200MHz (Dual Channel)
-        Boot Drive: Samsung 980 Evo 500GB NVMe SSD (EXT4)
-        Secondary Drive: 1TB Toshiba HDD (XFS)
-        Monitor: LG 22MK600M (22 Inch, 1080p, non-HDR)
-        Headphone: Fantech HG24 Spectre II 7.1 Gaming Headphone
+        ┌─ Core ──────────
+        │ CPU   : AMD Ryzen 7 5700G
+        │ Board : Gigabyte B550M Aorus Elite
+        │ RAM   : 2x8GB DDR4 @ 3200MHz
+        │
+        ├─ Storage ───────
+        │ SSD   : 500GB Samsung 980 Evo NVMe
+        │ HDD   : 1TB Toshiba HDD
+        │
+        └─ System ────────
+          OS    : CachyOS (KDE Plasma 6.4.2)
+          Shell : Fish
+          Audio : Fantech HG24 Spectre II
+          Display: LG 22MK600M 1080p (non-HDR)
 
 matches:
   - trigger: ":email"
@@ -61,7 +65,7 @@ matches:
 
   - trigger: ":ins"
     replace: "In sha Allah"
-    
+
   - trigger: ":vq"
     replace: "Given my PC spec, mpv configuration, and mediainfo(s), what's the best video choice for the highest possible quality and detail, ensuring a clean and immersive viewing experience on my system?"
 
@@ -72,6 +76,7 @@ matches:
       Key Goals :
       * Make it sound natural and human (not robotic).
       * Optimize for maximum clarity and easy AI understanding.
+      * Refine for specificity and to eliminate ambiguity.
       * Keep all original information and intent intact.
 
       Required Output Formats :
