@@ -60,8 +60,9 @@ abbr -a -- mkdir 'mkdir -p'
 abbr -a -- upchk check_updates
 abbr -a -- mirror 'sudo cachyos-rate-mirrors'
 abbr -a -- cleanup 'sudo pacman -Rns (pacman -Qtdq)'
-abbr -a -- codi codium
+abbr -a -- code codium
 abbr -a -- zed zeditor
+abbr -a -- gmc 'geminicommit -m gemini-2.5-pro'
 abbr -a -- ffetch fastfetch
 abbr -a -- cfetch countryfetch
 
