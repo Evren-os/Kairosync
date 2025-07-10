@@ -67,7 +67,7 @@ matches:
     replace: "In sha Allah"
 
   - trigger: ":vq"
-    replace: "Given my PC spec, mpv configuration, and mediainfo(s), what's the best video choice for the highest possible quality and detail, ensuring a clean and immersive viewing experience on my system?"
+    replace: "Analyze my PC specifications, mpv configuration, and the provided mediainfo files to identify the single best video choice for the highest technical quality (video bitrate, resolution, codec, bit-depth, color space; audio codec, channels, bitrate) that my system can play perfectly smoothly, and provide only one definitive file recommendation without alternatives."
 
   - trigger: ":prompt"
     replace: |
