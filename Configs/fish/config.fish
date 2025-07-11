@@ -32,6 +32,11 @@ if status --is-interactive
     set -gx BUN_INSTALL $HOME/.bun
     fish_add_path -g "$BUN_INSTALL/bin"
 
+    # Go Environment
+    set -gx GOPATH "$HOME/.local/share/go"
+    set -gx GOBIN "$HOME/.local/bin"
+    set -gx GOCACHE "$HOME/.cache/go"
+
     # Starship Configuration
     set -gx STARSHIP_CONFIG $HOME/.config/starship.toml
     set -gx STARSHIP_CACHE $HOME/.cache/starship
