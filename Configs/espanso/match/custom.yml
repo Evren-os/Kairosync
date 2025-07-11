@@ -19,6 +19,14 @@ global_vars:
           Display: LG 22MK600M 1080p (non-HDR)
 
 matches:
+  - trigger: ":yawm"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%B %d, %Y"
+    replace: "{{mydate}}"
+
   - trigger: ":email"
     replace: "evrnos@proton.me"
 
