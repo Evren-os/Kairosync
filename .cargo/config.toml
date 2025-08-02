@@ -8,7 +8,7 @@ build-std = true
 linker = "clang"
 rustflags = [
     "-C", "target-cpu=znver3",
-    "-C", "link-arg=-fuse-ld=mold",
+    "-C", "link-arg=-fuse-ld=lld",
     "-C", "linker-plugin-lto=true",
     "-C", "force-frame-pointers=no",
 ]
