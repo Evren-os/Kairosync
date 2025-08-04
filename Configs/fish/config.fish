@@ -60,16 +60,18 @@ end
 ### Abbreviations
 abbr -a -- .. 'cd ..'
 abbr -a -- ... 'cd ../..'
-abbr -a -- c clear
+abbr -a -- c 'clear'
 abbr -a -- mkdir 'mkdir -p'
-abbr -a -- upchk check_updates
+abbr -a -- upchk 'check_updates'
 abbr -a -- mirror 'sudo cachyos-rate-mirrors'
 abbr -a -- cleanup 'sudo pacman -Rns (pacman -Qtdq)'
-abbr -a -- code codium
-abbr -a -- zed zeditor
+abbr -a -- code 'codium'
+abbr -a -- zed 'zeditor'
 abbr -a -- gmc 'geminicommit -m gemini-2.5-pro'
-abbr -a -- ffetch fastfetch
-abbr -a -- cfetch countryfetch
+abbr -a -- ffetch 'fastfetch'
+abbr -a -- cfetch 'countryfetch'
+abbr -a -- speed-bdix 'speedtest++ --test-server speedtest.bbts-online.net.prod.hosts.ooklaserver.net:8080'
+abbr -a -- speed-raw 'speedtest++ --test-server speedtest.myrepublic.com.sg:8080'
 
 ### Function-style Abbreviations with Options
 function _eza_mod
@@ -89,10 +91,10 @@ abbr -a -- docker-stop 'sudo systemctl stop docker'
 abbr -a -- rbios 'systemctl reboot --firmware-setup'
 
 ### Media Download
-abbr -a -- yt ytmax
-abbr -a -- yts ytstream
-abbr -a -- ytb yt_batch
-abbr -a -- dlfastb dlfast_batch
+abbr -a -- yt 'ytmax'
+abbr -a -- yts 'ytstream'
+abbr -a -- ytb 'yt_batch'
+abbr -a -- dlfastb 'dlfast_batch'
 
 ### Recent Packages
 function rip
