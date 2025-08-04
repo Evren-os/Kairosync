@@ -89,6 +89,8 @@ abbr -a -- l. '_eza_mod -a | grep -e "^\\."'
 abbr -a -- docker-start 'sudo systemctl start docker'
 abbr -a -- docker-stop 'sudo systemctl stop docker'
 abbr -a -- rbios 'systemctl reboot --firmware-setup'
+abbr -a -- off 'systemctl poweroff'
+abbr -a -- rbt 'systemctl reboot'
 
 ### Media Download
 abbr -a -- yt 'ytmax'
