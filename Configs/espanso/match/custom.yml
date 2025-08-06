@@ -13,7 +13,7 @@ global_vars:
         │ HDD   : 1TB Toshiba HDD
         │
         └─ System ────────
-          OS    : CachyOS (KDE Plasma 6.4.3)
+          OS    : CachyOS (KDE Plasma 6.4.4)
           Shell : Fish
           Audio : Fantech HG24 Spectre II
           Display: LG 22MK600M 1080p (non-HDR)
