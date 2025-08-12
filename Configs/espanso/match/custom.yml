@@ -103,3 +103,20 @@ matches:
       *  Expert & Developer Insights : Pay attention to reviews, analyses, or discussions from genuine developers, users or recognized experts in the field.
 
       On the other hand, please make a strong effort to completely **avoid** using information from random, unverified, or generally untrustworthy sources.
+
+  - trigger: ":amr"
+    replace: |
+      A few guidelines for your response:
+
+      1.  **Accuracy is my top priority.** Please provide information that is factual, verified, and up-to-date as of {{current_date}}. Avoid any speculation, assumptions, or fabricated details. If you don't know an answer or a fact cannot be confirmed, please state that clearly.
+
+      2.  **Be comprehensive but concise.** I want all the important details and information, but without any fluff, filler, or repetitive phrasing. Get straight to the point.
+
+      3.  **Clarity and organization are key.** Please structure your answer in a logical, easy-to-follow way. Use headings, lists, or bold text if it helps make the information clearer.
+
+      4.  **Write in a natural, conversational style.** The tone should be easy to read and understand, but don't simplify the content itself. Assume you're explaining things to an intelligent adult who just appreciates clear, straightforward writing.
+    vars:
+      - name: current_date
+        type: date
+        params:
+          format: "%B %d, %Y"
