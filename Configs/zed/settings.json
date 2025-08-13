@@ -172,7 +172,7 @@
   },
 
   "terminal": {
-    "font_family": "JetBrainsMono Nerd Font",
+    "font_family": "TX-02",
     "font_size": 14,
     "line_height": {
       "custom": 1.45
@@ -195,131 +195,7 @@
     "css": true,
     "tailwindcss": true,
     "typescript-language-server": true,
-    "eslint": true,
-    "prettier": true,
     "json": true,
     "markdown": true
-  },
-
-  "languages": {
-    "javascript": {
-      "tab_size": 2,
-      "preferred_line_length": 100,
-      "code_actions_on_format": {
-        "source.organizeImports": true,
-        "source.fixAll.eslint": true
-      },
-      "formatter": {
-        "external": {
-          "command": "npx",
-          "arguments": ["prettier", "--stdin-filepath", "{buffer_path}"]
-        }
-      }
-    },
-    "typescript": {
-      "tab_size": 2,
-      "preferred_line_length": 100,
-      "code_actions_on_format": {
-        "source.organizeImports": true,
-        "source.fixAll.eslint": true
-      },
-      "formatter": {
-        "external": {
-          "command": "npx",
-          "arguments": ["prettier", "--stdin-filepath", "{buffer_path}"]
-        }
-      }
-    },
-    "jsx": {
-      "tab_size": 2,
-      "preferred_line_length": 100,
-      "code_actions_on_format": {
-        "source.organizeImports": true,
-        "source.fixAll.eslint": true
-      },
-      "formatter": {
-        "external": {
-          "command": "npx",
-          "arguments": ["prettier", "--stdin-filepath", "{buffer_path}"]
-        }
-      }
-    },
-    "tsx": {
-      "tab_size": 2,
-      "preferred_line_length": 100,
-      "code_actions_on_format": {
-        "source.organizeImports": true,
-        "source.fixAll.eslint": true
-      },
-      "formatter": {
-        "external": {
-          "command": "npx",
-          "arguments": ["prettier", "--stdin-filepath", "{buffer_path}"]
-        }
-      }
-    },
-    "html": {
-      "tab_size": 2,
-      "preferred_line_length": 100,
-      "formatter": {
-        "external": {
-          "command": "npx",
-          "arguments": ["prettier", "--stdin-filepath", "{buffer_path}"]
-        }
-      }
-    },
-    "css": {
-      "tab_size": 2,
-      "preferred_line_length": 100,
-      "formatter": {
-        "external": {
-          "command": "npx",
-          "arguments": ["prettier", "--stdin-filepath", "{buffer_path}"]
-        }
-      }
-    },
-    "json": {
-      "tab_size": 2,
-      "formatter": {
-        "external": {
-          "command": "npx",
-          "arguments": ["prettier", "--stdin-filepath", "{buffer_path}"]
-        }
-      }
-    },
-    "markdown": {
-      "tab_size": 2,
-      "preferred_line_length": 80,
-      "formatter": {
-        "external": {
-          "command": "npx",
-          "arguments": ["prettier", "--stdin-filepath", "{buffer_path}"]
-        }
-      }
-    },
-    "tailwind": {
-      "tab_size": 2
-    }
-  },
-
-  "lsp": {
-    "eslint": {
-      "initialization_options": {
-        "codeActionOnSave": {
-          "mode": "all"
-        }
-      }
-    },
-    "typescript-language-server": {
-      "initialization_options": {
-        "hostInfo": "zed"
-      },
-      "settings": {
-        "typescript.suggest.autoImports": true,
-        "javascript.suggest.autoImports": true,
-        "typescript.updateImportsOnFileMove.enabled": true,
-        "javascript.updateImportsOnFileMove.enabled": true
-      }
-    }
   }
 }
