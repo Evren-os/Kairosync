@@ -1,5 +1,5 @@
 term = xterm-256color
-theme = Solarized Dark - Patched
+theme = Dracula+
 background-opacity = 0.70
 background-blur-radius = 20
 font-family = "TX-02"
@@ -10,4 +10,3 @@ confirm-close-surface = false
 mouse-hide-while-typing = true
 resize-overlay = never
 cursor-style = underline
-custom-shader = ~/.config/ghostty/shaders/mnoise.glsl
