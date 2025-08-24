@@ -1,8 +1,1 @@
-Scripts/install_pkg.lst
-.vscode
-user
-Scripts/pkg_black.lst
-Scripts/pkg_user.lst
-*__pycache__*
-Scripts/pkg_black.lst
-Scripts/pkg_user.lst
+Configs/espanso/match/mails.yml
