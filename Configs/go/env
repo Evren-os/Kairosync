@@ -1,0 +1,2 @@
+GOAMD64=v3
+GOFLAGS=-trimpath -ldflags=-s -ldflags=-w -ldflags=-buildid=
