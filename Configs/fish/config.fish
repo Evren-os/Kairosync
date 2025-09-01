@@ -91,6 +91,7 @@ abbr -a -- docker-stop 'sudo systemctl stop docker'
 abbr -a -- rbios 'systemctl reboot --firmware-setup'
 abbr -a -- off 'systemctl poweroff --no-wall'
 abbr -a -- rbt 'systemctl reboot --no-wall'
+abbr -a -- pclean 'sudo paccache -rk2 && sudo paccache -ruk0'
 
 ### Media Download
 abbr -a -- yt 'ytmax'
