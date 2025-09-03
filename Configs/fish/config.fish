@@ -1,30 +1,3 @@
-# Colors
-set -g fish_color_autosuggestion 586e75
-set -g fish_color_cancel --reverse
-set -g fish_color_command 268bd2
-set -g fish_color_comment 586e75
-set -g fish_color_cwd 859900
-set -g fish_color_cwd_root dc322f
-set -g fish_color_end d33682
-set -g fish_color_error dc322f
-set -g fish_color_escape 2aa198
-set -g fish_color_history_current --bold
-set -g fish_color_host 839496
-set -g fish_color_host_remote b58900
-set -g fish_color_keyword d33682
-set -g fish_color_match --background=073642
-set -g fish_color_normal 839496
-set -g fish_color_operator cb4b16
-set -g fish_color_option 2aa198
-set -g fish_color_param 2aa198
-set -g fish_color_quote 859900
-set -g fish_color_redirection cb4b16
-set -g fish_color_search_match b58900 --background=073642
-set -g fish_color_selection fdf6e3 --bold --background=073642
-set -g fish_color_status dc322f
-set -g fish_color_user 859900
-set -g fish_color_valid_path --underline
-
 ### Environment Variables
 if status --is-interactive
     # Path Management
@@ -74,16 +47,21 @@ abbr -a -- speed-bdix 'speedtest++ --test-server speedtest.bbts-online.net.prod.
 abbr -a -- speed-raw 'speedtest++ --test-server speedtest.myrepublic.com.sg:8080'
 
 ### Function-style Abbreviations with Options
-function _eza_mod
+function ez
     eza --color=always --group-directories-first --icons --git $argv
 end
 
-abbr -a -- ls '_eza_mod -1'
-abbr -a -- la '_eza_mod -a -1'
-abbr -a -- ll '_eza_mod -l -h'
-abbr -a -- lla '_eza_mod -al -h'
-abbr -a -- lt '_eza_mod -aT'
-abbr -a -- l. '_eza_mod -a | grep -e "^\\."'
+### Recent Packages
+function rip
+    expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl
+end
+
+abbr -a -- ls 'ez -1'
+abbr -a -- la 'ez -a -1'
+abbr -a -- ll 'ez -l -h'
+abbr -a -- lla 'ez -al -h'
+abbr -a -- lt 'ez -aT'
+abbr -a -- l. 'ez -a | grep -e "^\\."'
 
 ### System Management
 abbr -a -- docker-start 'sudo systemctl start docker'
@@ -98,8 +76,3 @@ abbr -a -- yt 'ytmax'
 abbr -a -- yts 'ytstream'
 abbr -a -- ytb 'yt_batch'
 abbr -a -- dlfastb 'dlfast_batch'
-
-### Recent Packages
-function rip
-    expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl
-end
