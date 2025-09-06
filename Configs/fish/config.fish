@@ -10,6 +10,14 @@ if status --is-interactive
     set -gx GOBIN "$HOME/.local/bin"
     set -gx GOCACHE "$HOME/.cache/go"
 
+    # C/C++ Compilation Environment
+    set -gx CC "clang"
+    set -gx CXX "clang++"
+    set -gx CFLAGS "-march=znver3 -O3 -pipe -fno-plt"
+    set -gx CXXFLAGS "-march=znver3 -O3 -pipe -fno-plt"
+    set -gx LDFLAGS "-fuse-ld=lld -flto=thin -Wl,-O1 -Wl,--as-needed"
+    set -gx MAKEFLAGS "-j$(nproc)"
+
     # Starship Configuration
     set -gx STARSHIP_CONFIG $HOME/.config/starship.toml
     set -gx STARSHIP_CACHE $HOME/.cache/starship
