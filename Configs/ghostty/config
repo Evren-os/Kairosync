@@ -1,11 +1,36 @@
-font-family = "TX-02"
-font-size = 10.5
-mouse-hide-while-typing = true
-resize-overlay = never
+shell-integration = detect
+shell-integration-features = "cursor,title"
 confirm-close-surface = false
+quit-after-last-window-closed = true
+
+theme = Oxocarbon
 background-opacity = 0.70
-theme = GruvboxDarkHard
-minimum-contrast = 3.0
-cursor-style-blink = false
-cursor-click-to-move = true
 background-blur = true
+unfocused-split-opacity = 0.85
+
+font-family = "TX-02"
+font-family = "Noto Emoji"
+font-size = 10.5
+font-feature = "+calt", "+liga"
+freetype-load-flags = "hinting, force-autohint"
+grapheme-width-method = unicode
+
+window-padding-balance = true
+window-padding-x = 5
+window-padding-y = 5
+window-decoration = none
+title = " "
+resize-overlay = never
+
+cursor-style = block
+cursor-style-blink = false
+cursor-invert-fg-bg = true
+cursor-click-to-move = true
+mouse-hide-while-typing = true
+copy-on-select = true
+
+alpha-blending = native
+gtk-gsk-renderer = opengl
+
+gtk-single-instance = desktop
+window-theme = dark
