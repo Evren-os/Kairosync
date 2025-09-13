@@ -113,7 +113,7 @@ matches:
       On the other hand, please make a strong effort to completely **avoid** using information from random, unverified, or generally untrustworthy sources.
 
   - trigger: ":amr"
-    replace: |
+    replace: |-
       A few guidelines for your response:
 
       1.  **Accuracy is my top priority.** Please provide information that is factual, verified, and up-to-date as of {{current_date}}. Avoid any speculation, assumptions, or fabricated details. If you don't know an answer or a fact cannot be confirmed, please state that clearly.
