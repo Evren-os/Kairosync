@@ -3,15 +3,16 @@ shell-integration-features = "cursor,title"
 confirm-close-surface = false
 quit-after-last-window-closed = true
 
-theme = Oxocarbon
+theme = Solarized Dark Higher Contrast
 background-opacity = 0.70
 background-blur = true
 unfocused-split-opacity = 0.85
 
-font-family = "TX-02"
+font-family = "JetBrainsMonoNerdFont"
 font-family = "Noto Emoji"
 font-size = 10.5
 font-feature = "+calt", "+liga"
+font-synthetic-style = "false"
 freetype-load-flags = "hinting, force-autohint"
 grapheme-width-method = unicode
 
@@ -19,7 +20,6 @@ window-padding-balance = true
 window-padding-x = 5
 window-padding-y = 5
 window-decoration = none
-title = " "
 resize-overlay = never
 
 cursor-style = block
@@ -34,3 +34,14 @@ gtk-gsk-renderer = opengl
 
 gtk-single-instance = desktop
 window-theme = dark
+
+# Keybinds
+keybind = super+c=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
+keybind = super+shift+c=copy_to_clipboard
+keybind = super+shift+v=paste_from_clipboard
+keybind = super+k=clear_screen
+keybind = super+w=close_surface
+keybind = super+t=new_tab
+keybind = super+d=new_split:right
+keybind = super+shift+d=new_split:down
