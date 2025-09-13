@@ -72,7 +72,18 @@ matches:
     replace: "In sha Allah"
 
   - trigger: ":vq"
-    replace: "Analyze my PC specifications, mpv configuration, and the provided mediainfos to identify the single best video choice for the highest technical quality (video bitrate, resolution, codec, bit-depth, color space; audio codec, channels, bitrate) that my system can play perfectly smoothly, and provide only one definitive file recommendation without alternatives."
+    replace: |-
+      Based on my PC specifications, mpv configuration, and mediainfo data provided above, perform the following analysis:
+
+      1.  Identify the single file with the absolute peak technical quality, considering all key metrics like video bitrate, resolution, codec, bit-depth, and color space, as well as audio quality (codec, channels, bitrate).
+
+      2.  Determine if my system can play that top-tier file with perfect, stutter-free smoothness.
+
+      3.  Based on your findings, provide a single, definitive recommendation.
+          *   If the top-tier file is playable, recommend it.
+          *   If not, you must instead recommend the file with the highest technical quality from the list that my system *can* play perfectly.
+
+      Your final output should be just one, single, definitive file recommendation without any other options.
 
   - trigger: ":prompt"
     replace: |-
