@@ -2,7 +2,7 @@ global_vars:
   - name: pc_specs
     type: echo
     params:
-      echo: |
+      echo: |-
         **Core**
         - **CPU:** AMD Ryzen 7 5700G
         - **Board:** Gigabyte B550M Aorus Elite
@@ -31,7 +31,7 @@ matches:
     replace: "{{pc_specs}}"
 
   - trigger: ":mpv"
-    replace: |
+    replace: |-
       {{pc_specs}}
 
       My mpv.conf :
@@ -72,10 +72,10 @@ matches:
     replace: "In sha Allah"
 
   - trigger: ":vq"
-    replace: "Analyze my PC specifications, mpv configuration, and the provided mediainfo to identify the single best video choice for the highest technical quality (video bitrate, resolution, codec, bit-depth, color space; audio codec, channels, bitrate) that my system can play perfectly smoothly, and provide only one definitive file recommendation without alternatives."
+    replace: "Analyze my PC specifications, mpv configuration, and the provided mediainfos to identify the single best video choice for the highest technical quality (video bitrate, resolution, codec, bit-depth, color space; audio codec, channels, bitrate) that my system can play perfectly smoothly, and provide only one definitive file recommendation without alternatives."
 
   - trigger: ":prompt"
-    replace: |
+    replace: |-
       Task : Rewrite the prompt enclosed in the curly braces below.
 
       Key Goals :
@@ -91,7 +91,7 @@ matches:
       {}
 
   - trigger: ":src"
-    replace: |
+    replace: |-
       When you're searching for information or trying to find answers, could you please focus on getting details from these types of places? It's really important that the information is authentic, accurate, and directly relevant:
 
       *  Reddit : Look for helpful subreddits, specific posts, and insightful comment threads. Analyze what redditors saying, suggesting and discussing.
