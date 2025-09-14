@@ -10,14 +10,6 @@ if status --is-interactive
     set -gx GOBIN "$HOME/.local/bin"
     set -gx GOCACHE "$HOME/.cache/go"
 
-    # C/C++ Compilation Environment
-    set -gx CC "clang"
-    set -gx CXX "clang++"
-    set -gx CFLAGS "-march=znver3 -O3 -pipe -fno-plt"
-    set -gx CXXFLAGS "-march=znver3 -O3 -pipe -fno-plt"
-    set -gx LDFLAGS "-fuse-ld=lld -flto=thin -Wl,-O1 -Wl,--as-needed"
-    set -gx MAKEFLAGS "-j$(nproc)"
-
     # Starship Configuration
     set -gx STARSHIP_CONFIG $HOME/.config/starship.toml
     set -gx STARSHIP_CACHE $HOME/.cache/starship
@@ -38,7 +30,24 @@ if status --is-interactive
     fastfetch
 end
 
+### Function-style Abbreviations with Options
+function ez
+    eza --color=always --group-directories-first --icons --git $argv
+end
+
+### Recent Packages
+function rip
+    expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl
+end
+
 ### Abbreviations
+abbr -a -- ls 'ez -1'
+abbr -a -- la 'ez -a -1'
+abbr -a -- ll 'ez -l -h'
+abbr -a -- lla 'ez -al -h'
+abbr -a -- lt 'ez -aT'
+abbr -a -- l. 'ez -a | grep -e "^\\."'
+
 abbr -a -- .. 'cd ..'
 abbr -a -- ... 'cd ../..'
 abbr -a -- c 'clear'
@@ -54,24 +63,6 @@ abbr -a -- cfetch 'countryfetch'
 abbr -a -- speed-bdix 'speedtest++ --test-server speedtest.bbts-online.net.prod.hosts.ooklaserver.net:8080'
 abbr -a -- speed-raw 'speedtest++ --test-server speedtest.myrepublic.com.sg:8080'
 
-### Function-style Abbreviations with Options
-function ez
-    eza --color=always --group-directories-first --icons --git $argv
-end
-
-### Recent Packages
-function rip
-    expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl
-end
-
-abbr -a -- ls 'ez -1'
-abbr -a -- la 'ez -a -1'
-abbr -a -- ll 'ez -l -h'
-abbr -a -- lla 'ez -al -h'
-abbr -a -- lt 'ez -aT'
-abbr -a -- l. 'ez -a | grep -e "^\\."'
-
-### System Management
 abbr -a -- docker-start 'sudo systemctl start docker'
 abbr -a -- docker-stop 'sudo systemctl stop docker'
 abbr -a -- rbios 'systemctl reboot --firmware-setup'
