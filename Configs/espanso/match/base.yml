@@ -73,17 +73,22 @@ matches:
 
   - trigger: ":vq"
     replace: |-
-      Based on my PC specifications, mpv configuration, and mediainfo data provided above, perform the following analysis:
+      Your role is to act as an expert media analyst. Your primary, non-negotiable goal is to identify the single file from the list above that represents the absolute pinnacle of audiovisual quality.
 
-      1.  Identify the single file with the absolute peak technical quality, considering all key metrics like video bitrate, resolution, codec, bit-depth, and color space, as well as audio quality (codec, channels, bitrate).
+      **1. The Definitive Selection:**
+      First, analyze the provided MediaInfo for each file. Compare them directly against one another to determine which version offers the most technical and visual supremacy. Your evaluation should consider quantitative metrics (bitrate, resolution, color depth, audio fidelity) and qualitative factors (visual integrity, freedom from compression artifacts, and the preservation of fine-grain detail).
 
-      2.  Determine if my system can play that top-tier file with perfect, stutter-free smoothness.
+      Your choice must be based purely on this pursuit of ultimate quality. My hardware's capabilities are not a limiting factor in this selection.
 
-      3.  Based on your findings, provide a single, definitive recommendation.
-          *   If the top-tier file is playable, recommend it.
-          *   If not, you must instead recommend the file with the highest technical quality from the list that my system *can* play perfectly.
+      **2. The Playback Forecast:**
+      After you have locked in your recommendation, provide a brief, subordinate forecast of the playback experience on my system. This analysis is for my information only and must not influence your primary selection.
 
-      Your final output should be just one, single, definitive file recommendation without any other options.
+      Based on my specs and `mpv.conf`:
+      *   **Performance:** Comment on the expected playback smoothness, noting any potential for stutter from high CPU/GPU decoding demands.
+      *   **Visuals (Tone Mapping):** If the recommended file contains HDR metadata, predict the character of the tone-mapped image on my SDR display (e.g., will colors likely appear balanced, over-saturated, washed out, or darker than intended?).
+      *   **Audio:** Confirm compatibility, noting if the primary audio track will be downmixed to stereo for my headphones.
+
+      Your final output must be a single, definitive recommendation, followed by a concise justification for your choice.
 
   - trigger: ":prompt"
     replace: |-
