@@ -24,7 +24,7 @@ end
 if status --is-interactive
     starship init fish | source
     zoxide init fish | source
-#     tv init fish | source
+    atuin init fish --disable-up-arrow | source
 
     # Startup Command
     fastfetch
