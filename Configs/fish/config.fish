@@ -22,11 +22,10 @@ end
 
 ### Interactive Shell Configuration
 if status --is-interactive
+    set -g fish_history ""
     starship init fish | source
     zoxide init fish | source
-    atuin init fish --disable-up-arrow | source
-
-    # Startup Command
+    atuin init fish | source
     fastfetch
 end
 
