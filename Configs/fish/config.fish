@@ -1,4 +1,4 @@
-### Environment Variables
+### Interactive Shell Configuration
 if status --is-interactive
     # Path Management
     fish_add_path -g $HOME/.local/bin $HOME/.cargo/bin $HOME/.spicetify
@@ -18,10 +18,7 @@ if status --is-interactive
     if test -s "$BUN_INSTALL/_bun"
         source "$BUN_INSTALL/_bun"
     end
-end
 
-### Interactive Shell Configuration
-if status --is-interactive
     set -g fish_history ""
     starship init fish | source
     zoxide init fish | source
