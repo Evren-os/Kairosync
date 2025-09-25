@@ -19,7 +19,6 @@ if status --is-interactive
         source "$BUN_INSTALL/_bun"
     end
 
-    set -g fish_history ""
     starship init fish | source
     zoxide init fish | source
     atuin init fish | source
