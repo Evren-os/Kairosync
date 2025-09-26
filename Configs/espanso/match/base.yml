@@ -3,20 +3,16 @@ global_vars:
     type: echo
     params:
       echo: |-
-        **Core**
-        - **CPU:** AMD Ryzen 7 5700G
-        - **Board:** Gigabyte B550M Aorus Elite
-        - **RAM:** 2x8GB DDR4 @ 3200MHz
+        **Core Components**
+        AMD Ryzen 7 5700G | Gigabyte B550M Aorus Elite | 2×8GB DDR4 @ 3200MHz
 
         **Storage**
-        - **SSD:** 500GB Samsung 980 Evo NVMe (ext4)
-        - **HDD:** 1TB Toshiba HDD (xfs)
+        500GB Samsung 980 Evo NVMe (ext4) | 1TB Toshiba HDD (xfs)
 
-        **System**
-        - **OS:** CachyOS (KDE Plasma 6.4.5)
-        - **Shell:** Fish
-        - **Audio:** Fantech HG24 Spectre II
-        - **Display:** LG 22MK600M 1080p (non-HDR)
+        **Software & Peripherals**
+        CachyOS (KDE Plasma 6.4.5) | Fish Shell
+        Fantech HG24 Spectre II | LG 22MK600M 1080p (non-HDR)
+        Monka A75 Max (Sea Salt V2)
 
 matches:
   - trigger: ":yawm"
