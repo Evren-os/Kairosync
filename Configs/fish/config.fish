@@ -21,8 +21,7 @@ if status --is-interactive
 
     starship init fish | source
     zoxide init fish | source
-    atuin init fish | source
-    fastfetch
+    atuin init fish --disable-up-arrow | source
 end
 
 ### Function-style Abbreviations with Options
