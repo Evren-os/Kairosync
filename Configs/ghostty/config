@@ -30,7 +30,6 @@ mouse-hide-while-typing = true
 copy-on-select = true
 
 alpha-blending = native
-gtk-gsk-renderer = opengl
 
 gtk-single-instance = desktop
 window-theme = dark
