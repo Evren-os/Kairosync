@@ -3,17 +3,18 @@ shell-integration-features = "cursor,title"
 confirm-close-surface = false
 quit-after-last-window-closed = true
 
-theme = Solarized Dark Higher Contrast
+theme = Kanagawa Dragon
+# theme = Solarized Dark Higher Contrast
 background-opacity = 0.70
 background-blur = true
 unfocused-split-opacity = 0.85
 
-font-family = "JetBrainsMonoNerdFont"
+font-family = "JetBrainsMono NF"
 font-family = "Noto Emoji"
 font-size = 10.5
 font-feature = "+calt", "+liga"
 font-synthetic-style = "false"
-freetype-load-flags = "hinting, force-autohint"
+freetype-load-flags = "hinting"
 grapheme-width-method = unicode
 
 window-padding-balance = true
