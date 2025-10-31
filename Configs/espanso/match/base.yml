@@ -89,15 +89,17 @@ matches:
   - trigger: ":prompt"
     replace: |-
       Task : Rewrite the prompt enclosed in the curly braces below.
-
       Key Goals :
       * Make it sound natural and human (not robotic).
       * Optimize for maximum clarity and easy AI understanding.
       * Refine for specificity and to eliminate ambiguity.
       * Keep all original information and intent intact.
-
       Required Output Formats :
-      1.  Present the final rewritten prompt inside a code block as plain, formatted text
+      1. Present **only** the final rewritten prompt enclosed in a markdown code block.
+         * **Fence type (conditional):**
+           **~~~** if the original prompt **or** rewritten prompt contains a standard code block (```...```).
+           **```** otherwise.
+         * **Content:** Complete, purely formatted Markdown of the rewritten prompt (preserve all formatting).
 
       Here is the original prompt to rewrite :
       {}
