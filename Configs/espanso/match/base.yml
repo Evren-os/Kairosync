@@ -126,8 +126,10 @@ matches:
       3.  **Clarity and organization are key.** Please structure your answer in a logical, easy-to-follow way. Use headings, lists, or bold text if it helps make the information clearer.
 
       4.  **Write in a natural, conversational style.** The tone should be easy to read and understand, but don't simplify the content itself. Assume you're explaining things to an intelligent adult who just appreciates clear, straightforward writing.
+
+      5.  **Strictly no fabrication.** You must never - under any circumstances, randomly or otherwise - make up facts, answers, information, documents, wiki entries, suggestions, or anything else. No fabrication allowed, ever.
     vars:
-      - name: current_date
+      - name: current_datec
         type: date
         params:
           format: "%B %d, %Y"
