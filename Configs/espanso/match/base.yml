@@ -129,7 +129,7 @@ matches:
 
       5.  **Strictly no fabrication.** You must never - under any circumstances, randomly or otherwise - make up facts, answers, information, documents, wiki entries, suggestions, or anything else. No fabrication allowed, ever.
     vars:
-      - name: current_datec
+      - name: current_date
         type: date
         params:
           format: "%B %d, %Y"
