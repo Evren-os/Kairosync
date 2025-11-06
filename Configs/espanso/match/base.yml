@@ -98,7 +98,7 @@ matches:
 
       Output Requirements:
       *   The entire rewritten prompt must be enclosed in a `~~~` (triple tildes) markdown code block.
-      *   **Your response must contain only** the final rewritten prompt. Do not include any introductory phrases, explanations, or apologies.
+      *   Your response must contain **only the final rewritten prompt**. Do not include any introductory phrases, explanations, or apologies.
       *   The content must be purely formatted Markdown.
 
       Here is the original prompt to rewrite :
