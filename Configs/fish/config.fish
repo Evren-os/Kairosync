@@ -26,7 +26,7 @@ end
 
 ### Function-style Abbreviations with Options
 function ez
-    eza --color=always --group-directories-first --icons --git $argv
+    eza --color=always --group-directories-first --icons=always --git $argv
 end
 
 ### Recent Packages
