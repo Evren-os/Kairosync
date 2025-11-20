@@ -91,10 +91,14 @@ matches:
       Task : Rewrite the prompt enclosed in the curly braces below.
 
       Key Goals :
-      * Make it sound natural and human (not robotic).
+      *   Make it sound natural and human (not robotic).
       *   Optimize for maximum clarity and easy AI understanding.
       *   Refine for specificity and to eliminate ambiguity.
-      *   Keep all original information and intent intact.
+
+      Tone & Stance Preservation (CRITICAL):
+      *   **Mirror the Sentiment:** You must strictly match the original's bias, intensity, and emotional charge.
+      *   **No "Sanitization":** Do NOT soften, neutralize, or "fix" negative or controversial opinions.
+      *   **Override Positivity Bias:** If the input is critical, the output **must** remain critical. Do NOT add "silver linings" or moral lectures.
 
       Output Requirements:
       *   The entire rewritten prompt must be enclosed in a `~~~` (triple tildes) markdown code block.
