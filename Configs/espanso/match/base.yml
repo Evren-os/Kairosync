@@ -84,8 +84,7 @@ matches:
 
       Intensity Preservation :
       *   **Constraint:** Do not use the original swear words.
-      *   **Action:** Detect the *semantic intensity* of any profanity in the draft.
-      *   **Substitution:** Replace expletives with **High-Register Visceral Vocabulary**. Use clinical, archaic, or sophisticated synonyms that carry the **exact same emotional weight** (e.g., instead of "sh*tty," use "abysmal," "repugnant," or "feculent").
+      *   **Substitution:** Replace expletives with **sharp, direct, and impactful standard English**. Use forceful, common vocabulary that carries the **exact same emotional weight** (e.g., instead of "sh*tty," use "garbage," "intolerable," or "worthless").
 
       Output Requirements:
       *   The entire rewritten prompt must be enclosed in a `~~~` (triple tildes) markdown code block.
