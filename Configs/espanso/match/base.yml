@@ -72,9 +72,9 @@ matches:
       Task : Rewrite the prompt enclosed in the curly braces below.
 
       Key Goals :
-      *   Make it sound natural and human (not robotic).
-      *   Optimize for maximum clarity and easy AI understanding.
-      *   Refine for specificity and to eliminate ambiguity.
+      *   **Structure for LLM Interpretation:** Use logical flow, explicit constraints, and modular formatting to maximize instruction adherence.
+      *   **Optimize for Clarity & Reasoning:** Ensure the prompt encourages step-by-step analysis and eliminates logical ambiguity.
+      *   **Refine for Specificity:** Replace vague terms with precise instructions.
       *   Keep all original information intact.
 
       Tone & Stance Preservation (CRITICAL) :
