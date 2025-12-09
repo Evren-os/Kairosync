@@ -62,5 +62,16 @@ abbr -a -- off 'systemctl poweroff --no-wall'
 abbr -a -- rbt 'systemctl reboot --no-wall'
 abbr -a -- pclean 'sudo paccache -rk2 && sudo paccache -ruk0'
 
-### Media Download
+### Tools
 abbr -a -- yt 'ytrs'
+
+### Git
+abbr -a -- gd 'git diff'
+abbr -a -- ga 'git add'
+abbr -a -- gc 'git commit'
+abbr -a -- gp 'git push'
+abbr -a -- gu 'git pull'
+abbr -a -- gl 'git log'
+abbr -a -- gb 'git branch'
+abbr -a -- gi 'git init'
+abbr -a -- gcl 'git clone'
