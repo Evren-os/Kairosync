@@ -50,7 +50,7 @@ abbr -a -- check 'check_updates'
 abbr -a -- mirror 'sudo cachyos-rate-mirrors'
 abbr -a -- cleanup 'sudo pacman -Rns (pacman -Qtdq)'
 abbr -a -- code 'codium'
-abbr -a -- gmc 'geminicommit -m gemini-2.5-pro'
+abbr -a -- gmc 'geminicommit -m gemini-flash-latest'
 abbr -a -- ffetch 'fastfetch'
 abbr -a -- speed-bdix 'speedtest++ --test-server speedtest.bbts-online.net.prod.hosts.ooklaserver.net:8080'
 abbr -a -- speed-raw 'speedtest++ --test-server speedtest.myrepublic.com.sg:8080'
@@ -64,6 +64,7 @@ abbr -a -- pclean 'sudo paccache -rk2 && sudo paccache -ruk0'
 
 ### Tools
 abbr -a -- yt 'ytrs'
+abbr -a -- ag 'firejail --noprofile --whitelist=~/Downloads/QubitHive --whitelist=~/.config --whitelist=~/.antigravity --whitelist=~/.local antigravity --no-sandbox'
 
 ### Git
 abbr -a -- gcl 'git clone'
