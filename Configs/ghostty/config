@@ -20,7 +20,7 @@ grapheme-width-method = unicode
 window-padding-balance = true
 window-padding-x = 5
 window-padding-y = 5
-window-decoration = none
+window-decoration = server
 resize-overlay = never
 
 cursor-style = block
