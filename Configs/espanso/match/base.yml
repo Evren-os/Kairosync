@@ -8,6 +8,7 @@ matches:
     replace: "{{mydate}}"
 
   - trigger: ":mpv"
+    force_clipboard: true
     replace: |-
       {{spec}}
 
@@ -49,6 +50,7 @@ matches:
     replace: "In sha Allah"
 
   - trigger: ":vq"
+    force_clipboard: true
     replace: |-
       Your role is to act as an expert media analyst. Your primary, non-negotiable goal is to identify the single file from the list above that represents the absolute pinnacle of audiovisual quality.
 
@@ -67,34 +69,8 @@ matches:
 
       Your final output must be a single, definitive recommendation, followed by a concise justification for your choice.
 
-  - trigger: ":prompt"
-    replace: |-
-      Task : Rewrite the prompt enclosed in the curly braces below.
-
-      Key Goals :
-      *   **Structure for LLM Interpretation:** Use logical flow, explicit constraints, and modular formatting to maximize instruction adherence.
-      *   **Optimize for Clarity & Reasoning:** Ensure the prompt encourages step-by-step analysis and eliminates logical ambiguity.
-      *   **Refine for Specificity:** Replace vague terms with precise instructions.
-      *   Keep all original information intact.
-
-      Tone & Stance Preservation (CRITICAL) :
-      *   **Mirror the Sentiment:** You must strictly match the original's bias, intensity, and emotional charge.
-      *   **No "Sanitization":** Do NOT soften, neutralize, or "fix" negative or controversial opinions.
-      *   **Override Positivity Bias:** If the input is critical, the output **must** remain critical. Do NOT add "silver linings" or moral lectures.
-
-      Intensity Preservation :
-      *   **Constraint:** Do not use the original swear words.
-      *   **Substitution:** Replace expletives with **sharp, direct, and impactful standard English**. Use forceful, common vocabulary that carries the **exact same emotional weight** (e.g., instead of "sh*tty," use "garbage," "intolerable," or "worthless").
-
-      Output Requirements:
-      *   The entire rewritten prompt must be enclosed in a `~~~` (triple tildes) markdown code block.
-      *   Your response must contain **only the final rewritten prompt**. Do not include any introductory phrases, explanations, or apologies.
-      *   The content must be purely formatted Markdown.
-
-      Here is the original prompt to rewrite :
-      {}
-
   - trigger: ":src"
+    force_clipboard: true
     replace: |-
       When you're searching for information or trying to find answers, could you please focus on getting details from these types of places? It's really important that the information is authentic, accurate, and directly relevant:
 
@@ -106,6 +82,7 @@ matches:
       On the other hand, please make a strong effort to completely **avoid** using information from random, unverified, or generally untrustworthy sources.
 
   - trigger: ":amr"
+    force_clipboard: true
     replace: |-
       A few guidelines for your response:
 
