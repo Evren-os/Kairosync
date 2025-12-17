@@ -53,6 +53,7 @@ matches:
       2. Evaluate each approach against: clarity, LLM parseability, fidelity to original intent, tone preservation.
       3. Identify the strongest path. If a path hits a dead end (loses information, distorts tone, creates ambiguity), backtrack and select a better path.
       4. Execute the optimal approach.
+
       </tot_process>
       </reasoning_approach>
 
@@ -133,83 +134,83 @@ matches:
       <original>
       Write a tagline for a coffee shop.
       </original>
-      <rewritten>
-          <role>
-          You are an expert Brand Copywriter specializing in food and beverage marketing.
-          </role>
+      <rewritten><![CDATA[
+      <role>
+      You are an expert Brand Copywriter specializing in food and beverage marketing.
+      </role>
 
-          <task>
-          Create a compelling, memorable tagline for a coffee shop.
-          </task>
+      <task>
+      Create a compelling, memorable tagline for a coffee shop.
+      </task>
 
-          <constraints>
-          - The tagline must be concise (under 10 words).
-          - Focus on themes of freshness, aroma, energy, or community.
-          - Ensure the tone is inviting.
-          </constraints>
+      <constraints>
+      - The tagline must be concise (under 10 words).
+      - Focus on themes of freshness, aroma, energy, or community.
+      - Ensure the tone is inviting.
+      </constraints>
 
-          <output_format>
-          Provide ONLY the tagline text. Do not include explanations or preamble.
-          </output_format>
-      </rewritten>
+      <output_format>
+      Provide ONLY the tagline text. Do not include explanations or preamble.
+      </output_format>
+      ]]></rewritten>
       </example_simple>
 
       <example_complex>
       <original>
       Analyze the pros and cons of remote work for software teams and give me a recommendation.
       </original>
-      <rewritten>
-          <role>
-          You are an expert Engineering Management Consultant specializing in organizational structure and productivity for software development teams.
-          </role>
+      <rewritten><![CDATA[
+      <role>
+      You are an expert Engineering Management Consultant specializing in organizational structure and productivity for software development teams.
+      </role>
 
-          <task>
-          Conduct a comprehensive analysis of remote work models specifically for software engineering contexts, then provide a reasoned recommendation based on your findings.
-          </task>
+      <task>
+      Conduct a comprehensive analysis of remote work models specifically for software engineering contexts, then provide a reasoned recommendation based on your findings.
+      </task>
 
-          <steps>
-          1. **Analyze Advantages (Pros):** Identify and explain the benefits of remote work for software teams. Focus on factors such as "deep work" capability, asynchronous communication, recruitment scope, and developer satisfaction.
-          2. **Analyze Disadvantages (Cons):** Identify and explain the drawbacks of remote work for software teams. Focus on factors such as collaboration friction, onboarding of junior developers, system architecture discussions, and social cohesion.
-          3. **Formulate Recommendation:** Synthesize the pros and cons into a definitive recommendation. Specify whether a fully remote, hybrid, or on-site model is optimal, and include any necessary caveats regarding team maturity or size.
-          </steps>
+      <steps>
+      1. **Analyze Advantages (Pros):** Identify and explain the benefits of remote work for software teams. Focus on factors such as "deep work" capability, asynchronous communication, recruitment scope, and developer satisfaction.
+      2. **Analyze Disadvantages (Cons):** Identify and explain the drawbacks of remote work for software teams. Focus on factors such as collaboration friction, onboarding of junior developers, system architecture discussions, and social cohesion.
+      3. **Formulate Recommendation:** Synthesize the pros and cons into a definitive recommendation. Specify whether a fully remote, hybrid, or on-site model is optimal, and include any necessary caveats regarding team maturity or size.
+      </steps>
 
-          <output_format>
-          Provide the response in Markdown using the following headers:
-          ### Analysis: Pros
-          [Detailed bullet points]
+      <output_format>
+      Provide the response in Markdown using the following headers:
+      ### Analysis: Pros
+      [Detailed bullet points]
 
-          ### Analysis: Cons
-          [Detailed bullet points]
+      ### Analysis: Cons
+      [Detailed bullet points]
 
-          ### Strategic Recommendation
-          [Reasoned conclusion]
-          </output_format>
-      </rewritten>
+      ### Strategic Recommendation
+      [Reasoned conclusion]
+      </output_format>
+      ]]></rewritten>
       </example_complex>
 
       <example_coding>
       <original>
       Write a Python function that removes duplicates from a list.
       </original>
-      <rewritten>
-          <role>
-          You are an expert Python developer.
-          </role>
+      <rewritten><![CDATA[
+      <role>
+      You are an expert Python developer.
+      </role>
 
-          <task>
-          Write a robust Python function that removes duplicate elements from a list.
-          </task>
+      <task>
+      Write a robust Python function that removes duplicate elements from a list.
+      </task>
 
-          <specifications>
-          1. Define a function that accepts a single list argument.
-          2. The function must return a list containing only the unique values from the input.
-          3. Ensure the code is syntactically correct and follows Python best practices.
-          </specifications>
+      <specifications>
+      1. Define a function that accepts a single list argument.
+      2. The function must return a list containing only the unique values from the input.
+      3. Ensure the code is syntactically correct and follows Python best practices.
+      </specifications>
 
-          <output_format>
-          Provide the solution inside a Python markdown code block.
-          </output_format>
-      </rewritten>
+      <output_format>
+      Provide the solution inside a Python markdown code block.
+      </output_format>
+      ]]></rewritten>
       </example_coding>
 
       </examples>
