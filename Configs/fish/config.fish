@@ -1,5 +1,7 @@
 ### Interactive Shell Configuration
 if status --is-interactive
+    set -g fish_greeting
+
     # Path Management
     fish_add_path -g $HOME/.local/bin $HOME/.cargo/bin $HOME/.spicetify
     set -gx BUN_INSTALL $HOME/.bun
