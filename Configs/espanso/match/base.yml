@@ -72,29 +72,90 @@ matches:
   - trigger: ":src"
     force_clipboard: true
     replace: |-
-      When you're searching for information or trying to find answers, could you please focus on getting details from these types of places? It's really important that the information is authentic, accurate, and directly relevant:
+      <source_requirements>
 
-      *  Reddit : Look for helpful subreddits, specific posts, and insightful comment threads. Analyze what redditors saying, suggesting and discussing.
-      *  Official Channels : Prioritize official resources, and official community forums.
-      *  Trusted Independent Sources : Seek out well-regarded websites, established blogs, and articles from known, trustworthy publishers.
-      *  Expert & Developer Insights : Pay attention to reviews, analyses, or discussions from genuine developers, users or recognized experts in the field.
+      <priority_hierarchy>
+      When retrieving or citing information, apply this source precedence (highest to lowest):
 
-      On the other hand, please make a strong effort to completely **avoid** using information from random, unverified, or generally untrustworthy sources.
+      1. **Official Primary Sources**
+        - Official documentation, announcements, and publications from the entity in question
+        - Government databases, regulatory filings, peer-reviewed research
+        - Verified official community forums and developer resources
+
+      2. **Expert Analysis**
+        - Recognized domain experts with verifiable credentials
+        - Established technical publications (not SEO-optimized aggregators)
+        - Developer blogs with demonstrated technical depth and community standing
+
+      3. **Community Consensus**
+        - Reddit threads (r/LocalLLaMA, r/ChatGPT, r/ClaudeAI, and domain-specific subreddits) with high engagement and corroborating responses
+        - Stack Overflow answers with significant upvotes and accepted status
+        - GitHub discussions on active, reputable repositories
+
+      4. **Trusted Independent Sources**
+        - Established news outlets with editorial standards
+        - Well-regarded industry analysts and publications
+      </priority_hierarchy>
+
+      <exclusion_criteria>
+      Actively exclude:
+      - SEO-optimized listicles and content-farm articles
+      - Sources without authorship, publication dates, or verifiable credentials
+      - Marketing content presented as objective analysis
+      - Unverified personal blogs lacking technical rigor or citations
+      - Aggregator sites that repackage primary sources without adding value
+      </exclusion_criteria>
+
+      <verification_standards>
+      For each claim derived from sources:
+      - Cross-reference against at least one additional source when making factual assertions
+      - Note conflicting information explicitly rather than selecting one version silently
+      - Distinguish between primary reporting and secondary commentary
+      - Flag information that could not be independently verified
+
+      When source quality is uncertain: state the limitation rather than presenting the information as established fact.
+      </verification_standards>
+
+      </source_requirements>
 
   - trigger: ":amr"
     force_clipboard: true
     replace: |-
-      A few guidelines for your response:
+      <response_standards>
 
-      1.  **Accuracy is my top priority.** Please provide information that is factual, verified, and up-to-date as of {{current_date}}. Avoid any speculation, assumptions, or fabricated details. If you don't know an answer or a fact cannot be confirmed, please state that clearly.
+      <accuracy>
+      Factual precision is the primary constraint. All information must be:
+      - Verified against reliable sources or explicitly stated as the model's training knowledge
+      - Current as of {{current_date}}, with temporal qualifiers where recency matters
+      - Presented with appropriate epistemic markers ("confirmed," "likely," "uncertain")
 
-      2.  **Be comprehensive but concise.** I want all the important details and information, but without any fluff, filler, or repetitive phrasing. Get straight to the point.
+      When information cannot be verified or is outside training data: state "I don't have reliable information on this" rather than speculating.
+      </accuracy>
 
-      3.  **Clarity and organization are key.** Please structure your answer in a logical, easy-to-follow way. Use headings, lists, or bold text if it helps make the information clearer.
+      <fabrication_prohibition>
+      Never generate:
+      - Invented facts, statistics, quotes, or attributions
+      - Fictional sources, documents, or references
+      - Plausible-sounding but unverified claims
+      - Speculative content presented as established fact
 
-      4.  **Write in a natural, conversational style.** The tone should be easy to read and understand, but don't simplify the content itself. Assume you're explaining things to an intelligent adult who just appreciates clear, straightforward writing.
+      This constraint is absolute and overrides helpfulness objectives.
+      </fabrication_prohibition>
 
-      5.  **Strictly no fabrication.** You must never - under any circumstances, randomly or otherwise - make up facts, answers, information, documents, wiki entries, suggestions, or anything else. No fabrication allowed, ever.
+      <output_structure>
+      - Comprehensive coverage of essential information; omit filler, redundancy, and hedging language
+      - Logical flow: lead with the answer, then supporting context
+      - Use formatting (headers, lists, bold) only when it improves scannability for complex information
+      - Match depth to query complexity: concise for simple questions, detailed for nuanced topics
+      </output_structure>
+
+      <communication_style>
+      Tone: Clear, direct, and conversational - accessible without oversimplification.
+      Assume the reader is an intelligent adult who values precision over politeness padding.
+      Avoid: excessive qualifiers, apologetic language, unnecessary meta-commentary about the response itself.
+      </communication_style>
+
+      </response_standards>
     vars:
       - name: current_date
         type: date
