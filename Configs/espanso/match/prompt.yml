@@ -84,29 +84,28 @@ matches:
         </rewrite_principles>
         <output_specification>
           <instruction>
-            Your output must strictly follow this XML structure. Ensure valid XML.
+            Your output must strictly follow this structure.
           </instruction>
           <schema><![CDATA[
-      <root>
-        <reasoning_process>
-          <analysis>[Step 1 analysis]</analysis>
-          <candidates>
-            <option_a>[Description of Approach A]</option_a>
-            <option_b>[Description of Approach B]</option_b>
-          </candidates>
-          <selection>[Selected Approach and Rationale]</selection>
-          <verification>
-            <item status="pass/fail">Original info preserved?</item>
-            <item status="pass/fail">Tone matched?</item>
-            <item status="pass/fail">Vague terms replaced?</item>
-          </verification>
-        </reasoning_process>
-        <rewritten_prompt>
+      ~~~xml
+      <reasoning_process>
+        <analysis>[Step 1 analysis]</analysis>
+        <candidates>
+          <option_a>[Description of Approach A]</option_a>
+          <option_b>[Description of Approach B]</option_b>
+        </candidates>
+        <selection>[Selected Approach and Rationale]</selection>
+        <verification>
+          <item status="pass/fail">Original info preserved?</item>
+          <item status="pass/fail">Tone matched?</item>
+          <item status="pass/fail">Vague terms replaced?</item>
+        </verification>
+      </reasoning_process>
+      ~~~
+
       ~~~
       [The Final Optimized Prompt Content]
       ~~~
-        </rewritten_prompt>
-      </root>
       ]]></schema>
         </output_specification>
         <examples>
@@ -115,23 +114,13 @@ matches:
               Write a tagline for a coffee shop. Make it punchy.
             </original>
             <output>
-              <reasoning_process>
-                <analysis>Simple creative task. "Punchy" is vague; needs definition (short, memorable). Tone is energetic.</analysis>
-                <candidates>
-                  <option_a>Role-based creative brief.</option_a>
-                  <option_b>Simple direct instruction with constraints.</option_b>
-                </candidates>
-                <selection>Option A adds necessary context for high-quality creative work.</selection>
-                <verification>
-                  <item status="pass">Info preserved</item>
-                  <item status="pass">Tone matched</item>
-                </verification>
-              </reasoning_process>
-              <rewritten_prompt>
+      ~~~xml
+      <reasoning_process><analysis>Simple creative task. "Punchy" is vague; needs definition (short, memorable). Tone is energetic.</analysis><candidates><option_a>Role-based creative brief.</option_a><option_b>Simple direct instruction with constraints.</option_b></candidates><selection>Option A adds necessary context for high-quality creative work.</selection><verification><item status="pass">Info preserved</item><item status="pass">Tone matched</item></verification></reasoning_process>
+      ~~~
+
       ~~~
       <prompt><role>You are a Brand Strategist.</role><task>Write a tagline for a coffee shop.</task><constraints><constraint>Style: Punchy, memorable, under 6 words.</constraint><constraint>Tone: Energetic.</constraint></constraints></prompt>
       ~~~
-              </rewritten_prompt>
             </output>
           </example_simple>
           <example_complex>
@@ -139,19 +128,10 @@ matches:
               Analyze the pros and cons of remote work for software teams and give me a recommendation.
             </original>
             <output>
-              <reasoning_process>
-                <analysis>Complex analytical task. Needs structured breakdown (Pros/Cons/Recommendation). Requires expert persona (Engineering Manager).</analysis>
-                <candidates>
-                  <option_a>Step-by-step analysis with structured output.</option_a>
-                  <option_b>Free-form essay with headings.</option_b>
-                </candidates>
-                <selection>Option A ensures all components are addressed and easy to parse.</selection>
-                <verification>
-                  <item status="pass">Info preserved</item>
-                  <item status="pass">Structure optimized</item>
-                </verification>
-              </reasoning_process>
-              <rewritten_prompt>
+      ~~~xml
+      <reasoning_process><analysis>Complex analytical task. Needs structured breakdown (Pros/Cons/Recommendation). Requires expert persona (Engineering Manager).</analysis><candidates><option_a>Step-by-step analysis with structured output.</option_a><option_b>Free-form essay with headings.</option_b></candidates><selection>Option A ensures all components are addressed and easy to parse.</selection><verification><item status="pass">Info preserved</item><item status="pass">Structure optimized</item></verification></reasoning_process>
+      ~~~
+
       ~~~
       <prompt><role>
           You are an expert Engineering Manager and Organizational Consultant specializing in software team dynamics.
@@ -161,7 +141,6 @@ matches:
           Provide the response in Markdown format with clear headings for 'Pros', 'Cons', and 'Recommendation'.
         </output_format></prompt>
       ~~~
-              </rewritten_prompt>
             </output>
           </example_complex>
           <example_coding>
@@ -169,19 +148,10 @@ matches:
                   Write a Python function that removes duplicates from a list.
               </original>
             <output>
-              <reasoning_process>
-                <analysis>Coding task. Needs technical constraints (efficiency, type hints). Input/Output definition is crucial.</analysis>
-                <candidates>
-                  <option_a>Code-only response with docstrings.</option_a>
-                  <option_b>Code with tutorial-style explanation.</option_b>
-                </candidates>
-                <selection>Option A fits "industrial-grade" efficiency better.</selection>
-                <verification>
-                  <item status="pass">Technical constraints added</item>
-                  <item status="pass">Format specified</item>
-                </verification>
-              </reasoning_process>
-              <rewritten_prompt>
+      ~~~xml
+      <reasoning_process><analysis>Coding task. Needs technical constraints (efficiency, type hints). Input/Output definition is crucial.</analysis><candidates><option_a>Code-only response with docstrings.</option_a><option_b>Code with tutorial-style explanation.</option_b></candidates><selection>Option A fits "industrial-grade" efficiency better.</selection><verification><item status="pass">Technical constraints added</item><item status="pass">Format specified</item></verification></reasoning_process>
+      ~~~
+
       ~~~
       <prompt><role>
           You are an Expert Python Developer specializing in writing efficient, clean, and Pythonic code.
@@ -191,7 +161,6 @@ matches:
           Provide the response as a single valid Python code block. Do not include markdown text or conversational filler outside the code block.
         </output_format></prompt>
       ~~~
-                  </rewritten_prompt>
             </output>
           </example_coding>
         </examples>
