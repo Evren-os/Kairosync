@@ -79,7 +79,7 @@ matches:
             Convert negative instructions ("don't do X") into affirmative directives ("do Y"). Define ambiguous terms (e.g., replace "short" with "under 50 words").
           </clarity>
           <fidelity>
-            Preserve all original variables (e.g., {{DATA}}), placeholders, and examples.
+            Preserve all original variables, placeholders, and examples.
           </fidelity>
         </rewrite_principles>
         <output_specification>
