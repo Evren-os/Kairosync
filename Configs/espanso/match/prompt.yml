@@ -64,7 +64,7 @@ matches:
           </simple_task>
           <complex_task>
             <trigger>Contains multiple steps, conditional logic, "if/then" statements, or requires analysis/synthesis.</trigger>
-            <optimizations>Apply pure XML delimiters with Plain Text (No Markdown), Chain of Thought, and Task Decomposition.</optimizations>
+            <optimizations>Structure using pure XML delimiters with strict Plain Text (prohibiting cosmetic bolding or headers), reserving Markdown syntax solely for output schema definitions. Apply Chain of Thought and Task Decomposition.</optimizations>
           </complex_task>
           <coding_task>
             <trigger>Requests code generation, debugging, or technical implementation.</trigger>
