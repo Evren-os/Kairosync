@@ -52,12 +52,12 @@ matches:
         </task_type_routing>
         <rewrite_principles>
           <syntax_protocol>
-            <serialization_rule>The final output must be a Markdown Code Block containing Pure XML text.</serialization_rule>
-            <constraint>Inside the code block, use ONLY XML tags (e.g., &lt;role&gt;, &lt;task&gt;).</constraint>
-            <prohibition>Inside the code block, Markdown formatting (headers like # Task, bolding like **Text**) is STRICTLY FORBIDDEN. Pure text only.</prohibition>
+            <serialization_rule>The final output must be a fenced Code Block containing Modern Markdown text.</serialization_rule>
+            <constraint>Inside the code block, use Standard Modern Markdown formatting: ## H2 Headers, bullet points, bold keys, and {{variable}} placeholders.</constraint>
+            <prohibition>Inside the code block, raw XML tags for structure (like &lt;role&gt;) are STRICTLY FORBIDDEN. Use Markdown structure instead.</prohibition>
           </syntax_protocol>
           <structure>
-            Organize the final prompt as: Role → Task → Instructions → Constraints → Output Format.
+            Organize the final prompt as: ## Role → ## Task → ## Instructions → ## Constraints → ## Output Format.
           </structure>
           <clarity>
             Convert negative instructions ("don't do X") into affirmative directives ("do Y"). Define ambiguous terms (e.g., replace "short" with "under 50 words").
@@ -68,24 +68,27 @@ matches:
         </rewrite_principles>
         <output_specification>
           <instruction>
-            Your output must be a single Markdown code block containing the optimized XML prompt.
+            Your output must be a single fenced code block containing the optimized prompt in Modern Markdown.
           </instruction>
           <schema><![CDATA[
-            ```xml
-            <prompt>
-              <role>[Optimized Role Definition]</role>
-              <task>[Clear Task Statement]</task>
-              <instructions>
-                [Step-by-step directives]
-              </instructions>
-              <constraints>
-                [Negative constraints and rules]
-              </constraints>
-              <output_format>
-                [Specific output schema]
-              </output_format>
-            </prompt>
-            ```
+            ~~~markdown
+            ## Role
+            [Optimized Role Definition]
+
+            ## Task
+            [Clear Task Statement]
+
+            ## Instructions
+            - [Step-by-step directive]
+            - [Step-by-step directive]
+
+            ## Constraints
+            - [Negative constraint]
+            - [Negative constraint]
+
+            ## Output Format
+            [Specific output schema]
+            ~~~
             ]]></schema>
         </output_specification>
         <input_section>
