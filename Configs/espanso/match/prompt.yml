@@ -53,7 +53,7 @@ matches:
         <rewrite_principles>
           <syntax_protocol>
             <serialization_rule>The final output must be a fenced Code Block containing Modern Markdown text.</serialization_rule>
-            <constraint>Inside the code block, use Standard Modern Markdown formatting: ## H2 Headers, bullet points, bold keys, and {{variable}} placeholders.</constraint>
+            <constraint>Inside the code block, use Standard Modern Markdown formatting: ## H2 Headers, bullet points, bold keys.</constraint>
             <prohibition>Inside the code block, raw XML tags for structure (like &lt;role&gt;) are STRICTLY FORBIDDEN. Use Markdown structure instead.</prohibition>
           </syntax_protocol>
           <structure>
