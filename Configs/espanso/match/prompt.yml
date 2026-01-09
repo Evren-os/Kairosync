@@ -68,7 +68,8 @@ matches:
         </rewrite_principles>
         <output_specification>
           <instruction>
-            Your output must be a single fenced code block containing the optimized prompt in Modern Markdown.
+            Your output must be only the single fenced code block containing the optimized prompt in Modern Markdown.
+            STRICTLY FORBIDDEN: Any preambles (e.g., "Here is the prompt"), explanations, markdown styling outside the block, or closing remarks.
           </instruction>
           <schema><![CDATA[
             ~~~markdown
