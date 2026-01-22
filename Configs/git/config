@@ -1,6 +1,6 @@
 [user]
-  name = Evren-os
-  email = evrnos@proton.me
+	name = Evren-os
+	email = evrnos@proton.me
 
 [core]
   compression = 9
@@ -21,25 +21,9 @@
   showStash = true
   showUntrackedFiles = all
 
-[diff]
-  context = 3
-  renames = copies
-  interHunkContext = 10
-
 [pager]
-  diff = diff-so-fancy | $PAGER
   branch = false
   tag = false
-
-[diff-so-fancy]
-  markEmptyLines = false
-
-[color "diff"]
-  meta = black bold
-  frag = magenta
-  context = white
-  whitespace = yellow reverse
-  old = red
 
 [push]
   autoSetupRemote = true
@@ -75,3 +59,9 @@
 
 [tag]
   sort = -taggerdate
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
