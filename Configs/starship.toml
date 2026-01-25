@@ -3,7 +3,6 @@
 format = """
 [](surface0)\
 $os\
-$username\
 [](bg:peach fg:surface0)\
 $directory\
 [](fg:peach bg:green)\
@@ -71,6 +70,7 @@ crust = "#11111b"
 [os]
 disabled = false
 style = "bg:surface0 fg:text"
+format = "[$symbol ]($style)"
 
 [os.symbols]
 Windows = "󰍲"
@@ -95,10 +95,11 @@ Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
 
 [username]
-show_always = true
-style_user = "bg:surface0 fg:text"
-style_root = "bg:surface0 fg:text"
-format = '[ $user ]($style)'
+# show_always = true
+# style_user = "bg:surface0 fg:text"
+# style_root = "bg:surface0 fg:text"
+# format = '[ $user ]($style)'
+disabled = true
 
 [directory]
 style = "fg:mantle bg:peach"
