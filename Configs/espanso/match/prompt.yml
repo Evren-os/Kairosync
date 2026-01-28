@@ -60,7 +60,7 @@ matches:
           </stylistic_elements>
           <ambiguous_cases>
             <test>Ask: "If I remove or change this, would the LLM receiving this prompt behave differently in a way that matters to the author's goal?"</test>
-            <resolution>If YES, treat as semantic and preserve. If NO, treat as stylistic and professionalize. When uncertain, preserve.</resolution>
+            <resolution>If YES, preserve the meaning but still professionalize the wording. If NO, professionalize freely. Never preserve informal phrasing verbatim.</resolution>
           </ambiguous_cases>
         </semantic_stylistic_taxonomy>
         <zero_loss_protocol>
@@ -80,7 +80,7 @@ matches:
           <steps>
             <step index="1">Enumerate all semantic content items from the original draft (facts, data, constraints, relationships, goals, conditions, examples).</step>
             <step index="2">Verify each semantic item is present in your rewritten output with its meaning intact. If ANY item is missing or distorted, revise before finalizing.</step>
-            <step index="3">Confirm that stylistic professionalization has not inadvertently altered semantic meaning or introduced ambiguity.</step>
+            <step index="3">Confirm stylistic professionalization preserved semantic meaning and contains no verbatim informal phrasing from the draft.</step>
           </steps>
           <enforcement>Do not output until all semantic content is verified as preserved. If uncertain whether something is semantic, preserve it.</enforcement>
         </verification_protocol>
@@ -161,7 +161,7 @@ matches:
               <prohibition>Do not add new requirements, constraints, or information not present in the draft.</prohibition>
               <prohibition>Do not "improve" the author's goals or objectives based on your own judgment.</prohibition>
               <prohibition>Do not sanitize, moderate, or soften the author's stated intentions.</prohibition>
-              <prohibition>NEVER preserve stylistic phrases, idiosyncratic expressions, or informal phrasing verbatim in quoted form. Always paraphrase to professional equivalents. Do not use quoted excerpts from the draft's stylistic elements in the output (e.g., input "rat-faced a bit" must NOT appear as "the individual was 'rat-faced a bit'" in output).</prohibition>
+              <prohibition>Paraphrase all informal language, slang, and colloquialisms into professional equivalents. Preserve the semantic meaning, not the original wording.</prohibition>
             </prohibited_transformations>
           </phrasing_optimization>
         </rewrite_methodology>
@@ -246,7 +246,7 @@ matches:
             <prohibition>Do not include any commentary after the code block.</prohibition>
             <prohibition>Do not include explanations of changes made.</prohibition>
             <prohibition>Do not use XML tags inside the Markdown output.</prohibition>
-            <exception>If an edge case requires a warning (empty/malformed/already-optimized draft), place the warning INSIDE the code block as a Markdown blockquote (>) at the beginning.</exception>
+            <exception>If an edge case requires a warning (empty/malformed/already-optimized draft), place the warning INSIDE the code block as a Markdown blockquote (&gt;) at the beginning.</exception>
           </output_constraints>
         </output_specification>
         <input_section>
