@@ -93,11 +93,18 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
   float ratio = iResolution.y / iResolution.x,
         fw = max(fwidth(uv.x), fwidth(uv.y));
 
-  vec2 puv = floor(uv * vec2(60., 60. * ratio)) / 60.;
+  // Scale based on resolution to keep pixel size constant
+  // Reference width 960.0 (half 1080p screen) ensures sharp 1:1 density scaling
+  float scale = iResolution.x / 960.0;
+  
+  // Multiply density by scale, but DIVIDE by the original base (60.)
+  // This allows puv to grow > 1.0 on large screens, effectively extending the pattern area
+  vec2 puv = floor(uv * vec2(60. * scale, 60. * scale * ratio)) / 60.;
   puv +=
       (smoothstep(0., 0.7, noise2D(puv)) - 0.5) * 0.05 - vec2(0., iTime * 0.08);
 
-  uv = fract(vec2(uv.x, uv.y * ratio) * 10.);
+  // Also scale the tile frequency
+  uv = fract(vec2(uv.x, uv.y * ratio) * 10. * scale);
   float d = roundRectSDF((sd + 0.01) * (uv - .5), sdh, 0.075),
         d2 = roundRectSDF((sd + 0.065) * (fract(uv * 6.) - .5), sdh, 0.2),
         noiseTime = iTime * 0.03, noise = snoise(vec3(puv, noiseTime));

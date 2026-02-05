@@ -3,10 +3,10 @@ shell-integration-features = "cursor,title"
 confirm-close-surface = false
 quit-after-last-window-closed = true
 
-theme = Kanagawa Dragon
-# theme = Solarized Dark Higher Contrast
-background-opacity = 0.70
-background-blur = true
+# theme = Kanagawa Dragon
+theme = Solarized Dark Higher Contrast
+# background-opacity = 0.80
+# background-blur = true
 unfocused-split-opacity = 0.85
 
 font-family = "JetBrainsMono NF"
@@ -34,3 +34,8 @@ alpha-blending = native
 
 gtk-single-instance = desktop
 window-theme = dark
+
+custom-shader = shaders/cursor_warp.glsl
+custom-shader = shaders/ripple_cursor.glsl
+custom-shader = shaders/mnoise.glsl
+custom-shader-animation = always
