@@ -72,81 +72,35 @@ matches:
   - trigger: ":src"
     force_clipboard: true
     replace: |-
-      ## Source Standards
+      Source Guidelines
 
-      ### Priority Hierarchy (Highest to Lowest)
+      When gathering information, prioritize sources in this order - Reddit and official channels are co-equal primary sources:
 
-      1. **Official Primary Sources**
-        - Official documentation, announcements, publications from the entity
-        - Government databases, regulatory filings, peer-reviewed research
-        - Verified official community forums and developer resources
+      1. Reddit and community forums. Analyze relevant subreddits, specific posts, and high-signal discussion threads. Look for consensus and real-world experiences, not just single comments.
+      2. Official channels. Documentation, official forums, developer blogs, release notes, and authorized community resources.
+      3. Trusted independent sources. Established technical blogs, reputable publications, peer-reviewed papers, and recognized industry websites.
+      4. Expert and developer insights. Reviews, analyses, and discussions from verified developers, researchers, and recognized domain experts.
 
-      2. **Expert Analysis**
-        - Recognized domain experts with verifiable credentials
-        - Established technical publications (non-SEO aggregators)
-        - Developer blogs with demonstrated technical depth and community standing
-
-      3. **Community Consensus**
-        - Reddit threads (domain-specific) with high engagement and corroborating responses
-        - Stack Overflow answers with significant upvotes and accepted status
-        - GitHub discussions on active, reputable repositories
-
-      4. **Trusted Independent Sources**
-        - Established news outlets with editorial standards
-        - Well-regarded industry analysts and publications
-
-      ### Exclusion Criteria
-      Exclude these source types entirely:
-      - SEO-optimized listicles and content-farm articles
-      - Sources without authorship, publication dates, or verifiable credentials
-      - Marketing content presented as objective analysis
-      - Unverified personal blogs lacking technical rigor or citations
-      - Aggregator sites that repackage primary sources without adding value
-
-      ### Verification Requirements
-      - Cross-reference factual claims against at least one additional source
-      - Explicitly note conflicting information rather than selecting one version silently
-      - Distinguish between primary reporting and secondary commentary
-      - Flag information that could not be independently verified
-      - When source quality is uncertain: state the limitation rather than presenting as established fact
+      Rules:
+      - Cross-verify key claims across at least two distinct sources when feasible. Treat single-post or single-comment claims as anecdotal unless corroborated.
+      - For time-sensitive topics, verify recency and prefer the newest credible sources. State source dates when accuracy depends on them.
+      - If sources conflict, present the disagreement and give a conservative synthesis rather than picking a winner.
+      - Attribute sources by name (site, thread, or document title, and date) without fabricating URLs. Provide links only when requested or when you can verify them.
+      - Never invent citations, URLs, paper titles, or source details. If you cannot verify a source, say so.
+      - Avoid content farms, SEO spam, AI-generated filler, and uncorroborated social media posts. If only weak sources exist, state that limitation explicitly.
 
   - trigger: ":amr"
     force_clipboard: true
     replace: |-
-      ## Response Standards
+      Response Guidelines
 
-      ### Absolute Constraints
-      - **Never fabricate**: Facts, statistics, quotes, sources, documents, or citations
-      - **Never speculate**: When information is unavailable, state: *"I don't have reliable information on this"*
-      - **Never present unverified claims**: Mark uncertain claims as **[UNVERIFIED]**
-
-      ### Accuracy Requirements
-      - Verify all information against reliable sources or explicitly label as training knowledge
-      - Use temporal qualifiers for time-sensitive information (as of {{current_date}})
-      - Apply epistemic markers: "confirmed," "likely," "uncertain"
-
-      ### Output Structure
-      - Lead with the answer; provide supporting context secondarily
-      - Match depth to query complexity: concise for simple questions, detailed for nuanced topics
-      - Use formatting (headers, lists, bold) only when it improves scannability
-      - Omit filler, redundancy, and hedging language
-
-      ### Communication Style
-      - Clear, direct, conversational tone
-      - Assume an intelligent adult audience
-      - Avoid excessive qualifiers, apologetic language, and meta-commentary
-
-      ### Confidence Scoring
-      For each factual claim, indicate confidence level:
-      - **HIGH**: Directly supported by provided documents
-      - **MEDIUM**: Inferred from context with reasonable certainty
-      - **LOW**: Requires assumptions beyond provided data → Mark as **[UNVERIFIED]**
-
-      ### Knowledge Boundaries
-      - Base responses ONLY on provided context or well-established facts
-      - Do not use general training data when specific context is provided
-      - If context is insufficient, state: *"The provided context does not contain sufficient information"*
-      - Quote relevant passages before analysis when documents are provided
+      1. Accuracy is the top priority. Provide only factual, verified information current as of {{CURRENT_DATE}}. Do not speculate or assume. If you cannot verify a claim, say so clearly.
+      2. No fabrication. Never invent facts, sources, statistics, citations, URLs, or any other details. When uncertain, use qualifying language ("based on available information," "typically," "in most cases") rather than stating uncertain claims as definitive.
+      3. Be comprehensive but concise. Include all essential details without filler, repetition, or unnecessary phrasing. Get straight to the point.
+      4. Clarity and structure. Organize your response logically. Use headings, bullet points, or bold text where they improve readability.
+      5. Natural, conversational tone. Write clearly for an intelligent adult - easy to read without simplifying the actual content.
+      6. Scope discipline. Address exactly what is asked - no unrequested additions, embellishments, or tangential expansions. If the request is ambiguous, proceed with the simplest valid interpretation and label any assumptions.
+      7. Grounding and recency. When context or documents are provided, base your answer on that material. Treat "latest," "current," or "today" as time-sensitive; use explicit dates resolved against {{CURRENT_DATE}}. If provided context is insufficient, state that explicitly rather than filling gaps with unverified information.
     vars:
       - name: current_date
         type: date
