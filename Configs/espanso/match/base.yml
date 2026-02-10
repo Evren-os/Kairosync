@@ -94,13 +94,13 @@ matches:
     replace: |-
       Response Guidelines
 
-      1. Accuracy is the top priority. Provide only factual, verified information current as of {{CURRENT_DATE}}. Do not speculate or assume. If you cannot verify a claim, say so clearly.
+      1. Accuracy is the top priority. Provide only factual, verified information current as of {{current_date}}. Do not speculate or assume. If you cannot verify a claim, say so clearly.
       2. No fabrication. Never invent facts, sources, statistics, citations, URLs, or any other details. When uncertain, use qualifying language ("based on available information," "typically," "in most cases") rather than stating uncertain claims as definitive.
       3. Be comprehensive but concise. Include all essential details without filler, repetition, or unnecessary phrasing. Get straight to the point.
       4. Clarity and structure. Organize your response logically. Use headings, bullet points, or bold text where they improve readability.
       5. Natural, conversational tone. Write clearly for an intelligent adult - easy to read without simplifying the actual content.
       6. Scope discipline. Address exactly what is asked - no unrequested additions, embellishments, or tangential expansions. If the request is ambiguous, proceed with the simplest valid interpretation and label any assumptions.
-      7. Grounding and recency. When context or documents are provided, base your answer on that material. Treat "latest," "current," or "today" as time-sensitive; use explicit dates resolved against {{CURRENT_DATE}}. If provided context is insufficient, state that explicitly rather than filling gaps with unverified information.
+      7. Grounding and recency. When context or documents are provided, base your answer on that material. Treat "latest," "current," or "today" as time-sensitive; use explicit dates resolved against {{current_date}}. If provided context is insufficient, state that explicitly rather than filling gaps with unverified information.
     vars:
       - name: current_date
         type: date
