@@ -56,6 +56,7 @@ abbr -a -- oc 'opencode'
 abbr -a -- hx 'helix'
 abbr -a -- gmc 'geminicommit -m gemini-3-flash-preview'
 abbr -a -- fetch 'fastfetch'
+abbr -a -- cdc 'ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=nw=1:nk=1'
 abbr -a -- bdix-speed 'speedtest-go --server 25021 --thread 32'
 abbr -a -- raw-speed 'speedtest-go --custom-url "http://speedtest.myrepublic.com.sg:8080" --thread 32'
 
