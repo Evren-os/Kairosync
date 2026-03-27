@@ -28,7 +28,7 @@ end
 
 ### Function-style Abbreviations with Options
 function ez
-    eza --color=always --group-directories-first --icons=always --git $argv
+    eza --color=always --group-directories-first --icons=always --git --no-user $argv
 end
 
 ### Recent Packages
@@ -82,3 +82,6 @@ abbr -a -- gu 'git pull'
 abbr -a -- gp 'git push'
 abbr -a -- gb 'git branch'
 abbr -a -- gl 'git log --all --graph'
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
