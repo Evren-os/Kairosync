@@ -82,6 +82,3 @@ abbr -a -- gu 'git pull'
 abbr -a -- gp 'git push'
 abbr -a -- gb 'git branch'
 abbr -a -- gl 'git log --all --graph'
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
