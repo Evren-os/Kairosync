@@ -4,9 +4,10 @@ confirm-close-surface = false
 quit-after-last-window-closed = true
 
 # theme = Kanagawa Dragon
-theme = Solarized Dark Higher Contrast
-# background-opacity = 0.80
-# background-blur = true
+# theme = Solarized Dark Higher Contrast
+theme = Dracula+
+background-opacity = 0.75
+background-blur = true
 unfocused-split-opacity = 0.85
 
 font-family = "JetBrainsMono NF"
@@ -37,5 +38,5 @@ window-theme = dark
 
 custom-shader = shaders/cursor_warp.glsl
 custom-shader = shaders/ripple_cursor.glsl
-custom-shader = shaders/mnoise.glsl
+# custom-shader = shaders/mnoise.glsl
 custom-shader-animation = always
