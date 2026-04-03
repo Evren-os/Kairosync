@@ -1,192 +1,313 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+"$schema" = "https://starship.rs/config-schema.json"
 
+# Keep the prompt tight in split panes: one context line, one input line.
 format = """
-[](surface0)\
-$os\
-[](bg:peach fg:surface0)\
-$directory\
-[](fg:peach bg:green)\
-$git_branch\
-$git_status\
-[](fg:green bg:teal)\
-$c\
-$rust\
-$golang\
-$nodejs\
-$php\
-$java\
-$kotlin\
-$haskell\
-$python\
-[](fg:teal bg:blue)\
-$docker_context\
-[](fg:blue bg:purple)\
-$time\
-[ ](fg:purple)\
-$line_break$character"""
+$container$nix_shell$username$hostname$directory$git_branch$git_state$git_status$git_metrics
+$status$cmd_duration$jobs$sudo$python$nodejs$bun$rust$golang$c$cpp$battery$character"""
+right_format = ""
+add_newline = false
+scan_timeout = 20
+command_timeout = 350
+follow_symlinks = true
+palette = "autoland"
 
-palette = 'catppuccin_mocha'
+[palettes.autoland]
+fg = "#d8dee9"
+muted = "#6f7b8a"
+path = "#8fb4ff"
+repo = "#c7d7ff"
+git = "#7dc4e4"
+ok = "#8fbc8f"
+warn = "#e5b567"
+bad = "#e67e80"
+info = "#9ccfd8"
 
-[palettes.gruvbox_dark]
-color_fg0 = '#fbf1c7'
-color_bg1 = '#3c3836'
-color_bg3 = '#665c54'
-color_blue = '#458588'
-color_aqua = '#689d6a'
-color_green = '#98971a'
-color_orange = '#d65d0e'
-color_purple = '#b16286'
-color_red = '#cc241d'
-color_yellow = '#d79921'
-
-[palettes.catppuccin_mocha]
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-orange = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
-text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
-base = "#1e1e2e"
-mantle = "#181825"
-crust = "#11111b"
-
-[os]
+[container]
+format = '[$symbol $name]($style) '
+symbol = "ctr"
+style = "fg:warn"
 disabled = false
-style = "bg:surface0 fg:text"
-format = "[$symbol ]($style)"
 
-[os.symbols]
-Windows = "󰍲"
-Ubuntu = "󰕈"
-SUSE = ""
-Raspbian = "󰐿"
-Mint = "󰣭"
-Macos = ""
-Manjaro = ""
-Linux = "󰌽"
-Gentoo = "󰣨"
-Fedora = "󰣛"
-Alpine = ""
-Amazon = ""
-Android = ""
-Arch = "󰣇"
-Artix = "󰣇"
-CachyOS = "󰣇"
-CentOS = ""
-Debian = "󰣚"
-Redhat = "󱄛"
-RedHatEnterprise = "󱄛"
+[nix_shell]
+# Text badges survive font/theme changes better than decorative icon blocks.
+format = '[$symbol $state( $name)]($style) '
+symbol = "nix"
+style = "fg:warn"
+impure_msg = "impure"
+pure_msg = "pure"
+unknown_msg = "shell"
+heuristic = false
+disabled = false
 
 [username]
-# show_always = true
-# style_user = "bg:surface0 fg:text"
-# style_root = "bg:surface0 fg:text"
-# format = '[ $user ]($style)'
-disabled = true
+detect_env_vars = []
+format = '[$user]($style)'
+style_user = "fg:info"
+style_root = "bold fg:bad"
+show_always = false
+disabled = false
+
+[hostname]
+ssh_only = true
+ssh_symbol = ""
+trim_at = "."
+detect_env_vars = []
+format = '[@$hostname]($style) '
+style = "fg:info"
+disabled = false
 
 [directory]
-style = "fg:mantle bg:peach"
-format = "[ $path ]($style)"
-truncation_length = 3
+truncate_to_repo = true
+truncation_length = 2
 truncation_symbol = "…/"
-
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = "󰝚 "
-"Pictures" = " "
-"Developer" = "󰲋 "
+home_symbol = "~"
+read_only = " "
+read_only_style = "fg:warn"
+use_logical_path = true
+use_os_path_sep = true
+fish_style_pwd_dir_length = 0
+format = '[$path]($style)[$read_only]($read_only_style) '
+repo_root_format = '[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
+style = "fg:path"
+repo_root_style = "bold fg:repo"
+disabled = false
 
 [git_branch]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol $branch ](fg:base bg:green)]($style)'
+format = '[$symbol$branch]($style) '
+symbol = " "
+style = "fg:git"
+truncation_length = 18
+truncation_symbol = "…"
+only_attached = true
+always_show_remote = false
+ignore_branches = []
+ignore_bare_repo = false
+disabled = false
+
+[git_state]
+format = '[$state( $progress_current/$progress_total)]($style) '
+rebase = "rebase"
+merge = "merge"
+revert = "revert"
+cherry_pick = "pick"
+bisect = "bisect"
+am = "am"
+am_or_rebase = "am/rebase"
+style = "fg:warn"
+disabled = false
 
 [git_status]
-style = "bg:teal"
-format = '[[($all_status$ahead_behind )](fg:base bg:green)]($style)'
+# Dense git markers are easier to scan than Jetpack's framed powerline block.
+format = '([ $ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$typechanged$stashed]($style)) '
+style = "fg:muted"
+stashed = "* "
+ahead = "⇡${count} "
+behind = "⇣${count} "
+up_to_date = ""
+diverged = "⇕${ahead_count}/${behind_count} "
+conflicted = "= "
+deleted = "✘ "
+renamed = "» "
+modified = "! "
+staged = "+${count} "
+untracked = "? "
+typechanged = "~ "
+ignore_submodules = true
+use_git_executable = false
+disabled = false
 
-[nodejs]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[c]
-symbol = " "
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[rust]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[golang]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[php]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[java]
-symbol = " "
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[kotlin]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[haskell]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
+[git_metrics]
+only_nonzero_diffs = true
+ignore_submodules = true
+format = '([+$added]($added_style) )([-$deleted]($deleted_style) )'
+added_style = "fg:ok"
+deleted_style = "fg:bad"
+disabled = false
 
 [python]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[docker_context]
-symbol = ""
-style = "bg:mantle"
-format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
-
-[time]
+format = '[py$version]($style) '
+version_format = "${raw}"
+style = "fg:ok"
 disabled = false
-time_format = "%R"
-style = "bg:peach"
-format = '[[  $time ](fg:mantle bg:purple)]($style)'
+detect_extensions = ["py", "ipynb"]
+detect_files = [
+  "requirements.txt",
+  ".python-version",
+  "pyproject.toml",
+  "Pipfile",
+  "tox.ini",
+  "setup.py",
+  "__init__.py",
+]
+detect_folders = []
+detect_env_vars = ["VIRTUAL_ENV"]
 
-[line_break]
+[nodejs]
+format = '[node$version]($style) '
+version_format = "${raw}"
+style = "fg:ok"
 disabled = false
+not_capable_style = "fg:bad"
+detect_extensions = ["js", "mjs", "cjs", "ts", "mts", "cts"]
+detect_files = [
+  "package.json",
+  ".node-version",
+  ".nvmrc",
+  "!bunfig.toml",
+  "!bun.lock",
+  "!bun.lockb",
+]
+detect_folders = ["node_modules"]
+
+[bun]
+format = '[bun$version]($style) '
+version_format = "${raw}"
+symbol = "bun "
+style = "fg:ok"
+disabled = false
+detect_extensions = []
+detect_files = ["bun.lock", "bun.lockb", "bunfig.toml"]
+detect_folders = []
+
+[rust]
+format = '[rs$version]($style) '
+version_format = "${raw}"
+symbol = "rs "
+style = "fg:ok"
+disabled = false
+detect_extensions = ["rs"]
+detect_files = ["Cargo.toml"]
+detect_folders = []
+
+[golang]
+format = '[go]($style) '
+version_format = "${raw}"
+symbol = "go "
+style = "fg:ok"
+not_capable_style = "fg:bad"
+detect_extensions = ["go"]
+detect_files = [
+  "go.mod",
+  "go.sum",
+  "go.work",
+  "glide.yaml",
+  "Gopkg.yml",
+  "Gopkg.lock",
+  ".go-version",
+]
+detect_folders = ["Godeps"]
+disabled = false
+
+[c]
+format = '[c$version]($style) '
+version_format = "${raw}"
+symbol = "c "
+style = "fg:ok"
+disabled = false
+detect_extensions = ["c", "h"]
+detect_files = []
+detect_folders = []
+commands = [["cc", "--version"], ["gcc", "--version"], ["clang", "--version"]]
+
+[cpp]
+format = '[c++$version]($style) '
+version_format = "${raw}"
+symbol = "c++ "
+style = "fg:ok"
+disabled = false
+detect_extensions = [
+  "cpp",
+  "cc",
+  "cxx",
+  "c++",
+  "hpp",
+  "hh",
+  "hxx",
+  "h++",
+  "tcc",
+]
+detect_files = []
+detect_folders = []
+commands = [
+  [
+    "c++",
+    "--version",
+  ],
+  [
+    "g++",
+    "--version",
+  ],
+  [
+    "clang++",
+    "--version",
+  ],
+]
+
+[status]
+# Show numeric failures, but stay silent on success.
+format = '[$symbol$status]($style) '
+symbol = "✘"
+success_symbol = ""
+not_executable_symbol = "! "
+not_found_symbol = "? "
+sigint_symbol = "^C "
+signal_symbol = "sig "
+style = "fg:bad"
+map_symbol = false
+recognize_signal_code = true
+pipestatus = false
+pipestatus_separator = "|"
+pipestatus_format = '\[$pipestatus\] => [$symbol$common_meaning$signal_name$maybe_int]($style) '
+disabled = false
+
+[cmd_duration]
+min_time = 1200
+show_milliseconds = false
+show_notifications = false
+min_time_to_notify = 45000
+format = '[$duration]($style) '
+style = "fg:muted"
+disabled = false
+
+[jobs]
+threshold = 1
+symbol_threshold = 1
+number_threshold = 1
+format = '[$symbol$number]($style) '
+symbol = "&"
+style = "fg:info"
+disabled = false
+
+[sudo]
+format = '[$symbol]($style) '
+symbol = "sudo"
+style = "fg:warn"
+allow_windows = false
+disabled = false
+
+[battery]
+format = '[$symbol$percentage]($style) '
+full_symbol = "󰁹 "
+charging_symbol = "󰂄 "
+discharging_symbol = "󰂃 "
+unknown_symbol = "󰁽 "
+empty_symbol = "󰂎 "
+disabled = false
+
+[[battery.display]]
+threshold = 12
+style = "fg:bad"
+
+[[battery.display]]
+threshold = 25
+style = "fg:warn"
 
 [character]
+format = "$symbol "
+success_symbol = "[❯](fg:info)"
+error_symbol = "[❯](fg:bad)"
+vimcmd_symbol = "[❮](fg:warn)"
+vimcmd_visual_symbol = "[❮](fg:warn)"
+vimcmd_replace_symbol = "[❮](fg:warn)"
+vimcmd_replace_one_symbol = "[❮](fg:warn)"
 disabled = false
-success_symbol = '[](bold fg:green)'
-error_symbol = '[](bold fg:red)'
-vimcmd_symbol = '[](bold fg:creen)'
-vimcmd_replace_one_symbol = '[](bold fg:purple)'
-vimcmd_replace_symbol = '[](bold fg:purple)'
-vimcmd_visual_symbol = '[](bold fg:lavender)'
