@@ -36,6 +36,51 @@ function rip
     expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl
 end
 
+function aenc
+    bash -c '
+set -euo pipefail
+umask 077
+src="$1"
+out="$(basename -- "$src").tar.zst.age"
+tmp="${out}.part.$$"
+trap "rm -f -- \"${tmp}\"" EXIT
+tar -C "$(dirname -- "$src")"  \
+    --create --file -          \
+    --sort=name                \
+    --xattrs                   \
+    --acls                     \
+    --numeric-owner            \
+    -- "$(basename -- "$src")" |
+  zstd -15 --long -T0 --auto-threads=logical |
+  age -e -p > "$tmp"
+mv -f -- "$tmp" "$out"
+trap - EXIT
+echo "OK: ${out}"
+' bash $argv[1]
+end
+
+function adec
+    bash -c '
+set -euo pipefail
+archive="$1"
+tar_flags=(
+  --xattrs
+  --xattrs-include="*"
+  --acls
+  --same-permissions
+  --numeric-owner
+  --delay-directory-restore
+)
+if (( EUID == 0 )); then
+  tar_flags+=(--same-owner)
+fi
+age -d -- "$archive" |
+  zstd -d |
+  tar --extract --file - "${tar_flags[@]}"
+echo "OK: extracted from ${archive}"
+' bash $argv[1]
+end
+
 ### Abbreviations
 abbr -a -- ls 'ez -1'
 abbr -a -- la 'ez -a -1'
@@ -69,7 +114,6 @@ abbr -a -- pclean 'sudo paccache -rk2 && sudo paccache -ruk0'
 
 ### Tools
 abbr -a -- yt 'ytrs'
-abbr -a -- ag 'firejail --noprofile --whitelist=~/Downloads/QubitHive --whitelist=~/.config --whitelist=~/.antigravity --whitelist=~/.local antigravity --no-sandbox'
 
 ### Git
 abbr -a -- gcl 'git clone'
