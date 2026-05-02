@@ -278,13 +278,6 @@ symbol = "&"
 style = "fg:info"
 disabled = false
 
-[sudo]
-format = '[$symbol]($style) '
-symbol = "sudo"
-style = "fg:warn"
-allow_windows = false
-disabled = false
-
 [battery]
 format = '[$symbol$percentage]($style) '
 full_symbol = "󰁹 "
