@@ -10,9 +10,10 @@ background-opacity = 0.75
 background-blur = true
 unfocused-split-opacity = 0.85
 
-font-family = "JetBrainsMono NF"
-font-family = "Noto Emoji"
-font-size = 10.5
+font-family = "MonaspiceNe NFM"
+# font-family = "CommitMono Nerd Font Mono"
+# font-family = "MonaspiceRn NFM"
+font-size = 12
 font-feature = "+calt", "+liga"
 font-synthetic-style = "false"
 freetype-load-flags = "hinting"
