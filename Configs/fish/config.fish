@@ -26,6 +26,10 @@ if status --is-interactive
     atuin init fish --disable-up-arrow | source
 end
 
+# Custom Binds
+bind ctrl-backspace backward-kill-word
+bind alt-backspace backward-kill-token
+
 ### Function-style Abbreviations with Options
 function ez
     eza --color=always --group-directories-first --icons=always --git --no-user $argv
@@ -97,7 +101,7 @@ abbr -a -- check 'check_updates'
 abbr -a -- mirror 'sudo cachyos-rate-mirrors'
 abbr -a -- cleanup 'sudo pacman -Rns (pacman -Qtdq)'
 abbr -a -- code 'codium'
-abbr -a -- oc 'opencode-podman'
+abbr -a -- oc 'opencode'
 abbr -a -- hx 'helix'
 abbr -a -- gmc 'geminicommit -m gemini-3.5-flash'
 abbr -a -- fetch 'fastfetch'
@@ -121,7 +125,7 @@ abbr -a -- gi 'git init'
 abbr -a -- gst 'git status'
 abbr -a -- gd 'git diff'
 abbr -a -- ga 'git add'
-abbr -a -- gc 'git commit'
+abbr -a -- gc 'git commit -m'
 abbr -a -- gu 'git pull'
 abbr -a -- gp 'git push'
 abbr -a -- gb 'git branch'
