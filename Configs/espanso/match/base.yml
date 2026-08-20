@@ -52,7 +52,7 @@ matches:
   - trigger: ":vq"
     force_clipboard: true
     replace: |-
-      Your role is to act as an expert media analyst. Your primary, non-negotiable goal is to identify the single file from the list above that represents the absolute pinnacle of audiovisual quality.
+      Your role is to act as an expert media analyst. Enforce a strict verification-first protocol: systematically analyze, cross-verify, and stress-test evidence step-by-step before asserting any claim, answer, or conclusion. Your primary, non-negotiable goal is to identify the single file from the list above that represents the absolute pinnacle of audiovisual quality.
 
       **1. The Definitive Selection:**
       First, analyze the provided MediaInfo for each file. Compare them directly against one another to determine which version offers the most technical and visual supremacy. Your evaluation should consider quantitative metrics (bitrate, resolution, color depth, audio fidelity) and qualitative factors (visual integrity, freedom from compression artifacts, and the preservation of fine-grain detail).
